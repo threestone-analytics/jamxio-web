@@ -33,7 +33,7 @@ const DocumentType = {
 
 const Publisher = {
     _id: ID, 
-    user: ID,
+    user: User,
     records: [Record],
 }
 
