@@ -17,3 +17,4 @@ dist
 
 .debug
 src2
+src/.env
