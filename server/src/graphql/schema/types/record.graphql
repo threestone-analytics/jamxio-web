@@ -1,0 +1,8 @@
+
+type Record {
+	_id: ID
+	title : String
+	documentType : DocumentType
+	documents: [Document]
+}
+
