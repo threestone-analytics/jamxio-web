@@ -2,7 +2,7 @@
 
 ```js
 
-const record = {
+const Record = {
     _id: ID, 
     title: String,
     thumbnail: String,
@@ -25,13 +25,13 @@ const Document = {
     documentType : DocumentType  
 }
 
-const DocumentTye = {
+const DocumentType = {
     _id: ID, 
     category: String,
     subcategory: String,
 }
 
-const DocumentTye = {
+const Publisher = {
     _id: ID, 
     user: ID,
     records: [Record],
@@ -41,7 +41,7 @@ const DocumentTye = {
     _id: ID, 
     name: String,
     email: String,
-    username: [Record],
-    organization: ID,
+    username: String,
     lastname: String,
+    organization: String,
 }
