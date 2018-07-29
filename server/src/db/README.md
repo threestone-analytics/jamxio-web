@@ -6,7 +6,6 @@ const Record = {
     _id: ID, 
     title: String,
     thumbnail: String,
-    datePublished: Date,
     documents: [Document] ,    
     documentType: DocumentType,  
 

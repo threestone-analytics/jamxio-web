@@ -23,6 +23,10 @@ export default {
     const data = await loaders.getDocument.load(_id);
     return data.publishedDate;
   },
+  async geojsonType({ _id }, contex, { loaders }) {
+    const data = await loaders.getDocument.load(_id);
+    return data.geojsonType;
+  },
   async source({ _id }, contex, { loaders }) {
     const data = await loaders.getDocument.load(_id);
     return data.source;

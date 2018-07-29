@@ -6,10 +6,11 @@ const documentsSchema = new Schema(
   {
     _id: Schema.Types.ObjectId,
     recordId: Schema.Types.ObjectId,
+    url: String,
     format: String,
     source: String,
     geometry: JSON,
-    url: String,
+    geojsonType: String,
     publishedDate: Date,
     publisher: Schema.Types.ObjectId,
     documentType: Schema.Types.ObjectId,
