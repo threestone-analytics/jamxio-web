@@ -11,7 +11,6 @@ export default function addRecord(root, { record }) {
   const dTModel = new DocumentTypeModel();
   const rModel = new RecordModel();
   const date = new Date();
-  console.log(record, '-------------------------------------------');
   dTModel.set({
     category: record.document.documentType.category,
     subcategory: record.document.documentType.subcategory,

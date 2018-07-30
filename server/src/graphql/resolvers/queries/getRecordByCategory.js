@@ -18,7 +18,5 @@ export default async function(root, { _id }, context) {
 
   let dat = await Promise.all(conmo).then(a => a);
   dat = dat.filter(n => n);
-  console.log(dat, 'data');
-
   return dat;
 }
