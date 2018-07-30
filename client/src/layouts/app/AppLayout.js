@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { Modal } from 'Components/Modal';
+import { UploadModal, UploadRecordModal } from 'Components/Modal';
 import { Toastr } from 'Components/Toastr';
 import SideMenu from 'Containers/appContainers/NavigationContainers/SideMenuContainer';
 // Layouts
@@ -16,7 +16,8 @@ const AppLayout = ({ match, location }) => (
     <SideMenu />
     <main id="page-wrap">
       <Toastr />
-      <Modal />
+      <UploadModal />
+      <UploadRecordModal />
       <Fade location={location}>
         <Switch location={location}>
           <Route path={`${match.path}/dashboard`} component={DashBoardLayout} />

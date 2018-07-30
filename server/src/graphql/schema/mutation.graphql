@@ -5,14 +5,17 @@ input DT {
 }
 
 input Doc {
-  documentType: ID
+  documentType: JSON
+  thumbnail: String
+  recordId: ID
   source: String
   format: String
   title: String
   url: String
   geometry: JSON
-  publishedDate: Date,
-  publisher: Pub,
+  geojsonType: String
+  publishedDate: Date
+  publisher: ID
 }
 
 input U {
@@ -22,14 +25,14 @@ input U {
 }
 
 input Pub {
-  user: U
-  records: [RecordInput]
+  user: ID
 }
 
 input RecordInput {
   title: String
   documentType: DT
-  documents: [Doc],
+  thumbnail: String
+  document: Doc
 }
 
 input DocumentInput {

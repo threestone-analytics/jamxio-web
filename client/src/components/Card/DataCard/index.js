@@ -1,7 +1,17 @@
 import React from 'react';
 import Download from '@axetroy/react-download';
 import PropTypes from 'prop-types';
-import { Card, Image, Details, Info, Buttons, Button, LabelBox, Label } from './style';
+import {
+  Card,
+  Image,
+  Details,
+  Info,
+  Buttons,
+  Button,
+  LabelBox,
+  Label,
+  ImageContainer
+} from './style';
 
 const DataCard = props => {
   const { record } = props;
@@ -10,9 +20,9 @@ const DataCard = props => {
   };
   return (
     <Card>
-      <Image>
-        <img alt="" />
-      </Image>
+      <ImageContainer>
+        <Image src={record.thumbnail} />
+      </ImageContainer>
       <Details>
         <Info>
           <LabelBox>

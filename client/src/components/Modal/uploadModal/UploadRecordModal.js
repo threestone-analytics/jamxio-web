@@ -18,7 +18,7 @@ import * as dropzoneActions from '../../../store/reducers/dropzone/dropzoneActio
 import * as validateActions from '../../../store/reducers/form/validateFileForm/validateActions';
 
 // Selectors
-import { UploadDocument } from '../../Form/uploadForm';
+import { UploadRecord } from '../../Form/uploadForm';
 import { getUploadFileForm, getAlert } from '../../../utils/selectors/common';
 
 const actions = [alertActions, dropzoneActions, validateActions];
@@ -62,7 +62,7 @@ const UploadModal = props => (
   >
     <ModalOuter>
       <ModalBox>
-        <UploadDocument {...props} handleHide={props.handleHide} />
+        <UploadRecord {...props} handleHide={props.handleHide} />
       </ModalBox>
     </ModalOuter>
   </Modal>
@@ -76,17 +76,17 @@ UploadModal.propTypes = {
 const UM = compose(
   graphql(
     gql`
-      mutation Record($record: DocumentInput) {
-        addDocument(record: $record)
+      mutation Record($record: RecordInput) {
+        addRecord(record: $record)
       }
     `,
     {
-      name: 'addDocument'
+      name: 'addRecord'
     }
   ),
   withHandlers({
-    handleAddRecord: ({ addDocument }) => record => {
-      addDocument({
+    handleAddRecord: ({ addRecord }) => record => {
+      addRecord({
         variables: { record }
       });
     }
@@ -98,6 +98,6 @@ const UM = compose(
 )(UploadModal);
 
 export default connectModal({
-  name: 'uploadModal',
+  name: 'uploadRecordModal',
   getModalState: state => state.get('modal')
 })(UM);

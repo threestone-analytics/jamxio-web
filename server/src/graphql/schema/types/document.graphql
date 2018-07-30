@@ -5,6 +5,7 @@
     recordId: ID
     format: String
     source: String
+    file: JSON
     geometry: JSON
     publisher: String
     geojsonType: String

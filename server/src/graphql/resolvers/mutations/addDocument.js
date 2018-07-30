@@ -11,32 +11,21 @@ export default function addDocument(root, { record }) {
   console.log(record);
 
   saveMap(record.document.geometry);
-
-  const uModel = new UserModel();
-  uModel.set({ username: 'alexter42' });
-  uModel.save(function(err) {
-    if (err) return handleError(err);
-    // saved!
-  });
-  //Create publisher
-  const pModel = new PublisherModel();
-  pModel.set({ user: uModel });
-  pModel.save(function(err) {
-    if (err) return handleError(err);
-    // saved!
-  });
-  //Create publisher
+  const date = new Date();
+  const id = '5b5e37a947359809a0d7abae';
 
   //Create document
   const dModel = new DocumentModel();
   dModel.set({
     format: record.document.format,
     source: record.document.source,
-    title: record.document.geometry.name,
+    url: record.document.url,
+    recordId: record.document.recordId,
     documentType: record.document.documentType,
+    geojsonType: record.document.geojsonType,
     geometry: { data: 'data' },
-    publishedDate: record.publishedDate,
-    publisher: pModel,
+    publishedDate: date,
+    publisher: id,
   });
   dModel.save(function(err) {
     if (err) return handleError(err);

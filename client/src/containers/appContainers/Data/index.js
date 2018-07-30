@@ -36,6 +36,7 @@ const GET_DOCUMENT = gql`
     getRecords {
       _id
       title
+      thumbnail
       documentType {
         _id
         category

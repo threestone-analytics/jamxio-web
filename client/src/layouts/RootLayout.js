@@ -12,6 +12,7 @@ const RootLayout = ({ loggedInUser, loading }) =>
     <Switch>
       <Route path="/home" component={MapLayout} />
       <Route path="/data" component={DataLayout} />
+      <Route path="/record" component={DataLayout} />
       <Route render={() => <Redirect to="/home" />} />
     </Switch>
   ) : !loading ? (
@@ -19,6 +20,7 @@ const RootLayout = ({ loggedInUser, loading }) =>
     <Switch>
       <Route path="/home" component={MapLayout} />
       <Route path="/data" component={MapLayout} />
+      <Route path="/record" component={DataLayout} />
       <Route render={() => <Redirect to="/home" />} />
     </Switch>
   ) : (

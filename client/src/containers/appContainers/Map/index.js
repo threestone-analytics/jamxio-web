@@ -20,15 +20,21 @@ async function plotData(docs, m) {
       type: 'geojson',
       data: url
     });
-    m.addLayer({
-      type: 'fill',
-      paint: { 'fill-color': color },
-      layout: {
-        visibility: 'none'
-      },
-      id: doc.recordId, // Sets id as current child's key
-      source: doc.recordId // The source layer defined above
-    });
+
+    if (doc.geojsonType === 'Point') {
+      m.addLayer({
+        type: 'circle',
+        paint: {
+          'circle-color': color,
+          'circle-radius': 5
+        },
+        layout: {
+          visibility: 'none'
+        },
+        id: doc.recordId, // Sets id as current child's key
+        source: doc.recordId // The source layer defined above
+      });
+    }
   });
 }
 
@@ -98,6 +104,7 @@ const GET_DOCUMENTS = gql`
         category
         subcategory
       }
+      geojsonType
       source
       recordId
       url
@@ -108,7 +115,7 @@ const GET_DOCUMENTS = gql`
 export default compose(
   graphql(GET_DOCUMENTS, {
     options: () => ({
-      pollInterval: '500'
+      pollInterval: '50'
     })
   })
 )(MapContainer);

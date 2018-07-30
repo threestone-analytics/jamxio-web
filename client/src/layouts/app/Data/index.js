@@ -9,7 +9,7 @@ import DataContainer from 'Containers/appContainers/Data';
 import MainMenu from 'Components/Nav/Menu';
 import Login from 'Components/Nav/Login';
 import { Toastr } from 'Components/Toastr';
-import { HistoryModal, UploadModal } from 'Components/Modal';
+import { HistoryModal, UploadModal, UploadRecordModal } from 'Components/Modal';
 
 // Styles ; FIXME too many styles instead we sould use styled-components
 import '../../../styles/app/map/mapbox-gl.css';
@@ -28,6 +28,7 @@ const DataLayout = ({ location, props }) => (
       <Toastr />
       <HistoryModal />
       <UploadModal />
+      <UploadRecordModal />
       <DataContainer {...props} />
     </main>
   </div>

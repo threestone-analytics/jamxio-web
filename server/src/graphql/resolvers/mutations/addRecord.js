@@ -8,21 +8,10 @@ const handleError = function(err) {
   console.log('error', err);
 };
 export default function addRecord(root, { record }) {
-  const uModel = new UserModel();
-  uModel.set({ username: 'alexter42' });
-  uModel.save(function(err) {
-    if (err) return handleError(err);
-    // saved!
-  });
-  //Create publisher
-  const pModel = new PublisherModel();
-  pModel.set({ user: uModel });
-  pModel.save(function(err) {
-    if (err) return handleError(err);
-    // saved!
-  });
-  //Create publisher
   const dTModel = new DocumentTypeModel();
+  const rModel = new RecordModel();
+  const date = new Date();
+  console.log(record, '-------------------------------------------');
   dTModel.set({
     category: record.document.documentType.category,
     subcategory: record.document.documentType.subcategory,
@@ -31,26 +20,32 @@ export default function addRecord(root, { record }) {
     if (err) return handleError(err);
     // saved!
   });
+  const id = '5b5e37a947359809a0d7abae';
   //Create document
   const dModel = new DocumentModel();
   dModel.set({
+    publishedDate: date,
+    recordId: rModel._id,
+    url: record.document.url,
+    documentType: dTModel._id,
+    title: record.document.title,
+    geojsonType: record.document.geojsonType,
     format: record.document.format,
     source: record.document.source,
-    title: record.document.geometry.name,
-    documentType: dTModel,
-    geometry: { data: 'data' },
-    publishedDate: record.publishedDate,
-    publisher: pModel,
-    thumbnail: "",
+    publisher: id,
   });
   dModel.save(function(err) {
     if (err) return handleError(err);
     // saved!
   });
+
   //Create record solo tienes que hacer push
-  const rModel = new RecordModel();
+
   rModel.set({
-    document: dModel,
+    documents: [dModel],
+    title: record.title,
+    documentType: dTModel._id,
+    thumbnail: record.thumbnail,
   });
   rModel.save(function(err) {
     if (err) return handleError(err);

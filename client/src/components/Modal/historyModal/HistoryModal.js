@@ -58,7 +58,7 @@ const GET_DOCUMENTS = gql`
 `;
 
 const Items = ({ _id }) => (
-  <Query pollInterval={500} query={GET_DOCUMENTS} variables={{ _id }}>
+  <Query pollInterval={50} query={GET_DOCUMENTS} variables={{ _id }}>
     {({ loading, error, data }) => {
       if (loading)
         return (

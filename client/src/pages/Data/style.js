@@ -26,3 +26,20 @@ export const TopBar = styled.div`
   z-index: 5;
   position: fixed;
 `;
+
+export const AddRecordButton = styled.div`
+  text-align: center;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  right: 10%;
+  bottom: 5%;
+  z-index: 5;
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  text-align: center;
+  font-size: 52px;
+  color: rgb(0, 255, 148);
+`;

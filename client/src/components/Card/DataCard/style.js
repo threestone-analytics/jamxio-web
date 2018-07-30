@@ -15,16 +15,24 @@ export const Card = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-export const Image = styled.div`
+export const ImageContainer = styled.div`
   order: 0;
   margin: auto;
   margin-top: 15px;
   height: 87%;
   margin-left: 15px;
-  background-color: #000;
+  background-color: rgb(202, 210, 211);
   width: 28%;
+  overflow: hidden;
 `;
-
+export const Image = styled.img`
+  margin-left: 15px;
+  background-color: rgb(202, 210, 211);
+  width: 100%;
+  height: 300px
+  max-width: none;
+  min-width: 300px;
+`;
 export const Details = styled.div`
   order: 1;
   display: flex;

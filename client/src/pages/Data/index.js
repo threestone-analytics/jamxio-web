@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DataCard from '../../components/Card/DataCard';
-import { CardContainer, TopBar } from './style';
+import { CardContainer, TopBar, AddRecordButton } from './style';
 
 const DashboardView = props => {
   const handleOpen = name => {
-    props.actions.show(name, { message: `This is a ${name} modal`, title: 'Title' });
+    props.actions.show(name);
   };
   if (props.data.getRecords) {
     const listCards = props.data.getRecords.map(record => (
@@ -15,6 +15,7 @@ const DashboardView = props => {
       <div className="dashboard">
         <TopBar />
         <CardContainer>{listCards}</CardContainer>
+        <AddRecordButton onClick={() => handleOpen('uploadRecordModal')}>+</AddRecordButton>
       </div>
     );
   }
