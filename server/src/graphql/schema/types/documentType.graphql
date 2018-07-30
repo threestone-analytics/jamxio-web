@@ -1,7 +1,0 @@
-
-  type DocumentType {
-    _id: ID
-    category: String,
-    subcategory: String,
-  }
-
