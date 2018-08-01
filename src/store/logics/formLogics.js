@@ -8,37 +8,44 @@ const IdentityPoolId = process.env.IDENTITY_POOL_ID;
 const bucketUrl = process.env.S3_DOCUMENTS_BUCKET_URL;
 
 const imagePlaceholder =
-  'https://github.com/threestone-analytics/jamxio-web-client/blob/master/src/assets/placeholder.png';
+  'https://raw.githubusercontent.com/threestone-analytics/jamxio-web-client/master/src/assets/placeholder.png';
 
 const uploadDocument = createLogic({
   type: ActionTypes.DOCUMENT_UPLOAD_REQUEST,
-  process({ action }, done) {
-    const file = action.payload;
-    AWS.config.update({
-      region: bucketRegion,
-      credentials: new AWS.CognitoIdentityCredentials({
-        IdentityPoolId
-      })
-    });
-    const s3 = new AWS.S3({
-      apiVersion: '2006-03-01',
-      params: { Bucket: bucketName }
-    });
-
-    const filesRocordKey = `${encodeURIComponent('docs')}/`;
-    const fileKey = filesRocordKey + file.name;
-
+  process({ getState, action }) {
     try {
+      const { uploadRecordForm } = getState()
+        .get('form')
+        .toJS();
+      const data = uploadRecordForm.values;
+      console.log(data);
+      AWS.config.update({
+        region: bucketRegion,
+        credentials: new AWS.CognitoIdentityCredentials({
+          IdentityPoolId
+        })
+      });
+      const s3 = new AWS.S3({
+        apiVersion: '2006-03-01',
+        params: { Bucket: bucketName }
+      });
+
+      const filesRocordKey = `${encodeURIComponent('docs')}/`;
+      const { file, filename } = data;
+      const fileKey = filesRocordKey + filename;
+
       s3.upload(
         {
           Key: fileKey,
-          Body: 'file',
+          Body: file,
           ACL: 'public-read'
         },
         err => {
           if (err) {
             action.payload.change(['uploaded'], false);
-          alert('Hubo un problema al intentar registrar los datos: ', err);// eslint-disable-line
+
+            return console.log('Hubo un problema al intentar registrar los datos1: ', err);// eslint-disable-line
+          
           }
           const url = bucketUrl.concat(fileKey);
           action.payload.change(['uploaded'], true);
@@ -48,49 +55,44 @@ const uploadDocument = createLogic({
         }
       );
     } catch (error) {
-      alert('Hubo un problema al intentar registrar los datos: ', error); // eslint-disable-line
-    } finally {
-      done();
+      alert('Hubo un problema al intentar registrar los datos2: ', error); // eslint-disable-line
     }
   }
 });
 
 const saveRecord = createLogic({
   type: ActionTypes.SAVE_RECORD_REQUEST,
-  process({ getState, action }, done) {
-    const { uploadRecordForm } = getState()
-      .get('form')
-      .toJS();
-
-    const data = uploadRecordForm.values;
-
-    const record = {};
-    const document = {};
-
-    const thumbnail = imagePlaceholder;
-    const documentType = {
-      category: data.category,
-      subcategory: data.subcategory
-    };
-    document.url = data.url;
-    document.publisher = '_id';
-    document.thumbnail = thumbnail;
-    document.geojsonType = data.geojsonType;
-    document.source = data.source;
-    document.format = data.format;
-    document.documentType = documentType;
-
-    record.document = document;
-    record.thumbnail = thumbnail;
-    record.title = data.title;
-    record.documentType = documentType;
-
+  process({ getState, action }) {
     try {
+      const { uploadRecordForm } = getState()
+        .get('form')
+        .toJS();
+
+      const data = uploadRecordForm.values;
+
+      const record = {};
+      const document = {};
+
+      const thumbnail = imagePlaceholder;
+      const documentType = {
+        category: data.category,
+        subcategory: data.subcategory
+      };
+      document.url = data.url;
+      document.publisher = '_id';
+      document.thumbnail = thumbnail;
+      document.geojsonType = data.geojsonType;
+      document.source = data.source;
+      document.format = data.format;
+      document.documentType = documentType;
+
+      record.document = document;
+      record.thumbnail = thumbnail;
+      record.title = data.title;
+      record.documentType = documentType;
       action.payload.handleAddRecord(record);
     } catch (error) {
       alert('Hubo un problema al intentar registrar los datos: ', error); // eslint-disable-line
-    } finally {
-      done();
     }
   }
 });

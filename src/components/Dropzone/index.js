@@ -59,7 +59,7 @@ const Dropzone = props => {
               handleSaveFile({
                 format: file.type,
                 filename: file.name,
-                file: data
+                file
               });
               handleHide('alertText');
             } else {

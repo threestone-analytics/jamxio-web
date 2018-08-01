@@ -1,7 +1,7 @@
 // import { L } from 'leaflet-headless';
 
 const imagePlaceholder =
-  'https://github.com/threestone-analytics/jamxio-web-client/blob/master/src/assets/placeholder.png';
+  'https://raw.githubusercontent.com/threestone-analytics/jamxio-web-client/master/src/assets/placeholder.png';
 
 // export const createMapThumbnail = function(geometry) {
 //   const map = L.map(document.createElement('div')).setView([23.8, -102.1], 5);
