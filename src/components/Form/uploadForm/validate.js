@@ -1,45 +1,7 @@
-import * as AWS from 'aws-sdk';
 // import { L } from 'leaflet-headless';
 
-const imagePlaceholder = 'https://s3.amazonaws.com/jamxio-thumbnails/5b5c2c2bd3b4a20f057502ad.png';
-
-async function addFile(file) {
-  const bucketName = process.env.DOCUMENTS_BUCKET_NAME;
-  const bucketRegion = process.env.IDENTITY_POOL_REGION;
-  const IdentityPoolId = process.env.IDENTITY_POOL_ID;
-  const url = process.env.S3_DOCUMENTS_BUCKET_URL;
-
-  if (!file) {
-    return alert('Selecciona un archivo.');
-  }
-  AWS.config.update({
-    region: bucketRegion,
-    credentials: new AWS.CognitoIdentityCredentials({
-      IdentityPoolId
-    })
-  });
-  const s3 = new AWS.S3({
-    apiVersion: '2006-03-01',
-    params: { Bucket: bucketName }
-  });
-  const fileName = file.name;
-  const filesRocordKey = `${encodeURIComponent('docs')}/`;
-  const fileKey = filesRocordKey + fileName;
-  await s3.upload(
-    {
-      Key: fileKey,
-      Body: file,
-      ACL: 'public-read'
-    },
-    err => {
-      if (err) {
-        return console.log('Hubo un problema al intentar registrar los datos: ', err);// eslint-disable-line
-      }
-      return console.log('Datos registrados!');// eslint-disable-line
-    }
-  );
-  return url.concat(fileName);
-}
+const imagePlaceholder =
+  'https://github.com/threestone-analytics/jamxio-web-client/blob/master/src/assets/placeholder.png';
 
 // export const createMapThumbnail = function(geometry) {
 //   const map = L.map(document.createElement('div')).setView([23.8, -102.1], 5);
@@ -64,36 +26,7 @@ async function addFile(file) {
 //   });
 // };
 
-export async function createRecord(form) {
-  console.log(form.values);
-  const date = new Date();
-  const record = {};
-  const document = {};
-  const url = await addFile(form.values.file);
-  const thumbnail = imagePlaceholder;
-  const documentType = {
-    category: form.values.category,
-    subcategory: form.values.subcategory
-  };
-  document.url = url;
-  document.publishedDate = date;
-  document.publisher = '_id';
-  document.thumbnail = thumbnail;
-  document.geojsonType = form.values.geojsonType;
-  document.source = form.values.source;
-  document.format = form.values.format;
-  document.documentType = documentType;
-
-  record.document = document;
-  record.thumbnail = thumbnail;
-  record.title = form.values.title;
-  record.documentType = documentType;
-
-  return record;
-}
-
 export async function createDocument(form, data) {
-  const url = await addFile(form.values.file);
   const date = new Date();
   const thumbnail = imagePlaceholder;
   const document = {};
@@ -101,7 +34,6 @@ export async function createDocument(form, data) {
   const publisher = {
     user: '_id'
   };
-
   document.documentType = data.documentType._id;
   document.source = form.values.source;
   document.geojsonType = form.values.geojsonType;
@@ -110,7 +42,6 @@ export async function createDocument(form, data) {
   document.format = form.values.format;
   document.publisher = publisher;
   document.thumbnail = thumbnail;
-  document.url = url;
 
   const newDocument = {
     document,

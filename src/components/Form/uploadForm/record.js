@@ -22,21 +22,23 @@ import {
 import Dropzone from '../../Dropzone';
 import AlertText from '../../Alert';
 
-import { validateRecord, createRecord } from './validate';
+import { validateRecord } from './validate';
 
 // Actions
 import * as alertActions from '../../../store/reducers/alert/alertActions';
+import * as documentActions from '../../../store/reducers/upload/uploadActions';
 import * as dropzoneActions from '../../../store/reducers/dropzone/dropzoneActions';
 import * as validateActions from '../../../store/reducers/form/validateFileForm/validateActions';
 
 // Selectors
-import { getDropzone, getAlert } from '../../../utils/selectors/common';
+import { getDropzone, getAlert, getDocumentState } from '../../../utils/selectors/common';
 
-const reduxActions = [alertActions, dropzoneActions, validateActions];
+const reduxActions = [alertActions, dropzoneActions, validateActions, documentActions];
 
 function mapStateToProps(state) {
   return {
     dropzone: getDropzone(state),
+    documentState: getDocumentState(state),
     alertState: getAlert(state)
   };
 }
@@ -112,40 +114,30 @@ dropzone.propTypes = {
   onChange: PropTypes.object.isRequired
 };
 
-const handleRecord = (props, record) => {
-  props.handleAddRecord(record);
-};
-
 const UF = props => {
-  console.log(props.forms);
   const handleSubmit = () => {
-    const formData = props.forms.uploadRecordForm;
-    const record = createRecord(formData, props.record).then(data => {
-      handleRecord(props, data);
-      props.handleHide();
-    });
-
-    return record;
+    props.actions.uploadDocumentRequest(props);
   };
+
   return (
     <Form>
-      <form onSubmit={handleSubmit}>
+      <form>
         <FormBox>
           <Title big>Categoria:</Title>
           <FieldBox>
-            <Field name="category" component={Input} data={['Guitar', 'Cycling', 'Hiking']} />
+            <Field name="category" component={Input} />
           </FieldBox>
         </FormBox>
         <FormBox>
           <Title>Subcategoria:</Title>
           <FieldBox>
-            <Field name="subcategory" component={Input} data={['Guitar', 'Cycling', 'Hiking']} />
+            <Field name="subcategory" component={Input} />
           </FieldBox>
         </FormBox>
         <FormBox>
           <Title>Titulo:</Title>
           <FieldBox>
-            <Field name="title" component={Input} data={['Guitar', 'Cycling', 'Hiking']} />
+            <Field name="title" component={Input} />
           </FieldBox>
         </FormBox>
         <FormBox>
@@ -198,7 +190,7 @@ UF.propTypes = {
 
 const UFD = reduxForm({
   form: 'uploadRecordForm',
-  validateRecord
+  validate: validateRecord
 })(UF);
 
 const UploadForm = compose(

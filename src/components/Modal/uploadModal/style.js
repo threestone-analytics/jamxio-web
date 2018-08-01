@@ -36,6 +36,16 @@ export const ModalBox = styled.div`
   flex-direction: column;
 `;
 
+export const ModalBigBox = styled.div`
+  width: 991px;
+  height: 680px;
+  left: 261px;
+  top: 150px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const ModalTitleBox = styled.div`
   background-color: white;
   order: 0;

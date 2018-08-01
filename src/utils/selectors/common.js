@@ -4,4 +4,5 @@ export const getAlert = state => state.get('alert');
 export const getDropzone = state => state.get('dropzone');
 export const getDropdown = state => state.get('dropdown');
 export const getUploadFileForm = state => state.get('uploadFileForm');
+export const getDocumentState = state => state.get('document');
 export const getValidateUploadFrom = state => state.get('validateUploadForm');

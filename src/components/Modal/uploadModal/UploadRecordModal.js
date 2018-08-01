@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import { compose, withHandlers } from 'recompose';
 
 /* show, handleHide, message, title */
-import { ModalOuter, ModalBox } from './style';
+import { ModalOuter, ModalBigBox } from './style';
 
 // Actions
 import * as alertActions from '../../../store/reducers/alert/alertActions';
@@ -61,9 +61,9 @@ const UploadModal = props => (
     ariaHideApp={false}
   >
     <ModalOuter>
-      <ModalBox>
+      <ModalBigBox>
         <UploadRecord {...props} handleHide={props.handleHide} />
-      </ModalBox>
+      </ModalBigBox>
     </ModalOuter>
   </Modal>
 );

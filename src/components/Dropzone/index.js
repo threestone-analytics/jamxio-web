@@ -32,7 +32,7 @@ const Dropzone = props => {
   };
 
   const handleSaveFile = document => {
-    props.actions.saveFile(document);
+    props.change(['filename'], document.filename);
     props.change(['file'], document.file);
     props.change(['format'], document.format);
   };
@@ -58,8 +58,8 @@ const Dropzone = props => {
             if (GeoJSON.valid(data)) {
               handleSaveFile({
                 format: file.type,
-                geometry: data,
-                file
+                filename: file.name,
+                file: data
               });
               handleHide('alertText');
             } else {

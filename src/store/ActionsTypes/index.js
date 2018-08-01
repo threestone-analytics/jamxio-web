@@ -50,5 +50,10 @@ export default keyMirror({
   SHOW_ITEMS: null,
   HIDE_ITEMS: null,
   SET_IS_ACTIVE: null,
-  TOGGLE_ITEMS: null
+  TOGGLE_ITEMS: null,
+  /* uploads */
+  DOCUMENT_UPLOAD_REQUEST: null,
+  SAVE_RECORD_REQUEST: null,
+  DOCUMENT_UPLOAD_SUCCESS: null,
+  DOCUMENT_UPLOAD_FAILURE: null
 });
