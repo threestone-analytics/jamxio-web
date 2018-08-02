@@ -53,8 +53,8 @@ stages:
   - deploy
   
 variables:
-  AWS_DEFAULT_REGION: us-east-1 
-  BUCKET_NAME: jamxio-gitlab-site 
+  AWS_DEFAULT_REGION: us-west-1 
+  BUCKET_NAME: jamx.io 
   
 cache:
   untracked: true
