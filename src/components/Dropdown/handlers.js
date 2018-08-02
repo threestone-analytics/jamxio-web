@@ -31,7 +31,6 @@ export const renderSubcategories = function(props) {
   if (!props) {
     return;
   }
-  console.log(props);
   const color = layerColor.category[category];
     const groupedData = _.mapValues(_.groupBy(props.options, 'documentType.subcategory'));// eslint-disable-line
   const subcategories = [];
