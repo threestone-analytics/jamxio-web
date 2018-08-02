@@ -18,7 +18,6 @@ const uploadDocument = createLogic({
         .get('form')
         .toJS();
       const data = uploadRecordForm.values;
-      console.log(data);
       AWS.config.update({
         region: bucketRegion,
         credentials: new AWS.CognitoIdentityCredentials({
