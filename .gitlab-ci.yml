@@ -85,9 +85,9 @@ deploys3:
   before_script:
     - pip install awscli
   script:
-
+    - aws s3 rm s3://${BUCKET_NAME}/ --recursive
+    - aws s3 cp dist s3://${BUCKET_NAME}/ --recursive
     - aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/*"
-    - echo $CDN_DISTRIBUTION_ID
   environment:
     name: production
 
