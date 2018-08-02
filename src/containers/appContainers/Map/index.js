@@ -13,9 +13,9 @@ import NewsFeedPanel from '../../../components/Panel/MapPanel/newsFeedPanel';
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
 async function plotData(docs, m) {
-  docs.map(async (doc, i) => {
+  docs.map(async doc => {
     const { url } = doc;
-    const color = layerColor.category[doc.documentType.category][i];
+    const color = layerColor.category[doc.documentType.category].pop();
     m.addSource(doc.recordId, {
       type: 'geojson',
       data: url
@@ -25,7 +25,7 @@ async function plotData(docs, m) {
       m.addLayer({
         type: 'circle',
         paint: {
-          'circle-color': color || '#000',
+          'circle-color': color,
           'circle-radius': 5
         },
         layout: {
@@ -39,8 +39,8 @@ async function plotData(docs, m) {
       m.addLayer({
         type: 'fill',
         paint: {
-          'fill-color': color || '#000',
-          'fill-opacity': 0.8
+          'fill-color': color,
+          'fill-opacity': 1
         },
         layout: {
           visibility: 'none'

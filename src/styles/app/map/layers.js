@@ -33,7 +33,7 @@ export const layerColor = {
     ],
     Pollution: ['#FF57B9', '#fc54bb', '#f952bc', '#f951bd', '#f54ec0', '#f44cc1'],
     Sociodemographics: [
-      '#fad961',
+      '#f76b1c',
       '#f9d65f',
       '#f9d25d',
       '#f9d05b',
@@ -59,19 +59,26 @@ export const layerColor = {
       '#2ca0c4',
       '#26aecc',
       '#22b9d2',
-      '#1ec3d8',
-      '#1bcedf',
-      '#1bccde',
-      '#22b9d2'
+      '#5b247a',
+      '#572d7f',
+      '#4d478f',
+      '#44609d',
+      '#3d71a7',
+      '#3783b2'
     ],
     'Energy infrastructure': [
       '#F5515F',
-      ' #f4505e',
+      '#f4505e',
       '#f24f5d',
       '#f24e5c',
       '#f14d5c',
       '#f04d5b',
-      '#ef4c5a'
+      '#ef4c5a',
+      '#f4505e',
+      '#f24f5d',
+      '#f24e5c',
+      '#f14d5c',
+      '#f04d5b'
     ]
   }
 };
