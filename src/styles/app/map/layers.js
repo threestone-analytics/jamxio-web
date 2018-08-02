@@ -27,6 +27,8 @@ export const layerColor = {
       '#12e8f9',
       '#12e9fa',
       '#11e7f9',
+      '#12e9fa',
+      '#11e7f9',
       '#0470dc'
     ],
     Pollution: ['#FF57B9', '#fc54bb', '#f952bc', '#f951bd', '#f54ec0', '#f44cc1'],

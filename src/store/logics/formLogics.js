@@ -52,6 +52,7 @@ const uploadDocument = createLogic({
           action.payload.change(['url'], url);
           alert('Datos registrados!'); // eslint-disable-line
           action.payload.actions.saveRecordRequest(action.payload);
+          return alert('Datos registrados!'); // eslint-disable-line
         }
       );
     } catch (error) {

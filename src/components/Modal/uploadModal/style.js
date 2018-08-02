@@ -27,8 +27,8 @@ export const Input = styled.input`
 `;
 
 export const ModalBox = styled.div`
-  width: 991px;
-  height: 626px;
+  width: 900px;
+  height: 700px;
   left: 261px;
   top: 263px;
   background-color: #fff;
@@ -59,7 +59,7 @@ export const ModalTitleBox = styled.div`
 export const ModalButtonBox = styled.div`
   background-color: white;
   order: 2;
-  height: 10%;
+  height: 20%;
   width: 60%;
   display: flex;
   margin: auto;

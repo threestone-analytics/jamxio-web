@@ -28,13 +28,14 @@ export const Input = styled.input`
 `;
 
 export const ModalBox = styled.div`
-  width: 991px;
-  height: 626px;
+  width: 850px;
+  height: 700px;
   left: 261px;
   top: 263px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  padding: 35px;
 `;
 
 export const SpinnerBox = styled.div`

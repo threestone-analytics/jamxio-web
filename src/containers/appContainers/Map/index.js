@@ -25,8 +25,22 @@ async function plotData(docs, m) {
       m.addLayer({
         type: 'circle',
         paint: {
-          'circle-color': color,
+          'circle-color': color || '#000',
           'circle-radius': 5
+        },
+        layout: {
+          visibility: 'none'
+        },
+        id: doc.recordId, // Sets id as current child's key
+        source: doc.recordId // The source layer defined above
+      });
+    }
+    if (doc.geojsonType === 'Polygon') {
+      m.addLayer({
+        type: 'fill',
+        paint: {
+          'fill-color': color || '#000',
+          'fill-opacity': 0.8
         },
         layout: {
           visibility: 'none'
@@ -115,7 +129,7 @@ const GET_DOCUMENTS = gql`
 export default compose(
   graphql(GET_DOCUMENTS, {
     options: () => ({
-      pollInterval: '50'
+      pollInterval: '5'
     })
   })
 )(MapContainer);
