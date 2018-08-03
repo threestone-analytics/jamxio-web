@@ -25,7 +25,7 @@ const prodEnv = {
   NODE_ENV: JSON.stringify('production'),
   PLATFORM_ENV: JSON.stringify('web'),
   GRAPHQL_SERVER_URL: JSON.stringify(
-    'https://cbjnbxp93j.execute-api.us-east-1.amazonaws.com/prod/graphql'
+    'https://ucnktjy3p0.execute-api.us-east-1.amazonaws.com/prod/graphql'
   ),
   SERVER_URL: JSON.stringify('https://server.com/api')
 };
