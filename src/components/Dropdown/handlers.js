@@ -1,8 +1,8 @@
 import React from 'react';
-import { CheckBox, Label, SubItem, SubSubItem, SubItemLabel } from './style';
+import { CheckBox, Label, SubItem, SubSubItem, SubItemLabel, Mark } from './style';
 import { layerColor } from '../../styles/app/map/layers';
 
-export const renderRecords = function(records, props) {
+export const renderRecords = function(records, props, color) {
   if (!records) {
     return;
   }
@@ -10,6 +10,7 @@ export const renderRecords = function(records, props) {
     const _id = record.recordId;
     return (
       <SubSubItem>
+        <Mark color={color} />
         <Label>{_id}</Label>
         <CheckBox>
           <input
@@ -41,9 +42,9 @@ export const renderSubcategories = function(props) {
   const data = subcategories.map((subcategory, i) => (
     <div>
       <SubItem color={color[i]}>
-        <SubItemLabel>{subcategory}</SubItemLabel>
+        <SubItemLabel color={color[i]}>{subcategory}</SubItemLabel>
       </SubItem>
-      {renderRecords(groupedData[subcategory], props)}
+      {renderRecords(groupedData[subcategory], props, color[i])}
     </div>
   ));
 

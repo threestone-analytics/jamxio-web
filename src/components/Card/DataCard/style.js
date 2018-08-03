@@ -7,11 +7,11 @@ export const Card = styled.div`
   flex-direction: row;
   height: 230px;
   background-color: #fff;
-  border: 1px solid #cfd8dc;
   width: 80%;
   padding: 20 20 20 20;
   margin: auto auto;
   margin-top: 15px;
+
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
@@ -26,7 +26,6 @@ export const ImageContainer = styled.div`
   overflow: hidden;
 `;
 export const Image = styled.img`
-  margin-left: 15px;
   background-color: rgb(202, 210, 211);
   width: 100%;
   height: 300px
@@ -99,7 +98,7 @@ export const Buttons = styled.div`
 export const Button = styled.button`
   background: #ffffff;
   width: 150px;
-  border: 2px solid rgb(0, 255, 148);
+  border: 2px solid #2f80ed;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   outline: none;

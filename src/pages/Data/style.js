@@ -5,11 +5,11 @@ export const CardContainer = styled.div`
   position: absolute;
   text-align: center;
   width: 100%;
-  height: 90%;
+  height: 91%;
   bottom: 0;
   margin: auto;
   margin-bottom: 0;
-  background-color: #cad2d3;
+  background-color: #f0f0f0;
   overflow-y: scroll;
 `;
 
@@ -29,7 +29,7 @@ export const TopBar = styled.div`
 
 export const AddRecordButton = styled.div`
   text-align: center;
-  background: rgb(0, 255, 148);
+  background: #2f80ed;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.35);
   position: absolute;
   right: 10%;

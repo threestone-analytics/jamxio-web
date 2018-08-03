@@ -49,7 +49,7 @@ export const SpinnerBox = styled.div`
 export const ModalLabelBox = styled.div`
   background-color: white;
   order: 0;
-  margin-left: 15%;
+  margin-left: 5%;
   height: 20%;
   width: 60%;
   display: flex;
@@ -151,7 +151,7 @@ export const HistoryBox = styled.div`
   background-color: white;
   order: 2;
   height: 100%;
-  width: 70%;
+  width: 90%;
   display: flex;
   align-items: flex-start;
   justify-content: center;

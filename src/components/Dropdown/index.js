@@ -4,12 +4,13 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
+import { layerColor } from '../../styles/app/map/layers';
 
 import { renderSubcategories } from './handlers';
 
 // Actions
 import * as dropdownActions from '../../store/reducers/dropdown/dropdownActions';
-import { Label, Item, ItemContainer } from './style';
+import { Label, Item, ItemContainer, Circle } from './style';
 
 // Selectors
 import { getDropdown } from '../../utils/selectors/common';
@@ -39,6 +40,7 @@ const DD = props => {
   if (props.dropdownState[props.title] && props.dropdownState[props.title].show) {
     active = props.dropdownState[props.title].show;
   }
+  const color = layerColor.category[props.title][0];
   return (
     <ItemContainer>
       <Item>
@@ -49,6 +51,12 @@ const DD = props => {
         >
           {props.title}
         </Label>
+        <Circle
+          color={color}
+          onClick={() => {
+            props.actions.toggleItems(props.title);
+          }}
+        />
       </Item>
       <ul
         id="subcategory-list"

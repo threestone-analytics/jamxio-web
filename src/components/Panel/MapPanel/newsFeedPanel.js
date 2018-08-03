@@ -1,47 +1,45 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   NewsFeedContainer,
+  NewsFeedItemsContainer,
   PanelHeader,
   FeedPanelItemContainer,
   FeedContent,
   PictureContainer,
   TextContent,
-  Picture,
+  Image,
   FeedTitle
 } from './style';
 
-const NewsPanel = () => (
-  <NewsFeedContainer>
-    <PanelHeader>Noticias Recientes</PanelHeader>
+const ShowItem = props => {
+  const { data } = props;
+  return (
     <FeedPanelItemContainer>
       <PictureContainer>
-        <Picture />
+        <Image src={data.image} />
       </PictureContainer>
       <FeedContent>
-        <FeedTitle>Christophe Jospe</FeedTitle>
-        <TextContent>Mining for carbon: an innovation to environmental haza...</TextContent>
+        <FeedTitle>{data.author}</FeedTitle>
+        <TextContent>{data.title}</TextContent>
       </FeedContent>
     </FeedPanelItemContainer>
-    <FeedPanelItemContainer>
-      <PictureContainer>
-        <Picture />
-      </PictureContainer>
-      <FeedContent>
-        {' '}
-        <FeedTitle>Antonio Guterres</FeedTitle>
-        <TextContent>Polution, overfishing and the effects of climate ...</TextContent>
-      </FeedContent>
-    </FeedPanelItemContainer>
-    <FeedPanelItemContainer>
-      <PictureContainer>
-        <Picture />
-      </PictureContainer>
-      <FeedContent>
-        {' '}
-        <FeedTitle>Diana Kane</FeedTitle>
-        <TextContent>A water Crisis From Climate Change ...</TextContent>
-      </FeedContent>
-    </FeedPanelItemContainer>
-  </NewsFeedContainer>
-);
+  );
+};
+ShowItem.propTypes = {
+  data: PropTypes.object.isRequired
+};
+
+const NewsPanel = props => {
+  const { data } = props;
+  return (
+    <NewsFeedContainer>
+      <PanelHeader>Noticias Recientes</PanelHeader>
+      <NewsFeedItemsContainer>{data.map(d => <ShowItem data={d} />)}</NewsFeedItemsContainer>
+    </NewsFeedContainer>
+  );
+};
+NewsPanel.propTypes = {
+  data: PropTypes.object.isRequired
+};
 export default NewsPanel;

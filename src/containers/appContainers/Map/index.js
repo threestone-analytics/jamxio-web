@@ -104,14 +104,30 @@ class MapContainer extends React.Component {
           toggleLayer={this.toggleLayer.bind(this)}
         />
         <CrowdSourcedDataPanel toggleLayer={this.toggleLayer.bind(this)} />
-        <NewsFeedPanel toggleLayer={this.toggleLayer.bind(this)} />
+        {this.props.data.getPosts ? (
+          <NewsFeedPanel
+            data={this.props.data.getPosts}
+            toggleLayer={this.toggleLayer.bind(this)}
+          />
+        ) : (
+          ''
+        )}
       </div>
     );
   }
 }
 
-const GET_DOCUMENTS = gql`
+const GET_DATA = gql`
   query {
+    getPosts {
+      url
+      content
+      image
+      title
+      author
+      position
+    }
+
     getLatestDocuments {
       documentType {
         _id
@@ -127,9 +143,9 @@ const GET_DOCUMENTS = gql`
 `;
 
 export default compose(
-  graphql(GET_DOCUMENTS, {
+  graphql(GET_DATA, {
     options: () => ({
-      pollInterval: '5'
+      pollInterval: '6'
     })
   })
 )(MapContainer);

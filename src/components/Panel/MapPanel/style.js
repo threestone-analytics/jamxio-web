@@ -13,7 +13,7 @@ export const GeoDataContainer = styled.div`
   font-size: 13px;
   line-height: 2;
   outline: none;
-  color: #000;
+  color: #fff;
   text-transform: uppercase;
   vertical-align: middle;
 `;
@@ -23,15 +23,16 @@ export const PanelHeader = styled.h5`
   position: relative;
   top: 0;
   padding: 10px;
-  background: rgba(0, 255, 148);
+  background: rgb(47, 128, 237);
   box-sizing: border-box;
   margin-bottom: 0;
   border: none;
+  color: #fff;
 `;
 export const PanelItemContainer = styled.div`
   width: 100%;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.79);
   box-sizing: border-box;
   border: none;
   border-bottom: 1px;
@@ -61,7 +62,7 @@ export const NewsFeedContainer = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 301px;
+  width: 300px;
   max-width: 320px;
   margin: 20px;
   margin-right: 10%;
@@ -73,13 +74,24 @@ export const NewsFeedContainer = styled.div`
   outline: none;
   text-transform: uppercase;
   vertical-align: middle;
+  overflow: hidden;
+`;
+
+export const NewsFeedItemsContainer = styled.div`
+  max-width: 300px;
+  overflow-y: scroll;
+  max-width: 320px;
+  max-height: 250px;
+  width: 100%;
+  height: 100%;
+  padding-right: 17px;
+  box-sizing: content-box;
 `;
 
 export const FeedPanelItemContainer = styled.div`
-  width: 100%;
+  width: 105%;
   height: 90px;
-  box-sizing: border-box;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.79);
   border: none;
   border-bottom: 1px;
   display: flex;
@@ -93,16 +105,18 @@ export const PictureContainer = styled.div`
   width: 30%;
   height: 100%;
   display: block;
+  overflow: hidden;
   padding: 5px;
 `;
 
-export const Picture = styled.img`
+export const Image = styled.img`
   position: absolute;
-  width: 80%;
-  height: 80%;
-  background-color: rgba(0, 255, 148);
+  margin: 5px;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
   display: block;
-  padding: 5px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
@@ -113,7 +127,9 @@ export const Picture = styled.img`
 export const FeedContent = styled.div`
   position: relative;
   width: 70%;
-  height: 100%;
+  margin-left: 15px;
+  margin-top: 10px;
+  height: 95%;
 `;
 
 export const CheckBox = styled.div`
@@ -141,7 +157,7 @@ export const FeedTitle = styled.div`
   align-content: flex-start;
   vertical-align: middle;
   padding-top: 10px;
-  padding-bottom: 5px;
+  padding-bottom: 2px;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -149,10 +165,15 @@ export const FeedTitle = styled.div`
   font-size: 14px;
   color: #000000;
   text-align: left;
+  overflow: hidden;
+  height: 30px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const TextContent = styled.div`
   width: 90%;
+  height: 33%;
   display: flex;
   align-content: flex-start;
   vertical-align: middle;
@@ -163,4 +184,6 @@ export const TextContent = styled.div`
   line-height: normal;
   font-size: 13px;
   color: #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
