@@ -42,14 +42,10 @@ export const PanelItemContainer = styled.div`
   border: 0.5px solid #ffffff;
 `;
 export const CrowdSourcedContainer = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 301px;
+  position: relative;
+  width: 300px;
   max-width: 320px;
-  margin: 20px;
-  margin-right: 10%;
-  margin-top: 480px;
+  margin-top: 30px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
   font-size: 13px;
   line-height: 2;
@@ -60,16 +56,14 @@ export const CrowdSourcedContainer = styled.div`
 `;
 export const NewsFeedContainer = styled.div`
   position: absolute;
-  bottom: 0;
-  right: 0;
   width: 300px;
+  margin-top: 30px;
   max-width: 320px;
-  margin: 20px;
-  margin-right: 10%;
-  margin-top: 100px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
   font-size: 13px;
   line-height: 2;
+
+  margin-right: 15px;
   color: #000;
   outline: none;
   text-transform: uppercase;

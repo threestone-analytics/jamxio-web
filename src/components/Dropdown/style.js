@@ -4,54 +4,65 @@ export const CheckBox = styled.div`
   width: 10%;
   margin: auto;
 `;
+export const ItemContainer = styled.div`
+  position: relative;
+  width: 100%;
+`;
+export const SubItemContainer = styled.div`
+  position: relative;
+  width: 300px;
+  left: 15px;
+  box-shadow: 0px 16px 4px rgba(0, 0, 0, 0.4);
+`;
 
 export const Item = styled.div`
   height: 40px;
   box-sizing: border-box;
   display: flex;
-  width: 100%;
+  width: 300px;
+  background: ${props => (props.active ? 'rgba(255, 255, 255, 0.6)' : '')};
+  background-color: ${props =>
+    props.active ? 'rgba(255, 255, 255, 0.6)' : 'rgba(255, 255, 255, 0.9)'};
+  box-shadow: ${props =>
+    props.active ? '0 0 0 rgba(0, 0, 0, 0)' : '0 1px 5px rgba(0, 0, 0, 0.4)'};
   z-index: 97;
-`;
 
-export const ItemContainer = styled.div`
-  position: relative;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  width: 100%;
+  ${ItemContainer}:hover & {
+    background-color: rgba(255, 255, 255);
+    background: rgba(255, 255, 255, 0.6);
+  }
 `;
 
 export const SubItem = styled.li`
   position: relative;
   background: #fff;
   display: flex;
-
   width: 100%;
   z-index: 99;
-`;
-
-export const SubItemLabel = styled.div`
-  width: 100%;
-  color: #000;
-  align-content: flex-start;
-  vertical-align: middle;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  line-height: normal;
-  font-size: 14px;
-  text-align: center;
-  padding: 10px;
-  background-color: #f0f0f0;
 `;
 
 export const SubSubItem = styled.li`
   position: relative;
   background: #fff;
   display: flex;
-  padding-left: 35px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  padding-left: 10px;
   width: 100%;
   height: 100%;
   z-index: 999;
+`;
+export const SubItemLabel = styled.div`
+  width: 300px;
+  display: flex;
+  align-content: flex-start;
+  vertical-align: middle;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 12px;
+  color: #232323;
+  text-align: center;
+  padding: ${props => (props.sub ? '0px' : '10px')};
 `;
 
 export const Label = styled.div`
@@ -65,6 +76,21 @@ export const Label = styled.div`
   line-height: normal;
   font-size: 14px;
   color: #000000;
+  text-align: left;
+  padding: ${props => (props.sub ? '0px' : '10px')};
+`;
+
+export const SubSubItemLabel = styled.div`
+  width: 90%;
+  display: flex;
+  align-content: flex-start;
+  vertical-align: middle;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 11px;
+  color: gray;
   text-align: left;
   padding: ${props => (props.sub ? '0px' : '10px')};
 `;
@@ -120,7 +146,7 @@ export const PanelHeader = styled.h5`
 export const PanelItemContainer = styled.div`
   width: 100%;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: none;
   box-sizing: border-box;
   border: none;
   border-bottom: 1px;

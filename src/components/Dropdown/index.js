@@ -10,7 +10,7 @@ import { renderSubcategories } from './handlers';
 
 // Actions
 import * as dropdownActions from '../../store/reducers/dropdown/dropdownActions';
-import { Label, Item, ItemContainer, Circle } from './style';
+import { Label, Item, ItemContainer, Circle, SubItemContainer } from './style';
 
 // Selectors
 import { getDropdown } from '../../utils/selectors/common';
@@ -43,7 +43,7 @@ const DD = props => {
   const color = layerColor.category[props.title][0];
   return (
     <ItemContainer>
-      <Item>
+      <Item active={active}>
         <Label
           onClick={() => {
             props.actions.toggleItems(props.title);
@@ -62,7 +62,7 @@ const DD = props => {
         id="subcategory-list"
         className={`dropdown__list ${active ? 'dropdown__list--active' : ''}`}
       >
-        <ItemContainer>{renderSubcategories(props)}</ItemContainer>
+        <SubItemContainer>{renderSubcategories(props)}</SubItemContainer>
       </ul>
     </ItemContainer>
   );

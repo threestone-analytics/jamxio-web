@@ -9,6 +9,7 @@ import { layerColor } from '../../../styles/app/map/layers';
 import GeoDataPanel from '../../../components/Panel/MapPanel/geoDataPanel';
 import CrowdSourcedDataPanel from '../../../components/Panel/MapPanel/crowdSourcedDataPanel';
 import NewsFeedPanel from '../../../components/Panel/MapPanel/newsFeedPanel';
+import { PanelContainer } from './style';
 
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
@@ -99,19 +100,21 @@ class MapContainer extends React.Component {
     return (
       <div style={{ height: `${100}%`, width: `${100}%` }}>
         <div id="map" style={{ height: `100vh`, width: `100vw` }} />
-        <GeoDataPanel
-          categories={this.state.categories}
-          toggleLayer={this.toggleLayer.bind(this)}
-        />
-        <CrowdSourcedDataPanel toggleLayer={this.toggleLayer.bind(this)} />
-        {this.props.data.getPosts ? (
-          <NewsFeedPanel
-            data={this.props.data.getPosts}
+        <PanelContainer>
+          <GeoDataPanel
+            categories={this.state.categories}
             toggleLayer={this.toggleLayer.bind(this)}
           />
-        ) : (
-          ''
-        )}
+          <CrowdSourcedDataPanel toggleLayer={this.toggleLayer.bind(this)} />
+          {this.props.data.getPosts ? (
+            <NewsFeedPanel
+              data={this.props.data.getPosts}
+              toggleLayer={this.toggleLayer.bind(this)}
+            />
+          ) : (
+            ''
+          )}
+        </PanelContainer>
       </div>
     );
   }
@@ -121,7 +124,6 @@ const GET_DATA = gql`
   query {
     getPosts {
       url
-      content
       image
       title
       author
@@ -135,6 +137,7 @@ const GET_DATA = gql`
         subcategory
       }
       geojsonType
+      title
       source
       recordId
       url

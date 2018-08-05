@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckBox, Label, SubItem, SubSubItem, SubItemLabel, Mark } from './style';
+import { CheckBox, Label, SubItem, SubSubItem, SubItemLabel, SubSubItemLabel, Mark } from './style';
 import { layerColor } from '../../styles/app/map/layers';
 
 export const renderRecords = function(records, props, color) {
@@ -11,7 +11,7 @@ export const renderRecords = function(records, props, color) {
     return (
       <SubSubItem>
         <Mark color={color} />
-        <Label>{_id}</Label>
+        <SubSubItemLabel>{record.title}</SubSubItemLabel>
         <CheckBox>
           <input
             type="checkbox"

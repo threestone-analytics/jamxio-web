@@ -1,15 +1,11 @@
 import styled from 'styled-components';
 
 export const GeoDataContainer = styled.div`
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
-  width: 301px;
+  width: 315px;
   max-width: 320px;
-  margin: 20px;
-  margin-right: 10%;
-  margin-top: 100px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
   font-size: 13px;
   line-height: 2;
   outline: none;
@@ -17,9 +13,11 @@ export const GeoDataContainer = styled.div`
   text-transform: uppercase;
   vertical-align: middle;
   z-index: 98;
+  overflow: visible;
 `;
+
 export const PanelHeader = styled.h5`
-  width: 100%;
+  width: 300px;
   height: 40px;
   position: relative;
   top: 0;
@@ -30,14 +28,11 @@ export const PanelHeader = styled.h5`
   border: none;
 `;
 export const PanelItemContainer = styled.div`
-  width: 100%;
+  width: 315px;
   height: 40px;
-  background-color: rgba(255, 255, 255, 0.9);
   box-sizing: border-box;
   border: none;
-  border-bottom: 1px;
   display: flex;
   align-content: flex-start;
   vertical-align: middle;
-  border: 0.5px solid #ffffff;
 `;
