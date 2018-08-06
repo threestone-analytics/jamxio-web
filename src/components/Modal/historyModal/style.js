@@ -189,7 +189,7 @@ export const HistoryItem = styled.div`
   border-bottom: 1px solid rgba(120, 103, 103, 0.11);
 `;
 
-export const CheckBox = styled.div`
+export const CheckBox = styled.input`
   width: 10%;
 `;
 

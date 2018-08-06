@@ -11,13 +11,13 @@ export const Buttons = styled.div`
 `;
 
 export const Button = styled.button`
-  background: #ffffff;
+  background: ${props => (props.active ? '#2f80ed' : '#fff')};
   width: 50%;
   height: 57px;
   border: 2px solid #2f80ed;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: ${props => (props.active ? 'none' : '0px 4px 4px rgba(0, 0, 0, 0.25)')};
   outline: none;
-  color: #2f80ed;
+  color: ${props => (props.active ? '#fff' : '#2f80ed')};
   font-style: normal;
   font-weight: bold;
   line-height: normal;

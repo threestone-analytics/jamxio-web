@@ -55,5 +55,10 @@ export default keyMirror({
   DOCUMENT_UPLOAD_REQUEST: null,
   SAVE_RECORD_REQUEST: null,
   DOCUMENT_UPLOAD_SUCCESS: null,
-  DOCUMENT_UPLOAD_FAILURE: null
+  DOCUMENT_UPLOAD_FAILURE: null,
+  /* history */
+  TOGGLE_HISTORY_ITEM: null,
+  /* nav mennu */
+  ClICK_LEFT_BUTTON: null,
+  ClICK_RIGHT_BUTTON: null
 });

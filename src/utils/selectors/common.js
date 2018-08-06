@@ -1,8 +1,10 @@
-export const getAuthForm = state => state.getIn(['app', 'forms', 'auth']);
 export const getIntl = state => state.get('intl');
 export const getAlert = state => state.get('alert');
+export const getMenu = state => state.get('menu');
 export const getDropzone = state => state.get('dropzone');
 export const getDropdown = state => state.get('dropdown');
-export const getUploadFileForm = state => state.get('uploadFileForm');
+export const getHistoryItems = state => state.get('history');
 export const getDocumentState = state => state.get('document');
+export const getUploadFileForm = state => state.get('uploadFileForm');
+export const getAuthForm = state => state.getIn(['app', 'forms', 'auth']);
 export const getValidateUploadFrom = state => state.get('validateUploadForm');
