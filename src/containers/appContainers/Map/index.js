@@ -12,7 +12,45 @@ import NewsFeedPanel from '../../../components/Panel/MapPanel/newsFeedPanel';
 import { PanelContainer } from './style';
 
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
+// async function (tweets, m) {
+//   tweets.map(async doc => {
+//     const { url } = doc;
+//     const color = layerColor.category[doc.documentType.category].pop();
+//     m.addSource(doc.recordId, {
+//       type: 'geojson',
+//       data: url
+//     });
 
+//     if (doc.geojsonType === 'Point') {
+//       m.addLayer({
+//         type: 'circle',
+//         paint: {
+//           'circle-color': color,
+//           'circle-radius': 5
+//         },
+//         layout: {
+//           visibility: 'none'
+//         },
+//         id: doc.recordId, // Sets id as current child's key
+//         source: doc.recordId // The source layer defined above
+//       });
+//     }
+//     if (doc.geojsonType === 'Polygon') {
+//       m.addLayer({
+//         type: 'fill',
+//         paint: {
+//           'fill-color': color,
+//           'fill-opacity': 1
+//         },
+//         layout: {
+//           visibility: 'none'
+//         },
+//         id: doc.recordId, // Sets id as current child's key
+//         source: doc.recordId // The source layer defined above
+//       });
+//     }
+//   });
+// }
 async function plotData(docs, m) {
   docs.map(async doc => {
     const { url } = doc;
@@ -84,6 +122,13 @@ class MapContainer extends React.Component {
         plotData(datos, a);
       });
     }
+
+    if (this.props.data.getTweets) {
+      const datos = this.props.data.getTweets;
+      map.on('load', () => {
+        plotData(datos, a);
+      });
+    }
   }
 
   toggleLayer(key, event) {
@@ -105,7 +150,10 @@ class MapContainer extends React.Component {
             categories={this.state.categories}
             toggleLayer={this.toggleLayer.bind(this)}
           />
-          <CrowdSourcedDataPanel toggleLayer={this.toggleLayer.bind(this)} />
+          <CrowdSourcedDataPanel
+            data={this.props.data.getTweets}
+            toggleLayer={this.toggleLayer.bind(this)}
+          />
           {this.props.data.getPosts ? (
             <NewsFeedPanel
               data={this.props.data.getPosts}
@@ -122,6 +170,10 @@ class MapContainer extends React.Component {
 
 const GET_DATA = gql`
   query {
+    getTweets {
+      url
+    }
+
     getPosts {
       url
       image

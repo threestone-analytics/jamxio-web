@@ -12,11 +12,6 @@ import {
   FeedTitle
 } from './style';
 
-function arrayRotateOne(arr, reverse) {
-  if (reverse) arr.unshift(arr.pop());
-  else arr.push(arr.shift());
-  return arr;
-}
 const ShowItem = props => {
   const { data } = props;
 

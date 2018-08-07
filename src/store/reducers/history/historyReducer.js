@@ -6,16 +6,18 @@ const initialState = Immutable.fromJS({});
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case ActionTypes.TOGGLE_HISTORY_ITEM:
-      if (state[action.payload.input]) {
+      if (state[action.payload.input._id]) {
         return {
-          [action.payload.input]: {
-            selected: !state[action.payload.input].selected
+          [action.payload.input._id]: {
+            selected: !state[action.payload.input._id].selected,
+            url: action.payload.input.url
           }
         };
       }
       return {
-        [action.payload.input]: {
-          selected: true
+        [action.payload.input._id]: {
+          selected: true,
+          url: action.payload.input.url
         }
       };
 

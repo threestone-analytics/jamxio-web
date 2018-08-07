@@ -90,13 +90,20 @@ const GET_DOCUMENTS = gql`
 
 const RenderCheckBox = props => {
   const handleclick = () => {
-    props.actions.toggleHistoryItem(props.document.url);
+    props.actions.toggleHistoryItem(props.document);
   };
   let checked = false;
-  if (props.state[props.document.url]) {
-    checked = props.state[props.document.url].selected;
+  if (props.state[props.document._id]) {
+    checked = props.state[props.document._id].selected;
   }
   return <CheckBox type="checkbox" onChange={handleclick} defaultChecked={checked} />;
+};
+
+RenderCheckBox.propTypes = {
+  _id: PropTypes.string.isRequired,
+  actions: PropTypes.object.isRequired,
+  state: PropTypes.object.isRequired,
+  document: PropTypes.object.isRequired
 };
 
 const Items = ({ props, _id }) => (
@@ -138,6 +145,7 @@ Items.propTypes = {
 
 const HistoryModal = props => {
   const handleclick = () => {
+    props.actions.downloadHistory();
     console.log(props); // descargar aqui
   };
 
@@ -171,9 +179,7 @@ const HistoryModal = props => {
                 <Title margin_right="10%">Fuente</Title>
               </HistoryInfoTab>
               <HistoryItemContainer>
-                <form>
-                  <Items props={props} _id={props.record._id} />
-                </form>
+                <Items props={props} _id={props.record._id} />
               </HistoryItemContainer>
             </HistoryBox>
           </HistoryContainer>
@@ -192,6 +198,7 @@ const HistoryModal = props => {
 HistoryModal.propTypes = {
   show: PropTypes.bool.isRequired,
   handleHide: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired,
   record: PropTypes.object.isRequired
 };
 const HM = compose(

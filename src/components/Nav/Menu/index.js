@@ -55,7 +55,8 @@ const Menu = props => {
 };
 
 Menu.propTypes = {
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  menuState: PropTypes.object.isRequired
 };
 
 export default compose(

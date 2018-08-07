@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
 
-
 const categories = ['00-water'];
 
-const crowdSourced = ['sms', 'twitter', 'Direct Message'];
+const crowdSourced = ['sms', 'twitter', 'Direct Message', 'reportes en linea'];
 
-const defaultContainer = ({ children }) =>
-  <div className="control-panel">
+const defaultContainer = ({ children }) => (
+<div className="control-panel">
     {children}
-  </div>;
+  </div>
+);
 
 export default class StyleControls extends PureComponent {
   render() {
@@ -20,8 +20,8 @@ export default class StyleControls extends PureComponent {
           <h5>Geo Data</h5>
         </div>
         <hr />
-        {categories.map((category, index) =>
-          <label key={index}>
+        {categories.map((category, index) => (
+<label key={index}>
             <input
               type="checkbox"
               onClick={e => {
@@ -30,13 +30,13 @@ export default class StyleControls extends PureComponent {
             />
             {category}
           </label>
-        )}
+)))}
         <div className="control-panel-title">
           <h5>Crowd Surced Data</h5>
         </div>
         <hr />
-        {crowdSourced.map((cs, index) =>
-          <label key={index}>
+        {crowdSourced.map((cs, index) => (
+<label key={index}>
             <input
               type="checkbox"
               onClick={e => {
@@ -45,7 +45,7 @@ export default class StyleControls extends PureComponent {
             />
             {cs}
           </label>
-        )}
+)))}
       </Container>
     );
   }

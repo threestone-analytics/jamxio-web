@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckBox, Label, SubItem, SubSubItem, SubItemLabel, SubSubItemLabel, Mark } from './style';
+import { CheckBox, SubItem, SubSubItem, SubItemLabel, SubSubItemLabel, Mark } from './style';
 import { layerColor } from '../../styles/app/map/layers';
 
 export const renderRecords = function(records, props, color) {

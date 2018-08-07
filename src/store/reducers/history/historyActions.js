@@ -6,3 +6,10 @@ export function toggleHistoryItem(input) {
     payload: { input }
   };
 }
+
+export function downloadHistory(input) {
+  return {
+    type: ActionTypes.DATA_DOWNLOAD_REQUEST,
+    payload: { input }
+  };
+}
