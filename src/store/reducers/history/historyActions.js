@@ -6,10 +6,21 @@ export function toggleHistoryItem(input) {
     payload: { input }
   };
 }
-
 export function downloadHistory(input) {
   return {
     type: ActionTypes.DATA_DOWNLOAD_REQUEST,
+    payload: { input }
+  };
+}
+export function saveHistoryData(input) {
+  return {
+    type: ActionTypes.SAVE_HISTORY_DATA,
+    payload: { input }
+  };
+}
+export function saveZIP(input) {
+  return {
+    type: ActionTypes.SAVE_ZIP,
     payload: { input }
   };
 }

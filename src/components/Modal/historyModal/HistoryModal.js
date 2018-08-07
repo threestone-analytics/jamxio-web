@@ -109,6 +109,24 @@ RenderCheckBox.propTypes = {
 const Items = ({ props, _id }) => (
   <Query pollInterval={50} query={GET_DOCUMENTS} variables={{ _id }}>
     {({ loading, error, data }) => {
+      console.log(data, error, loading);
+      if (data.getRecordById)
+        return data.getRecordById.documents.map(d => {
+          const timestamp = d.publishedDate.toString();
+          const date = new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+          }).format(timestamp);
+          return (
+            <HistoryItem key={d._id}>
+              <RenderCheckBox document={d} actions={props.actions} state={props.history} />
+              <Date> On {date} </Date>
+              <User> alexter42</User>
+              <DataType> {d.source} </DataType>
+            </HistoryItem>
+          );
+        });
       if (loading)
         return (
           <SpinnerBox>
@@ -116,22 +134,6 @@ const Items = ({ props, _id }) => (
           </SpinnerBox>
         );
       if (error) return `Error! ${error.message}`;
-      return data.getRecordById.documents.map(d => {
-        const timestamp = d.publishedDate.toString();
-        const date = new Intl.DateTimeFormat('en-US', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit'
-        }).format(timestamp);
-        return (
-          <HistoryItem key={d._id}>
-            <RenderCheckBox document={d} actions={props.actions} state={props.history} />
-            <Date> On {date} </Date>
-            <User> alexter42</User>
-            <DataType> {d.source} </DataType>
-          </HistoryItem>
-        );
-      });
     }}
   </Query>
 );
@@ -145,8 +147,8 @@ Items.propTypes = {
 
 const HistoryModal = props => {
   const handleclick = () => {
-    props.actions.downloadHistory();
-    console.log(props); // descargar aqui
+    console.log(props, 'descargar aqui'); // descargar aqui
+    props.actions.downloadHistory(props);
   };
 
   return (

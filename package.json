@@ -43,6 +43,7 @@
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "jszip": "^3.1.5",
+    "jszip-utils": "^0.0.2",
     "key-mirror": "^1.0.1",
     "leaflet-headless": "^0.2.6",
     "lodash": "^4.17.10",

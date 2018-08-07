@@ -59,6 +59,8 @@ export default keyMirror({
   /* history */
   TOGGLE_HISTORY_ITEM: null,
   DATA_DOWNLOAD_REQUEST: null,
+  SAVE_HISTORY_DATA: null,
+  SAVE_ZIP: null,
   /* nav mennu */
   ClICK_LEFT_BUTTON: null,
   ClICK_RIGHT_BUTTON: null
