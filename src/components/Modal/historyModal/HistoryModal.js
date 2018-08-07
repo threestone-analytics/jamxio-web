@@ -109,7 +109,6 @@ RenderCheckBox.propTypes = {
 const Items = ({ props, _id }) => (
   <Query pollInterval={50} query={GET_DOCUMENTS} variables={{ _id }}>
     {({ loading, error, data }) => {
-      console.log(data, error, loading);
       if (data.getRecordById)
         return data.getRecordById.documents.map(d => {
           const timestamp = d.publishedDate.toString();
@@ -133,7 +132,7 @@ const Items = ({ props, _id }) => (
             <SyncLoader color="#2F80ED" />
           </SpinnerBox>
         );
-      if (error) return `Error! ${error.message}`;
+      return `Error! ${error.message}`;
     }}
   </Query>
 );
