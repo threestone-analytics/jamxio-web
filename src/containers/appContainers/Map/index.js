@@ -52,9 +52,9 @@ mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 //   });
 // }
 async function plotData(docs, m) {
-  docs.map(async doc => {
+  docs.map(async (doc, i) => {
     const { url } = doc;
-    const color = layerColor.category[doc.documentType.category].pop();
+    const color = layerColor.category[doc.documentType.category];
     m.addSource(doc.recordId, {
       type: 'geojson',
       data: url
@@ -64,7 +64,7 @@ async function plotData(docs, m) {
       m.addLayer({
         type: 'circle',
         paint: {
-          'circle-color': color,
+          'circle-color': color[i],
           'circle-radius': 5
         },
         layout: {
@@ -78,7 +78,7 @@ async function plotData(docs, m) {
       m.addLayer({
         type: 'fill',
         paint: {
-          'fill-color': color,
+          'fill-color': color[i],
           'fill-opacity': 1
         },
         layout: {
