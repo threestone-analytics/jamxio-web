@@ -34,25 +34,20 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const Menu = props => {
-  console.log(props.menuState.left);
-  return (
-    <ButtonGroup className="nav-buttons">
-      <NavLink replace to="/">
-        <Button active={props.menuState.left} onClick={props.actions.clickLeft}>
-          {' '}
-          Mapa{' '}
-        </Button>
-      </NavLink>
-      <NavLink replace to="/data">
-        <Button active={props.menuState.right} onClick={props.actions.clickRight}>
-          {' '}
-          Datos{' '}
-        </Button>
-      </NavLink>
-    </ButtonGroup>
-  );
-};
+const Menu = props => (
+  <ButtonGroup className="nav-buttons">
+    <NavLink replace to="/">
+      <Button active={props.menuState.left} onClick={props.actions.clickLeft}>
+        Mapa
+      </Button>
+    </NavLink>
+    <NavLink replace to="/data">
+      <Button active={props.menuState.right} onClick={props.actions.clickRight}>
+        Datos
+      </Button>
+    </NavLink>
+  </ButtonGroup>
+);
 
 Menu.propTypes = {
   actions: PropTypes.object.isRequired,

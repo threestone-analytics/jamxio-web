@@ -146,7 +146,6 @@ Items.propTypes = {
 
 const HistoryModal = props => {
   const handleclick = () => {
-    console.log(props, 'descargar aqui'); // descargar aqui
     props.actions.downloadHistory(props);
   };
 

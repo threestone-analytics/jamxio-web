@@ -52,9 +52,13 @@ mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 //   });
 // }
 async function plotData(docs, m) {
-  docs.map(async (doc, i) => {
+  let n = 0;
+  docs.map(async doc => {
     const { url } = doc;
     const color = layerColor.category[doc.documentType.category];
+    if (n >= color.length) {
+      n = 0;
+    }
     m.addSource(doc.recordId, {
       type: 'geojson',
       data: url
@@ -64,7 +68,7 @@ async function plotData(docs, m) {
       m.addLayer({
         type: 'circle',
         paint: {
-          'circle-color': color[i],
+          'circle-color': color[n],
           'circle-radius': 5
         },
         layout: {
@@ -78,7 +82,7 @@ async function plotData(docs, m) {
       m.addLayer({
         type: 'fill',
         paint: {
-          'fill-color': color[i],
+          'fill-color': color[n],
           'fill-opacity': 1
         },
         layout: {
@@ -88,6 +92,7 @@ async function plotData(docs, m) {
         source: doc.recordId // The source layer defined above
       });
     }
+    n += 1;
   });
 }
 
@@ -124,10 +129,10 @@ class MapContainer extends React.Component {
     }
 
     if (this.props.data.getTweets) {
-      const datos = this.props.data.getTweets;
-      map.on('load', () => {
-        plotData(datos, a);
-      });
+      // const datos = this.props.data.getTweets;
+      // // map.on('load', () => {
+      // //   plotData(datos, a);
+      // // });
     }
   }
 
