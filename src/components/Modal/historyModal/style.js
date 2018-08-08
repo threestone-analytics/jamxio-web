@@ -191,6 +191,7 @@ export const HistoryItem = styled.div`
 
 export const CheckBox = styled.input`
   width: 10%;
+  margin: auto;
 `;
 
 export const Date = styled.div`
