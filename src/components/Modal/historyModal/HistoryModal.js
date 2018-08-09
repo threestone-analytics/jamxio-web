@@ -110,7 +110,7 @@ const Items = ({ props, _id }) => (
     {({ loading, error, data }) => {
       if (data)
         if (data.getRecordById)
-          return data.getRecordById.documents.map(d => {
+          return data.getRecordById.documents.map((d, i) => {
             try {
               const timestamp = d.publishedDate.toString();
               const date = new Intl.DateTimeFormat('en-US', {
@@ -119,10 +119,10 @@ const Items = ({ props, _id }) => (
                 day: '2-digit'
               }).format(timestamp);
               return (
-                <HistoryItem key={d._id}>
+                <HistoryItem key={d._id} color={i === 0 ? '#00ff94' : '#fff'}>
                   <RenderCheckBox document={d} actions={props.actions} state={props.history} />
                   <Date> On {date} </Date>
-                  <User> alexter42</User>
+                  <User color={i === 0 ? '#2980E7' : '#2f80ed'}> alexter42</User>
                   <DataType> {d.source} </DataType>
                 </HistoryItem>
               );

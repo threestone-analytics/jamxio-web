@@ -186,6 +186,7 @@ export const HistoryItem = styled.div`
   flex-direction: row;
   display: flex;
   width: 100%;
+  background-color: ${props => (props.color ? props.color : 'white')};
   border-bottom: 1px solid rgba(120, 103, 103, 0.11);
 `;
 
@@ -201,7 +202,7 @@ export const Date = styled.div`
 `;
 
 export const User = styled.div`
-  color: #2f80ed;
+  color: ${props => (props.color ? props.color : '#2f80ed')};
   text-decoration: underline;
   padding: 10px 0;
   width: 48%;

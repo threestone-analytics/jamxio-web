@@ -8,10 +8,12 @@ import gql from 'graphql-tag';
 import DataPage from '../../../pages/Data';
 // Actions
 import * as modalActions from '../../../store/reducers/modal/modalActions';
+import * as menuActions from '../../../store/reducers/nav/navActions';
+
 // Selectors
 import { getIntl } from '../../../utils/selectors/common';
 
-const actions = [modalActions];
+const actions = [modalActions, menuActions];
 
 function mapStateToProps(state) {
   return {

@@ -4,6 +4,7 @@ import DataCard from '../../components/Card/DataCard';
 import { CardContainer, TopBar, AddRecordButton } from './style';
 
 const DashboardView = props => {
+  props.actions.clickRight();
   const handleOpen = name => {
     props.actions.show(name);
   };
