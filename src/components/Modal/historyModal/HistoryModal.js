@@ -72,7 +72,6 @@ function mapDispatchToProps(dispatch) {
 const GET_DOCUMENTS = gql`
   query($_id: ID!) {
     getRecordById(_id: $_id) {
-      title
       documents {
         _id
         source
@@ -112,21 +111,27 @@ const Items = ({ props, _id }) => (
       if (data)
         if (data.getRecordById)
           return data.getRecordById.documents.map(d => {
-            const timestamp = d.publishedDate.toString();
-            const date = new Intl.DateTimeFormat('en-US', {
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit'
-            }).format(timestamp);
-            return (
-              <HistoryItem key={d._id}>
-                <RenderCheckBox document={d} actions={props.actions} state={props.history} />
-                <Date> On {date} </Date>
-                <User> alexter42</User>
-                <DataType> {d.source} </DataType>
-              </HistoryItem>
-            );
+            console.log(d);
+            try {
+              const timestamp = d.publishedDate.toString();
+              const date = new Intl.DateTimeFormat('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+              }).format(timestamp);
+              return (
+                <HistoryItem key={d._id}>
+                  <RenderCheckBox document={d} actions={props.actions} state={props.history} />
+                  <Date> On {date} </Date>
+                  <User> alexter42</User>
+                  <DataType> {d.source} </DataType>
+                </HistoryItem>
+              );
+            } catch (err) {
+              return <div />;
+            }
           });
+
       if (loading)
         return (
           <SpinnerBox>
