@@ -18,29 +18,26 @@ import '../../../styles/app/dashboard/dropdown.scss';
 import '../../../styles/app/nav/sidebar.scss';
 import '../../../styles/app/dashboard/index.scss';
 
-const DataLayout = ({ location, props, match }) => {
-  console.log(location, match);
-  return (
-    <div id="outer-container" location={location}>
-      <div className="header-container">
-        <MainMenu {...props} />
-        <Login {...props} />
-      </div>
-      <main id="page-wrap">
-        <Toastr />
-        <HistoryModal />
-        <LoginModal />
-        <UploadModal />
-        <UploadRecordModal />
-        <Switch>
-          <Fragment>
-            <Route path={`${match.path}`} component={DataContainer} />
-          </Fragment>
-        </Switch>
-      </main>
+const DataLayout = ({ location, props, match }) => (
+  <div id="outer-container" location={location}>
+    <div className="header-container">
+      <MainMenu {...props} />
+      <Login {...props} />
     </div>
-  );
-};
+    <main id="page-wrap">
+      <Toastr />
+      <HistoryModal />
+      <LoginModal />
+      <UploadModal />
+      <UploadRecordModal />
+      <Switch>
+        <Fragment>
+          <Route path={`${match.path}`} component={DataContainer} />
+        </Fragment>
+      </Switch>
+    </main>
+  </div>
+);
 
 DataLayout.propTypes = {
   match: PropTypes.object.isRequired,

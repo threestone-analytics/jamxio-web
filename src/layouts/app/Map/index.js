@@ -10,25 +10,22 @@ import '../../../styles/app/dashboard/home-container.scss';
 import '../../../styles/app/nav/sidebar.scss';
 import '../../../styles/app/dashboard/index.scss';
 
-const MapLayout = ({ match, props }) => {
-  console.log(match);
-  return (
-    <div>
-      <div className="header-container">
-        <MainMenu {...props} />
-        <Login {...props} />
-      </div>
-      <main className="page-wrap">
-        <LoginModal />
-        <Switch>
-          <Fragment>
-            <Route path={`${match.path}`} component={MapContainer} />
-          </Fragment>
-        </Switch>
-      </main>
+const MapLayout = ({ match, props }) => (
+  <div>
+    <div className="header-container">
+      <MainMenu {...props} />
+      <Login {...props} />
     </div>
-  );
-};
+    <main className="page-wrap">
+      <LoginModal />
+      <Switch>
+        <Fragment>
+          <Route path={`${match.path}`} component={MapContainer} />
+        </Fragment>
+      </Switch>
+    </main>
+  </div>
+);
 
 MapLayout.propTypes = {
   match: PropTypes.object.isRequired,
