@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { UploadModal, UploadRecordModal } from 'Components/Modal';
+import { UploadModal, UploadRecordModal, LoginModal } from 'Components/Modal';
 import { Toastr } from 'Components/Toastr';
 import SideMenu from 'Containers/appContainers/NavigationContainers/SideMenuContainer';
 // Layouts
@@ -17,6 +17,7 @@ const AppLayout = ({ match, location }) => (
     <main id="page-wrap">
       <Toastr />
       <UploadModal />
+      <LoginModal />
       <UploadRecordModal />
       <Fade location={location}>
         <Switch location={location}>

@@ -78,6 +78,17 @@ renderMultiselect.propTypes = {
   onChange: PropTypes.object.isRequired
 };
 
+const Input = ({ input, data, valueField, textField }) => (
+  <input
+    {...input}
+    onBlur={() => input.onBlur()}
+    value={input.value || []} // requires value to be an array
+    data={data}
+    valueField={valueField}
+    textField={textField}
+  />
+);
+
 const RF = props => {
   const { handleSubmit } = props;
   return (
@@ -87,43 +98,25 @@ const RF = props => {
           <ItemBox>
             <Label>Nombre:</Label>
             <FieldBox>
-              <Field name="subcategory" component={renderMultiselect} data={subcategories} />
+              <Field name="name" component={Input} />
             </FieldBox>
           </ItemBox>
           <ItemBox>
             <Label>e-mail:</Label>
             <FieldBox>
-              <Field
-                name="source"
-                component={renderDropdownList}
-                data={sources}
-                valueField="value"
-                textField="source"
-              />
+              <Field name="e-mail" component={Input} />
             </FieldBox>
           </ItemBox>
           <ItemBox>
             <Label>Institucion:</Label>
             <FieldBox>
-              <Field
-                name="source"
-                component={renderDropdownList}
-                data={sources}
-                valueField="value"
-                textField="source"
-              />
+              <Field name="institution" component={Input} />
             </FieldBox>
           </ItemBox>
           <ItemBox>
             <Label>Tipo de Institucion:</Label>
             <FieldBox>
-              <Field
-                name="source"
-                component={renderDropdownList}
-                data={sources}
-                valueField="value"
-                textField="source"
-              />
+              <Field name="institution_type" component={Input} />
             </FieldBox>
           </ItemBox>
         </FormBox>
@@ -131,24 +124,18 @@ const RF = props => {
           <ItemBox>
             <Label>Usuario:</Label>
             <FieldBox>
-              <Field name="subcategory" component={renderMultiselect} data={subcategories} />
+              <Field name="username" component={Input} />
             </FieldBox>
           </ItemBox>
           <ItemBox>
             <Label>Contrasena:</Label>
             <FieldBox>
-              <Field
-                name="source"
-                component={renderDropdownList}
-                data={sources}
-                valueField="value"
-                textField="source"
-              />
+              <Field name="password" component={Input} />
             </FieldBox>
           </ItemBox>
         </FormBox>
         <ModalButtonBox>
-          <Button onClick={props.handleHide}>ENTRAR</Button>
+          <Button onClick={props.handleHide}>Registrar</Button>
         </ModalButtonBox>
       </form>
     </Form>
@@ -160,8 +147,8 @@ RF.propTypes = {
   handleSubmit: PropTypes.func.isRequired
 };
 
-const LoginForm = reduxForm({
-  form: 'loginForm' // a unique identifier for this form
+const RegisterForm = reduxForm({
+  form: 'registerForm' // a unique identifier for this form
 })(RF);
 
-export default LoginForm;
+export default RegisterForm;

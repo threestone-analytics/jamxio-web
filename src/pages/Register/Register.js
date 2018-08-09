@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from './style';
 
 const Container = props => {
   const { record } = props;
@@ -9,7 +8,7 @@ const Container = props => {
   };
   return (
     <Container>
-      <Button onClick={() => handleOpen('uploadRecordModal')}>Contribuir</Button>
+      <buttom onClick={() => handleOpen('uploadRecordModal')}>Contribuir</buttom>
     </Container>
   );
 };

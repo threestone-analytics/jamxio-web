@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import MapLayout from './app/Map';
 import DataLayout from './app/Data';
+import RegisterLayout from './app/Register';
 
 /* import AuthLayout from './auth/AuthLayout'; */
 
@@ -11,6 +12,7 @@ const RootLayout = ({ loggedInUser, loading }) =>
     // private routes
     <Switch>
       <Route path="/home" component={MapLayout} />
+      <Route path="/register" component={RegisterLayout} />
       <Route path="/data" component={DataLayout} />
       <Route path="/record" component={DataLayout} />
       <Route render={() => <Redirect to="/home" />} />

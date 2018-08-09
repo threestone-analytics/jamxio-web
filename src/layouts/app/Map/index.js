@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
+import { LoginModal } from 'Components/Modal';
 import MapContainer from '../../../containers/appContainers/Map';
 import MainMenu from '../../../components/Nav/Menu';
 import Login from '../../../components/Nav/Login';
@@ -16,6 +17,7 @@ const DashboardLayout = ({ match, props }) => (
       <Login {...props} />
     </div>
     <main className="page-wrap">
+      <LoginModal />
       <Switch>
         <Fragment>
           <Route path={`${match.path}`} component={MapContainer} />
@@ -31,3 +33,4 @@ DashboardLayout.propTypes = {
 };
 
 export default DashboardLayout;
+

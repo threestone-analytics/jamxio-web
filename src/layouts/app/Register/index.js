@@ -3,13 +3,10 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import 'react-widgets/dist/css/react-widgets.css';
 // Containers
-import DataContainer from 'Containers/appContainers/Data';
+import RegisterContainer from 'Containers/appContainers/NavigationContainers/Register';
 
 // Components
-import MainMenu from 'Components/Nav/Menu';
-import Login from 'Components/Nav/Login';
 import { Toastr } from 'Components/Toastr';
-import { HistoryModal, UploadModal, UploadRecordModal, LoginModal } from 'Components/Modal';
 
 // Styles ; FIXME too many styles instead we sould use styled-components
 import '../../../styles/app/map/mapbox-gl.css';
@@ -20,17 +17,9 @@ import '../../../styles/app/dashboard/index.scss';
 
 const DataLayout = ({ location, props }) => (
   <div id="outer-container" location={location}>
-    <div className="header-container">
-      <MainMenu {...props} />
-      <Login {...props} />
-    </div>
     <main id="page-wrap">
       <Toastr />
-      <HistoryModal />
-      <LoginModal />
-      <UploadModal />
-      <UploadRecordModal />
-      <DataContainer {...props} />
+      <RegisterContainer {...props} />
     </main>
   </div>
 );

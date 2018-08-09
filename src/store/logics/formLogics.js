@@ -2,36 +2,43 @@ import * as AWS from 'aws-sdk';
 import { createLogic } from 'redux-logic';
 import ActionTypes from '../ActionsTypes';
 
+const imagePlaceholder =
+  'https://raw.githubusercontent.com/threestone-analytics/jamxio-web-client/master/src/assets/placeholder.png';
 const bucketName = process.env.DOCUMENTS_BUCKET_NAME;
 const bucketRegion = process.env.IDENTITY_POOL_REGION;
 const IdentityPoolId = process.env.IDENTITY_POOL_ID;
 const bucketUrl = process.env.S3_DOCUMENTS_BUCKET_URL;
 
-const imagePlaceholder =
-  'https://raw.githubusercontent.com/threestone-analytics/jamxio-web-client/master/src/assets/placeholder.png';
-
 const uploadDocument = createLogic({
   type: ActionTypes.DOCUMENT_UPLOAD_REQUEST,
   process({ getState, action }) {
+    console.log(bucketRegion, IdentityPoolId);
     try {
       const { uploadRecordForm } = getState()
         .get('form')
         .toJS();
       const data = uploadRecordForm.values;
+      AWS.config.region = 'us-west-1'; // Region
+      AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: 'us-west-1:73ec1465-68b0-492f-9411-d0b2468ab80d'
+      });
+
       AWS.config.update({
         region: bucketRegion,
         credentials: new AWS.CognitoIdentityCredentials({
           IdentityPoolId
         })
       });
+
       const s3 = new AWS.S3({
         apiVersion: '2006-03-01',
         params: { Bucket: bucketName }
       });
 
-      const filesRocordKey = `${encodeURIComponent('docs')}/`;
+      const filesRocordKey = `${encodeURIComponent('')}`;
       const { file, filename } = data;
       const fileKey = filesRocordKey + filename;
+      console.log(fileKey);
 
       s3.upload(
         {
