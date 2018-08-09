@@ -1,8 +1,7 @@
 import React from 'react';
 import { CheckBox, SubItem, SubSubItem, SubItemLabel, SubSubItemLabel, Mark } from './style';
-import { layerColor } from '../../styles/app/map/layers';
 
-export const renderRecords = function(records, props, color) {
+export const renderRecords = function(records, props) {
   if (!records) {
     return;
   }
@@ -10,7 +9,7 @@ export const renderRecords = function(records, props, color) {
     const _id = record.recordId;
     return (
       <SubSubItem>
-        <Mark color={color} />
+        <Mark color={record.color} />
         <SubSubItemLabel>{record.title}</SubSubItemLabel>
         <CheckBox>
           <input
@@ -28,25 +27,29 @@ export const renderRecords = function(records, props, color) {
 };
 
 export const renderSubcategories = function(props) {
-  const category = props.title;
   if (!props) {
     return;
   }
-  const color = layerColor.category[category];
-    const groupedData = _.mapValues(_.groupBy(props.options, 'documentType.subcategory'));// eslint-disable-line
+
+  const groupedData = _.mapValues(_.groupBy(props.options, 'documentType.subcategory'));// eslint-disable-line
   const subcategories = [];
+
   Object.keys(groupedData).forEach(element => {
     subcategories.push(element);
   });
 
-  const data = subcategories.map((subcategory, i) => (
-    <div>
-      <SubItem color={color[i]}>
-        <SubItemLabel color={color[i]}>{subcategory}</SubItemLabel>
-      </SubItem>
-      {renderRecords(groupedData[subcategory], props, color[i])}
-    </div>
-  ));
+  const data = subcategories.map(subcategory => {
+    const { color } = groupedData[subcategory][0];
+
+    return (
+      <div>
+        <SubItem color={color}>
+          <SubItemLabel color={color}>{subcategory}</SubItemLabel>
+        </SubItem>
+        {renderRecords(groupedData[subcategory], props, '#000')}
+      </div>
+    );
+  });
 
     return data;  // eslint-disable-line
 };

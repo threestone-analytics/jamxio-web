@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form/immutable';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { Form, FormBox, Label, FieldBox, Button, ModalButtonBox, ItemBox } from './style';
 import 'react-widgets/dist/css/react-widgets.css';
 // FIXME refactor this
@@ -70,7 +71,9 @@ const RF = props => {
           </ItemBox>
         </FormBox>
         <ModalButtonBox>
-          <Button onClick={props.handleHide}>Registrar</Button>
+          <NavLink id="register" to="/">
+            <Button onClick={props.handleHide}>Registrar</Button>
+          </NavLink>
         </ModalButtonBox>
       </form>
     </Form>

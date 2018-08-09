@@ -1,5 +1,6 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form/immutable';
+import { NavLink } from 'react-router-dom';
 import 'react-widgets/dist/css/react-widgets.css';
 import PropTypes from 'prop-types';
 import {
@@ -57,8 +58,12 @@ const LF = props => {
           <Button onClick={props.handleHide}>ENTRAR</Button>
         </ModalButtonBox>
         <ModalButtonBox>
-          <RegisterButton>¿No tienes cuenta? Registrate</RegisterButton>
-          <RegisterButton>¿Olvidaste tu contrasena?</RegisterButton>
+          <NavLink id="register" to="/register">
+            <RegisterButton>¿No tienes cuenta? Registrate</RegisterButton>
+          </NavLink>
+          <NavLink id="register" to="/reset_password">
+            <RegisterButton>¿Olvidaste tu contrasena?</RegisterButton>
+          </NavLink>
         </ModalButtonBox>
       </form>
     </Form>

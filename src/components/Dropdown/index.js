@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
-import { layerColor } from '../../styles/app/map/layers';
 
 import { renderSubcategories } from './handlers';
 
@@ -40,7 +39,9 @@ const DD = props => {
   if (props.dropdownState[props.title] && props.dropdownState[props.title].show) {
     active = props.dropdownState[props.title].show;
   }
-  const color = layerColor.category[props.title][0];
+
+  const { color } = props.options[0];
+
   return (
     <ItemContainer>
       <Item active={active}>
@@ -75,6 +76,7 @@ export const Dropdown = connect(
 
 DD.propTypes = {
   title: PropTypes.string.isRequired,
+  options: PropTypes.string.isRequired,
   actions: PropTypes.object.isRequired,
   dropdownState: PropTypes.object.isRequired
 };

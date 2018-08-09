@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { Button } from './style';
-
 // Actions
 import * as modalActions from '../../../store/reducers/modal/modalActions';
 
@@ -40,7 +40,9 @@ const Login = props => {
   return (
     <div className="nav-buttons-right">
       <Button onClick={() => handleOpen('loginModal')}>Entrar</Button>
-      <Button onClick={() => handleOpen('sigupModal')}>Registrarse</Button>
+      <NavLink id="register" to="/register">
+        <Button>Registrarse</Button>
+      </NavLink>
     </div>
   );
 };

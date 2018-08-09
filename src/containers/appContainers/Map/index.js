@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
+import _ from 'lodash';
 import { layerColor } from '../../../styles/app/map/layers';
 
 import GeoDataPanel from '../../../components/Panel/MapPanel/geoDataPanel';
@@ -13,48 +14,64 @@ import { PanelContainer } from './style';
 
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
-async function plotData(docs, m) {
-  let n = 0;
-  docs.map(async doc => {
-    const { url } = doc;
-    const color = layerColor.category[doc.documentType.category];
-    if (n >= color.length) {
+async function plotData(docs, m, a) {
+  // FIXME duplicate
+  const groupedData = _.mapValues(_.groupBy(docs, 'documentType.category'));
+
+  const newGroupedData = {};
+  Object.keys(groupedData).forEach((element, i) => {
+    const records = groupedData[element];
+
+    let n = 0;
+    if (n >= records.lenght) {
       n = 0;
     }
-    m.addSource(doc.recordId, {
-      type: 'geojson',
-      data: url,
+    const newRecord = records;
+    records.map(async doc => {
+      const newDoc = doc;
+
+      const color = layerColor.category[i][n];
+      const { url } = doc;
+      newDoc.color = color;
+      m.addSource(doc.recordId, {
+        type: 'geojson',
+        data: url
+      });
+      if (doc.geojsonType === 'Point') {
+        m.addLayer({
+          type: 'circle',
+          paint: {
+            'circle-color': color,
+            'circle-radius': 5
+          },
+          layout: {
+            visibility: 'none'
+          },
+          id: doc.recordId, // Sets id as current child's key
+          source: doc.recordId // The source layer defined above
+        });
+      }
+      if (doc.geojsonType === 'Polygon') {
+        m.addLayer({
+          type: 'fill',
+          paint: {
+            'fill-color': color,
+            'fill-opacity': 1
+          },
+          layout: {
+            visibility: 'none'
+          },
+          id: doc.recordId, // Sets id as current child's key
+          source: doc.recordId // The source layer defined above
+        });
+      }
+      n += 1;
+
+      newRecord.push(newDoc);
     });
 
-    if (doc.geojsonType === 'Point') {
-      m.addLayer({
-        type: 'circle',
-        paint: {
-          'circle-color': color[n],
-          'circle-radius': 5,
-        },
-        layout: {
-          visibility: 'none',
-        },
-        id: doc.recordId, // Sets id as current child's key
-        source: doc.recordId, // The source layer defined above
-      });
-    }
-    if (doc.geojsonType === 'Polygon') {
-      m.addLayer({
-        type: 'fill',
-        paint: {
-          'fill-color': color[n],
-          'fill-opacity': 1,
-        },
-        layout: {
-          visibility: 'none',
-        },
-        id: doc.recordId, // Sets id as current child's key
-        source: doc.recordId, // The source layer defined above
-      });
-    }
-    n += 1;
+    newGroupedData[element] = newRecord;
+    a.setState({ categories: newGroupedData });
   });
 }
 
@@ -66,7 +83,7 @@ class MapContainer extends React.Component {
       categories: [],
       lat: 23.3704762,
       lng: -91.7996812,
-      zoom: 4.5,
+      zoom: 4.5
     };
   }
 
@@ -78,23 +95,15 @@ class MapContainer extends React.Component {
       center: [lng, lat],
       width: this.props.width || window.innerWidth,
       height: this.props.height || window.innerHeight,
-      zoom,
+      zoom
     });
     this.map = map;
     const a = this.map;
     if (this.props.data.getLatestDocuments) {
       const datos = this.props.data.getLatestDocuments;
-      this.setState({ categories: datos });
       map.on('load', () => {
-        plotData(datos, a);
+        plotData(datos, a, this);
       });
-    }
-
-    if (this.props.data.getTweets) {
-      // const datos = this.props.data.getTweets;
-      // // map.on('load', () => {
-      // //   plotData(datos, a);
-      // // });
     }
   }
 
@@ -113,10 +122,15 @@ class MapContainer extends React.Component {
       <div style={{ height: `${100}%`, width: `${100}%` }}>
         <div id="map" style={{ height: `100vh`, width: `100vw` }} />
         <PanelContainer>
-          <GeoDataPanel
-            categories={this.state.categories}
-            toggleLayer={this.toggleLayer.bind(this)}
-          />
+          {this.props.data.getLatestDocuments ? (
+            <GeoDataPanel
+              categories={this.state.categories}
+              toggleLayer={this.toggleLayer.bind(this)}
+            />
+          ) : (
+            ''
+          )}
+
           <CrowdSourcedDataPanel
             categories={this.state.categories}
             toggleLayer={this.toggleLayer.bind(this)}
@@ -167,13 +181,13 @@ const GET_DATA = gql`
 export default compose(
   graphql(GET_DATA, {
     options: () => ({
-      pollInterval: '6',
-    }),
+      pollInterval: '6'
+    })
   })
 )(MapContainer);
 
 MapContainer.propTypes = {
   width: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  height: PropTypes.object.isRequired,
+  height: PropTypes.object.isRequired
 };

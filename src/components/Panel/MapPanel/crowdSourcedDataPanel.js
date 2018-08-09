@@ -1,15 +1,10 @@
 import React from 'react';
-import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { CrowdSourcedContainer, PanelHeader, PanelItemContainer, CheckBox, Label } from './style';
 
 const crowdSourced = ['Sms', 'Twitter', 'Direct Message', 'News'];
 const CrowdSourcedPanel = props => {
-  const array = props.categories;
-
-  const groupedData = _.mapValues(_.groupBy(array, 'documentType.category'), doc =>
-    doc.map(e => _.omit(e, 'documentType.category'))
-  );
+  const groupedData = props.categories;
 
   const categories = [];
 
@@ -43,6 +38,6 @@ const CrowdSourcedPanel = props => {
   );
 };
 CrowdSourcedPanel.propTypes = {
-  categories: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired
 };
 export default CrowdSourcedPanel;
