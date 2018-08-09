@@ -28,7 +28,7 @@ import {
   HistoryBox,
   HistoryItem,
   HistoryInfoTab,
-  HistoryItemContainer
+  HistoryItemContainer,
 } from './style';
 
 // Actions
@@ -46,14 +46,14 @@ Modal.defaultStyles.content = {
   WebkitOverflowScrolling: 'touch',
   borderRadius: '4px',
   outline: 'none',
-  padding: '20px'
+  padding: '20px',
 };
 
 const actions = [historyActions];
 
 function mapStateToProps(state) {
   return {
-    history: getHistoryItems(state)
+    history: getHistoryItems(state),
   };
 }
 
@@ -65,7 +65,7 @@ function mapDispatchToProps(dispatch) {
 
   return {
     actions: bindActionCreators(creators, dispatch),
-    dispatch
+    dispatch,
   };
 }
 
@@ -102,7 +102,7 @@ RenderCheckBox.propTypes = {
   _id: PropTypes.string.isRequired,
   actions: PropTypes.object.isRequired,
   state: PropTypes.object.isRequired,
-  document: PropTypes.object.isRequired
+  document: PropTypes.object.isRequired,
 };
 
 const Items = ({ props, _id }) => (
@@ -116,7 +116,7 @@ const Items = ({ props, _id }) => (
               const date = new Intl.DateTimeFormat('en-US', {
                 year: 'numeric',
                 month: '2-digit',
-                day: '2-digit'
+                day: '2-digit',
               }).format(timestamp);
               return (
                 <HistoryItem key={d._id} color={i === 0 ? '#00ff94' : '#fff'}>
@@ -137,14 +137,15 @@ const Items = ({ props, _id }) => (
             <SyncLoader color="#2F80ED" />
           </SpinnerBox>
         );
-      return `Error! ${error.message}`;
+      if (error) return `Error! ${error.message}`;
+      return <div />;
     }}
   </Query>
 );
 
 Items.propTypes = {
   _id: PropTypes.string.isRequired,
-  props: PropTypes.object.isRequired
+  props: PropTypes.object.isRequired,
 };
 
 const HistoryModal = props => {
@@ -202,7 +203,7 @@ HistoryModal.propTypes = {
   show: PropTypes.bool.isRequired,
   handleHide: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
-  record: PropTypes.object.isRequired
+  record: PropTypes.object.isRequired,
 };
 const HM = compose(
   connect(
@@ -213,5 +214,5 @@ const HM = compose(
 
 export default connectModal({
   name: 'historyModal',
-  getModalState: state => state.get('modal')
+  getModalState: state => state.get('modal'),
 })(HM);

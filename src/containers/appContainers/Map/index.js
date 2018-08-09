@@ -12,45 +12,7 @@ import NewsFeedPanel from '../../../components/Panel/MapPanel/newsFeedPanel';
 import { PanelContainer } from './style';
 
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
-// async function (tweets, m) {
-//   tweets.map(async doc => {
-//     const { url } = doc;
-//     const color = layerColor.category[doc.documentType.category].pop();
-//     m.addSource(doc.recordId, {
-//       type: 'geojson',
-//       data: url
-//     });
 
-//     if (doc.geojsonType === 'Point') {
-//       m.addLayer({
-//         type: 'circle',
-//         paint: {
-//           'circle-color': color,
-//           'circle-radius': 5
-//         },
-//         layout: {
-//           visibility: 'none'
-//         },
-//         id: doc.recordId, // Sets id as current child's key
-//         source: doc.recordId // The source layer defined above
-//       });
-//     }
-//     if (doc.geojsonType === 'Polygon') {
-//       m.addLayer({
-//         type: 'fill',
-//         paint: {
-//           'fill-color': color,
-//           'fill-opacity': 1
-//         },
-//         layout: {
-//           visibility: 'none'
-//         },
-//         id: doc.recordId, // Sets id as current child's key
-//         source: doc.recordId // The source layer defined above
-//       });
-//     }
-//   });
-// }
 async function plotData(docs, m) {
   let n = 0;
   docs.map(async doc => {
@@ -61,7 +23,7 @@ async function plotData(docs, m) {
     }
     m.addSource(doc.recordId, {
       type: 'geojson',
-      data: url
+      data: url,
     });
 
     if (doc.geojsonType === 'Point') {
@@ -69,13 +31,13 @@ async function plotData(docs, m) {
         type: 'circle',
         paint: {
           'circle-color': color[n],
-          'circle-radius': 5
+          'circle-radius': 5,
         },
         layout: {
-          visibility: 'none'
+          visibility: 'none',
         },
         id: doc.recordId, // Sets id as current child's key
-        source: doc.recordId // The source layer defined above
+        source: doc.recordId, // The source layer defined above
       });
     }
     if (doc.geojsonType === 'Polygon') {
@@ -83,13 +45,13 @@ async function plotData(docs, m) {
         type: 'fill',
         paint: {
           'fill-color': color[n],
-          'fill-opacity': 1
+          'fill-opacity': 1,
         },
         layout: {
-          visibility: 'none'
+          visibility: 'none',
         },
         id: doc.recordId, // Sets id as current child's key
-        source: doc.recordId // The source layer defined above
+        source: doc.recordId, // The source layer defined above
       });
     }
     n += 1;
@@ -104,7 +66,7 @@ class MapContainer extends React.Component {
       categories: [],
       lat: 23.3704762,
       lng: -91.7996812,
-      zoom: 4.5
+      zoom: 4.5,
     };
   }
 
@@ -116,7 +78,7 @@ class MapContainer extends React.Component {
       center: [lng, lat],
       width: this.props.width || window.innerWidth,
       height: this.props.height || window.innerHeight,
-      zoom
+      zoom,
     });
     this.map = map;
     const a = this.map;
@@ -156,7 +118,7 @@ class MapContainer extends React.Component {
             toggleLayer={this.toggleLayer.bind(this)}
           />
           <CrowdSourcedDataPanel
-            data={this.props.data.getTweets}
+            categories={this.state.categories}
             toggleLayer={this.toggleLayer.bind(this)}
           />
           {this.props.data.getPosts ? (
@@ -205,13 +167,13 @@ const GET_DATA = gql`
 export default compose(
   graphql(GET_DATA, {
     options: () => ({
-      pollInterval: '6'
-    })
+      pollInterval: '6',
+    }),
   })
 )(MapContainer);
 
 MapContainer.propTypes = {
   width: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  height: PropTypes.object.isRequired
+  height: PropTypes.object.isRequired,
 };

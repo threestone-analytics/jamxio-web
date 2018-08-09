@@ -15,7 +15,75 @@ export const layerColor = {
       '#0de0b7',
       '#0ddfb7',
       '#0de1b7',
-      '#0ee6b5'
+      '#0ee6b5',
+    ],
+    News: [
+      '#0FF0B3',
+      '#0eeeb3',
+      '#0eecb4',
+      '#0eebb4',
+      '#0eeab4',
+      '#0ee8b5',
+      '#0ee6b5',
+      '#0ee5b6',
+      '#0de4b6',
+      '#0de3b6',
+      '#0de1b7',
+      '#0de0b7',
+      '#0ddfb7',
+      '#0de1b7',
+      '#0ee6b5',
+    ],
+    'Direct Message': [
+      '#0FF0B3',
+      '#0eeeb3',
+      '#0eecb4',
+      '#0eebb4',
+      '#0eeab4',
+      '#0ee8b5',
+      '#0ee6b5',
+      '#0ee5b6',
+      '#0de4b6',
+      '#0de3b6',
+      '#0de1b7',
+      '#0de0b7',
+      '#0ddfb7',
+      '#0de1b7',
+      '#0ee6b5',
+    ],
+    Sms: [
+      '#0FF0B3',
+      '#0eeeb3',
+      '#0eecb4',
+      '#0eebb4',
+      '#0eeab4',
+      '#0ee8b5',
+      '#0ee6b5',
+      '#0ee5b6',
+      '#0de4b6',
+      '#0de3b6',
+      '#0de1b7',
+      '#0de0b7',
+      '#0ddfb7',
+      '#0de1b7',
+      '#0ee6b5',
+    ],
+    Twitter: [
+      '#0FF0B3',
+      '#0eeeb3',
+      '#0eecb4',
+      '#0eebb4',
+      '#0eeab4',
+      '#0ee8b5',
+      '#0ee6b5',
+      '#0ee5b6',
+      '#0de4b6',
+      '#0de3b6',
+      '#0de1b7',
+      '#0de0b7',
+      '#0ddfb7',
+      '#0de1b7',
+      '#0ee6b5',
     ],
     Land: [
       '#13f1fc',
@@ -36,7 +104,7 @@ export const layerColor = {
       '#11e7f9',
       '#12e9fa',
       '#11e7f9',
-      '#0470dc'
+      '#0470dc',
     ],
     Pollution: [
       '#FF57B9',
@@ -54,7 +122,7 @@ export const layerColor = {
       '#f952bc',
       '#f951bd',
       '#f54ec0',
-      '#f44cc1'
+      '#f44cc1',
     ],
     Sociodemographics: [
       '#f76b1c',
@@ -77,7 +145,7 @@ export const layerColor = {
       '#f89b3a',
       '#f89033',
       '#f77f28',
-      '#f76b1c'
+      '#f76b1c',
     ],
     Water: [
       '#42e695',
@@ -93,7 +161,7 @@ export const layerColor = {
       '#41df99',
       '#40dc9b',
       '#3fd4a0',
-      '#3ecfa4'
+      '#3ecfa4',
     ],
     Waste: [
       '#5b247a',
@@ -112,7 +180,7 @@ export const layerColor = {
       '#4d478f',
       '#44609d',
       '#3d71a7',
-      '#3783b2'
+      '#3783b2',
     ],
     'Energy infrastructure': [
       '#F5515F',
@@ -137,7 +205,7 @@ export const layerColor = {
       '#f24f5d',
       '#f24e5c',
       '#f14d5c',
-      '#f04d5b'
-    ]
-  }
+      '#f04d5b',
+    ],
+  },
 };

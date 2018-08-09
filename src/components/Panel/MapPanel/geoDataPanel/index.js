@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Dropdown } from '../../../Dropdown';
 import { GeoDataContainer, PanelItemContainer, PanelHeader } from './style';
 
+const crowdSourced = ['Sms', 'Twitter', 'Direct Message', 'News'];
+
 const ShowItem = props => (
   <PanelItemContainer key={props._id}>
     <Dropdown toggleLayer={props.toggleLayer} title={props.title} options={props.options} />
@@ -14,7 +16,7 @@ ShowItem.propTypes = {
   toggleLayer: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
-  _id: PropTypes.string.isRequired
+  _id: PropTypes.string.isRequired,
 };
 
 const GeoPanel = props => {
@@ -27,7 +29,9 @@ const GeoPanel = props => {
   const categories = [];
 
   Object.keys(groupedData).forEach(element => {
-    categories.push(element);
+    if (!crowdSourced.includes(element)) {
+      categories.push(element);
+    }
   });
 
   return (
@@ -46,7 +50,7 @@ const GeoPanel = props => {
 
 GeoPanel.propTypes = {
   categories: PropTypes.array.isRequired,
-  toggleLayer: PropTypes.func.isRequired
+  toggleLayer: PropTypes.func.isRequired,
 };
 
 export default GeoPanel;
