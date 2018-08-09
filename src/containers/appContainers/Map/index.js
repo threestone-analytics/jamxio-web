@@ -55,7 +55,6 @@ async function plotData(docs, m) {
   let n = 0;
   docs.map(async doc => {
     const { url } = doc;
-    console.log(doc);
     const color = layerColor.category[doc.documentType.category];
     if (n >= color.length) {
       n = 0;

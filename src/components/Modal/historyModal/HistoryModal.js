@@ -111,7 +111,6 @@ const Items = ({ props, _id }) => (
       if (data)
         if (data.getRecordById)
           return data.getRecordById.documents.map(d => {
-            console.log(d);
             try {
               const timestamp = d.publishedDate.toString();
               const date = new Intl.DateTimeFormat('en-US', {
@@ -145,8 +144,6 @@ const Items = ({ props, _id }) => (
 
 Items.propTypes = {
   _id: PropTypes.string.isRequired,
-  actions: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
   props: PropTypes.object.isRequired
 };
 

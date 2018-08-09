@@ -22,7 +22,7 @@ export const RegisterButton = styled.button`
   font-style: normal;
   font-weight: lighter;
   line-height: normal;
-  font-size: 20px;
+  font-size: 14px;
   text-align: center;
   text-decoration-line: underline;
   background-color: #fff;

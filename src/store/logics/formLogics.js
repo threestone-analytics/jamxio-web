@@ -12,7 +12,6 @@ const bucketUrl = process.env.S3_DOCUMENTS_BUCKET_URL;
 const uploadDocument = createLogic({
   type: ActionTypes.DOCUMENT_UPLOAD_REQUEST,
   process({ getState, action }) {
-    console.log(bucketRegion, IdentityPoolId);
     try {
       const { uploadRecordForm } = getState()
         .get('form')
@@ -38,8 +37,6 @@ const uploadDocument = createLogic({
       const filesRocordKey = `${encodeURIComponent('')}`;
       const { file, filename } = data;
       const fileKey = filesRocordKey + filename;
-      console.log(fileKey);
-
       s3.upload(
         {
           Key: fileKey,

@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
-import { RegisterForm, ResetPasswordForm, ChangePasswordForm } from '../../../components/Form';
+import { ChangePasswordForm } from '../../../components/Form';
 import { ModalOuter, ModalBox, ModalHeader, Title } from './style';
 // Actions
 import * as alertActions from '../../../store/reducers/alert/alertActions';

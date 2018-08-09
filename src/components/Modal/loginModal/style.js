@@ -5,7 +5,7 @@ export const ExitButton = styled.button`
   height: 45px;
   text-align: center;
   line-height: 70px;
-  background:none;
+  background: none;
   border: none;
   font-family: Roboto;
   font-style: normal;
@@ -13,7 +13,7 @@ export const ExitButton = styled.button`
   line-height: normal;
   font-size: 36px;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   margin: auto;
 `;
 
@@ -25,7 +25,6 @@ export const Input = styled.input`
   font-size: 24px;
   color: #000000;
   margin: 15px;
-
 `;
 
 export const ModalBox = styled.div`
@@ -42,11 +41,10 @@ export const ModalHeader = styled.div`
   width: 100%;
   height: 119px;
   top: 0;
-  background: #2F80ED;
+  background: #2f80ed;
   display: flex;
   flex-direction: row;
 `;
-
 
 export const ModalTitleBox = styled.div`
   background-color: white;
@@ -114,7 +112,7 @@ export const Title = styled.h1`
   width: 60%;
   margin-left: 20%;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 20px 0;
 `;
 export const Alert = styled.h1`

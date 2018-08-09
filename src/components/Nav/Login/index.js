@@ -35,8 +35,6 @@ function mapDispatchToProps(dispatch) {
 
 const Login = props => {
   const handleOpen = name => {
-    console.log(props);
-    console.log('help');
     props.actions.show(name, { message: `This is a ${name} modal`, title: 'Title' });
   };
   return (
