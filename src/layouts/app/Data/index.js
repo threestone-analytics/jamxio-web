@@ -1,6 +1,6 @@
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import 'react-widgets/dist/css/react-widgets.css';
 // Containers
 import DataContainer from 'Containers/appContainers/Data';
@@ -18,22 +18,29 @@ import '../../../styles/app/dashboard/dropdown.scss';
 import '../../../styles/app/nav/sidebar.scss';
 import '../../../styles/app/dashboard/index.scss';
 
-const DataLayout = ({ location, props }) => (
-  <div id="outer-container" location={location}>
-    <div className="header-container">
-      <MainMenu {...props} />
-      <Login {...props} />
+const DataLayout = ({ location, props, match }) => {
+  console.log(location, match);
+  return (
+    <div id="outer-container" location={location}>
+      <div className="header-container">
+        <MainMenu {...props} />
+        <Login {...props} />
+      </div>
+      <main id="page-wrap">
+        <Toastr />
+        <HistoryModal />
+        <LoginModal />
+        <UploadModal />
+        <UploadRecordModal />
+        <Switch>
+          <Fragment>
+            <Route path={`${match.path}`} component={DataContainer} />
+          </Fragment>
+        </Switch>
+      </main>
     </div>
-    <main id="page-wrap">
-      <Toastr />
-      <HistoryModal />
-      <LoginModal />
-      <UploadModal />
-      <UploadRecordModal />
-      <DataContainer {...props} />
-    </main>
-  </div>
-);
+  );
+};
 
 DataLayout.propTypes = {
   match: PropTypes.object.isRequired,

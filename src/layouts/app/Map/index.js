@@ -10,26 +10,29 @@ import '../../../styles/app/dashboard/home-container.scss';
 import '../../../styles/app/nav/sidebar.scss';
 import '../../../styles/app/dashboard/index.scss';
 
-const DashboardLayout = ({ match, props }) => (
-  <div>
-    <div className="header-container">
-      <MainMenu {...props} />
-      <Login {...props} />
+const MapLayout = ({ match, props }) => {
+  console.log(match);
+  return (
+    <div>
+      <div className="header-container">
+        <MainMenu {...props} />
+        <Login {...props} />
+      </div>
+      <main className="page-wrap">
+        <LoginModal />
+        <Switch>
+          <Fragment>
+            <Route path={`${match.path}`} component={MapContainer} />
+          </Fragment>
+        </Switch>
+      </main>
     </div>
-    <main className="page-wrap">
-      <LoginModal />
-      <Switch>
-        <Fragment>
-          <Route path={`${match.path}`} component={MapContainer} />
-        </Fragment>
-      </Switch>
-    </main>
-  </div>
-);
+  );
+};
 
-DashboardLayout.propTypes = {
+MapLayout.propTypes = {
   match: PropTypes.object.isRequired,
   props: PropTypes.object.isRequired
 };
 
-export default DashboardLayout;
+export default MapLayout;

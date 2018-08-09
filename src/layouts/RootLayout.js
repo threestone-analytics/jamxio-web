@@ -11,19 +11,18 @@ const RootLayout = ({ loggedInUser, loading }) =>
   loggedInUser ? (
     // private routes
     <Switch>
-      <Route path="/home" component={MapLayout} />
+      <Route exact path="/" component={MapLayout} />
       <Route path="/register" component={RegisterLayout} />
       <Route path="/data" component={DataLayout} />
-      <Route path="/record" component={DataLayout} />
-      <Route render={() => <Redirect to="/home" />} />
+      <Route render={() => <Redirect to="/" />} />
     </Switch>
   ) : !loading ? (
     // public routes
     <Switch>
-      <Route path="/home" component={MapLayout} />
-      <Route path="/data" component={MapLayout} />
-      <Route path="/record" component={DataLayout} />
-      <Route render={() => <Redirect to="/home" />} />
+      <Route exact path="/" component={MapLayout} />
+      <Route path="/register" component={RegisterLayout} />
+      <Route path="/data" component={DataLayout} />
+      <Route render={() => <Redirect to="/" />} />
     </Switch>
   ) : (
     <Switch />
