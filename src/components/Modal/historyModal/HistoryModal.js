@@ -106,7 +106,7 @@ RenderCheckBox.propTypes = {
 };
 
 const Items = ({ props, _id }) => (
-  <Query pollInterval={500} query={GET_DOCUMENTS} variables={{ _id }}>
+  <Query pollInterval={5000} query={GET_DOCUMENTS} variables={{ _id }}>
     {({ loading, error, data }) => {
       if (data)
         if (data.getRecordById)

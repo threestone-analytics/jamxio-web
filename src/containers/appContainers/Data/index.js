@@ -51,7 +51,7 @@ const GET_DOCUMENT = gql`
 export default compose(
   graphql(GET_DOCUMENT, {
     options: () => ({
-      pollInterval: '500'
+      pollInterval: '5000'
     })
   }),
   connect(

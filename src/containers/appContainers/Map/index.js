@@ -18,6 +18,8 @@ async function plotData(docs, m, a) {
   // FIXME duplicate
   const groupedData = _.mapValues(_.groupBy(docs, 'documentType.category'));
 
+  console.log(groupedData);
+
   const newGroupedData = {};
   Object.keys(groupedData).forEach((element, i) => {
     const records = groupedData[element];
@@ -181,7 +183,7 @@ const GET_DATA = gql`
 export default compose(
   graphql(GET_DATA, {
     options: () => ({
-      pollInterval: '6'
+      pollInterval: '5000'
     })
   })
 )(MapContainer);

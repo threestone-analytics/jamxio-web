@@ -14,7 +14,20 @@ export const GeoDataContainer = styled.div`
   z-index: 98;
   overflow: visible;
 `;
-
+export const Label = styled.div`
+  width: 90%;
+  display: flex;
+  align-content: flex-start;
+  vertical-align: middle;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 14px;
+  color: #000000;
+  text-align: left;
+  padding: ${props => (props.sub ? '0px' : '10px')};
+`;
 export const PanelHeader = styled.h5`
   width: 300px;
   height: 40px;

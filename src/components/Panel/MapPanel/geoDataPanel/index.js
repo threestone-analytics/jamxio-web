@@ -17,7 +17,16 @@ ShowItem.propTypes = {
   options: PropTypes.array.isRequired,
   _id: PropTypes.string.isRequired
 };
-
+// const array = [
+//   'Infraestructura energética',
+//   'Industria',
+//   'Suelos',
+//   'Contaminación',
+//   'Sociodemográficas',
+//   'Degradación ambiental',
+//   'Agua'
+// ];
+// const Fakegeo = () => array.map(category => <Label> {category}</Label>);
 const GeoPanel = props => {
   const groupedData = props.categories;
 

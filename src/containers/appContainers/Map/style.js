@@ -15,3 +15,18 @@ export const PanelContainer = styled.div`
   color: #fff;
   vertical-align: middle;
 `;
+
+export const Label = styled.div`
+  width: 90%;
+  display: flex;
+  align-content: flex-start;
+  vertical-align: middle;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 14px;
+  color: #000000;
+  text-align: left;
+  padding: ${props => (props.sub ? '0px' : '10px')};
+`;
