@@ -19,7 +19,6 @@
     "audit:prod": "npm-check -p"
   },
   "dependencies": {
-    "@axetroy/react-download": "^1.1.1",
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-cache-persist": "^0.1.1",
     "apollo-client": "^2.3.5",

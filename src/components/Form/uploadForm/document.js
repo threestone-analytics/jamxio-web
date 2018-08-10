@@ -74,7 +74,8 @@ const sources = [
   'CDI',
   'COFEPRIS',
   'SEMARNAT',
-  'INEGI'
+  'INEGI',
+  'otra'
 ];
 
 const renderDropdownList = ({ input, data, valueField, textField }) => (
@@ -157,7 +158,9 @@ const UF = props => {
         </FieldBox>
       </FormBox>
       <AlertBox>
-        <Alert blue>Descarga el esquema de datos</Alert>
+        <a href="http://geojson.org/" target="_blank" without rel="noopener noreferrer">
+          <Alert blue>Descarga el esquema de datos</Alert>
+        </a>
         <AlertText {...props} />
       </AlertBox>
       <DropzoneBox>

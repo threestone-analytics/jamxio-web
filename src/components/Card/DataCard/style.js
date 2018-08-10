@@ -92,7 +92,7 @@ export const Buttons = styled.div`
   height: 20%;
   left: 0;
   background-color: white;
-  width: 50%;
+  width: 33%;
 `;
 
 export const Button = styled.button`

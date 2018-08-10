@@ -56,7 +56,7 @@ Modal.defaultStyles.content = {
 const UploadModal = props => (
   <Modal
     isOpen={props.show}
-    onRequestClose={props.handleHide}
+    onRequestClose={() => props.handleHide}
     contentLabel="Modal"
     ariaHideApp={false}
   >

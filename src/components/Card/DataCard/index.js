@@ -1,5 +1,4 @@
 import React from 'react';
-import Download from '@axetroy/react-download';
 import PropTypes from 'prop-types';
 import {
   Card,
@@ -36,10 +35,7 @@ const DataCard = props => {
           </LabelBox>
         </Info>
         <Buttons>
-          <Button onClick={() => handleOpen('historyModal')}>Historial</Button>
-          <Download file="data.json" content="geometry">
-            <Button>Descargar</Button>
-          </Download>
+          <Button onClick={() => handleOpen('historyModal')}>Descargar</Button>
           <Button onClick={() => handleOpen('uploadModal')}>Contribuir</Button>
         </Buttons>
       </Details>

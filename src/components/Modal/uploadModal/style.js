@@ -30,6 +30,7 @@ export const ModalBox = styled.div`
   width: 900px;
   height: 700px;
   left: 261px;
+  margin: auto;
   top: 263px;
   background-color: #fff;
   display: flex;

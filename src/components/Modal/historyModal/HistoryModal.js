@@ -155,10 +155,11 @@ const HistoryModal = props => {
 
   return (
     <Modal
+      closeTimeoutMS={0}
       isOpen={props.show}
       onRequestClose={props.handleHide}
+      shouldCloseOnOverlayClick={true} // eslint-disable-line
       contentLabel="Modal"
-      ariaHideApp={false}
     >
       <ModalOuter>
         <ModalBox>

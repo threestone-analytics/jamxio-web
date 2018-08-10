@@ -181,7 +181,9 @@ export const HistoryItemBox = styled.div`
 export const DropzoneBox = styled.div`
   width: 70%;
   height: 220px;
+  order: 2;
   margin-left: 15%;
+  margin-bottom: 20px;
 `;
 
 export const FieldBox = styled.div`
@@ -215,7 +217,7 @@ export const ModalInfo = styled.div`
 
 export const AlertBox = styled.div`
   background-color: white;
-  order: 2;
+  order: 1;
   margin-left: 15%;
   margin-top: 30px;
   height: 10%;
