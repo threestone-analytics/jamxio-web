@@ -100,7 +100,7 @@ export const Mark = styled.div`
   width: 2%;
   height: 20px;
   margin: auto;
-  background-color: ${props => (props.color ? props.color : '#000')};
+  background-color: ${props => (props.color ? props.color : '#fff')};
 `;
 
 export const Circle = styled.div`
@@ -108,7 +108,7 @@ export const Circle = styled.div`
   height: 8px;
   border-radius: 50%;
   margin: auto;
-  background-color: ${props => (props.color ? props.color : '#000')};
+  background-color: ${props => (props.color ? props.color : '#fff')};
 `;
 
 export const ItemLabel = styled.div`

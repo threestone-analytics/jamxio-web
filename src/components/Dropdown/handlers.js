@@ -46,7 +46,7 @@ export const renderSubcategories = function(props) {
         <SubItem color={color}>
           <SubItemLabel color={color}>{subcategory}</SubItemLabel>
         </SubItem>
-        {renderRecords(groupedData[subcategory], props, '#000')}
+        {renderRecords(groupedData[subcategory], props, '#fff')}
       </div>
     );
   });
