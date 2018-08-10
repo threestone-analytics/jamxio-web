@@ -1,8 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CrowdSourcedContainer, PanelHeader, PanelItemContainer, CheckBox, Label } from './style';
+import { Dropdown } from '../../Dropdown';
+import { CrowdSourcedContainer, PanelHeader, PanelItemContainer } from './style';
 
 const crowdSourced = ['Sms', 'Twitter', 'Direct Message', 'News'];
+
+const ShowItem = props => (
+  <PanelItemContainer key={props._id}>
+    <Dropdown crowd toggleLayer={props.toggleLayer} title={props.title} options={props.options} />
+  </PanelItemContainer>
+);
+
+ShowItem.propTypes = {
+  toggleLayer: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  _id: PropTypes.string.isRequired
+};
+
 const CrowdSourcedPanel = props => {
   const groupedData = props.categories;
 
@@ -16,28 +31,19 @@ const CrowdSourcedPanel = props => {
 
   return (
     <CrowdSourcedContainer>
-      <PanelHeader>Reportes en linea</PanelHeader>
-
-      {categories.map(category => {
-        const _id = groupedData[category][0].recordId;
-        return (
-          <PanelItemContainer key={category[0]}>
-            <CheckBox>
-              <input
-                type="checkbox"
-                onClick={e => {
-                  props.toggleLayer(_id, e);
-                }}
-              />
-            </CheckBox>
-            <Label>{category}</Label>
-          </PanelItemContainer>
-        );
-      })}
+      <PanelHeader>Datos geoespaciales</PanelHeader>
+      {categories.map(category => (
+        <ShowItem
+          toggleLayer={props.toggleLayer}
+          title={category}
+          options={groupedData[category]}
+        />
+      ))}
     </CrowdSourcedContainer>
   );
 };
 CrowdSourcedPanel.propTypes = {
-  categories: PropTypes.array.isRequired
+  categories: PropTypes.array.isRequired,
+  toggleLayer: PropTypes.func.isRequired
 };
 export default CrowdSourcedPanel;

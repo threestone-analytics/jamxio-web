@@ -40,6 +40,9 @@ export const renderSubcategories = function(props) {
 
   const data = subcategories.map(subcategory => {
     const { color } = groupedData[subcategory][0];
+    if (props.crowd) {
+      return <div>{renderRecords(groupedData[subcategory], props, '#fff')}</div>;
+    }
 
     return (
       <div>
