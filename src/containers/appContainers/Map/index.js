@@ -17,10 +17,7 @@ mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 async function plotData(docs, m, a) {
   // FIXME duplicate
   const groupedData = _.mapValues(_.groupBy(docs, 'documentType.category'));
-
-  console.log(groupedData);
-
-  const newGroupedData = {};
+  a.setState({ categories: _.groupBy(docs, currentObject => currentObject.documentType.category) });
   Object.keys(groupedData).forEach((element, i) => {
     const records = groupedData[element];
 
@@ -28,7 +25,6 @@ async function plotData(docs, m, a) {
     if (n >= records.lenght) {
       n = 0;
     }
-    const newRecord = records;
     records.map(async doc => {
       const newDoc = doc;
 
@@ -68,12 +64,7 @@ async function plotData(docs, m, a) {
         });
       }
       n += 1;
-
-      newRecord.push(newDoc);
     });
-
-    newGroupedData[element] = newRecord;
-    a.setState({ categories: newGroupedData });
   });
 }
 
