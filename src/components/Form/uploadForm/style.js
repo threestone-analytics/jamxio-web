@@ -11,7 +11,6 @@ export const Button = styled.button`
   line-height: normal;
   font-size: 18px;
   text-align: center;
-  text-transform: uppercase;
   height: 50px;
   width: 150px;
   color: #fff;
@@ -41,7 +40,7 @@ export const FormBox = styled.div`
   background-color: white;
   order: 0;
   margin-left: 15%;
-  height: 30%;
+  height: 50px;
   width: 70%;
   display: flex;
   flex-direction: ${props => (props.vertical ? 'column' : 'row')};
@@ -51,11 +50,10 @@ export const FormBox = styled.div`
 export const ModalButtonBox = styled.div`
   background-color: white;
   order: 2;
-  height: 10%;
-  width: 40%;
+  height: 57px;
+  margin-left: 15%;
+  width: 70%;
   display: flex;
-  margin: auto;
-  margin-top: 65px;
   align-items: center;
   justify-content: space-around;
 `;
@@ -72,11 +70,11 @@ export const ModalOuter = styled.div`
   justify-content: center;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   background-color: white;
   padding: auto;
   order: 0;
-  height: 15%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -181,8 +179,7 @@ export const HistoryItemBox = styled.div`
 
 export const DropzoneBox = styled.div`
   width: 70%;
-  order: 1;
-  height: 30%;
+  height: 220px;
   margin-left: 15%;
 `;
 

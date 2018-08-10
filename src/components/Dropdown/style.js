@@ -83,6 +83,7 @@ export const Label = styled.div`
 export const SubSubItemLabel = styled.div`
   width: 90%;
   display: flex;
+  text-transform: uppercase;
   align-content: flex-start;
   vertical-align: middle;
   font-family: Roboto;
@@ -128,7 +129,6 @@ export const GeoDataContainer = styled.div`
   line-height: 2;
   outline: none;
   color: #000;
-  text-transform: uppercase;
   vertical-align: middle;
   z-index: 98;
 `;

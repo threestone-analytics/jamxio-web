@@ -131,48 +131,46 @@ const UF = props => {
     return document;
   };
   return (
-    <Form>
-      <form onSubmit={handleSubmit}>
-        <FormBox>
-          <Title big>Categoria:</Title>
-          <Title big>{props.record.documentType.category}</Title>
-        </FormBox>
-        <FormBox>
-          <Title>Subcategoria:</Title>
-          <Title big>{props.record.documentType.subcategory}</Title>
-        </FormBox>
-        <FormBox>
-          <Title>Titulo:</Title>
-          <Title big>{props.record.title}</Title>
-        </FormBox>
-        <FormBox>
-          <Title>Fuente de los datos:</Title>
-          <FieldBox>
-            <Field
-              name="source"
-              component={renderDropdownList}
-              data={sources}
-              valueField="value"
-              textField="source"
-            />
-          </FieldBox>
-        </FormBox>
-        <AlertBox>
-          <Alert blue>Descarga el esquema de datos</Alert>
-          <AlertText {...props} />
-        </AlertBox>
-        <DropzoneBox>
+    <Form onSubmit={handleSubmit}>
+      <FormBox>
+        <Title big>Categoria:</Title>
+        <Title big>{props.record.documentType.category}</Title>
+      </FormBox>
+      <FormBox>
+        <Title>Subcategoria:</Title>
+        <Title big>{props.record.documentType.subcategory}</Title>
+      </FormBox>
+      <FormBox>
+        <Title>Titulo:</Title>
+        <Title big>{props.record.title}</Title>
+      </FormBox>
+      <FormBox>
+        <Title>Fuente de los datos:</Title>
+        <FieldBox>
           <Field
-            name="file"
-            component={dropzone}
+            name="source"
+            component={renderDropdownList}
             data={sources}
             valueField="value"
-            textField="file"
-            actions={props.actions}
-            change={props.change}
+            textField="source"
           />
-        </DropzoneBox>
-      </form>
+        </FieldBox>
+      </FormBox>
+      <AlertBox>
+        <Alert blue>Descarga el esquema de datos</Alert>
+        <AlertText {...props} />
+      </AlertBox>
+      <DropzoneBox>
+        <Field
+          name="file"
+          component={dropzone}
+          data={sources}
+          valueField="value"
+          textField="file"
+          actions={props.actions}
+          change={props.change}
+        />
+      </DropzoneBox>
       <ModalButtonBox>
         <Button cancel="true" onClick={props.handleHide}>
           Salir

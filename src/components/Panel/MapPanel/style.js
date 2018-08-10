@@ -14,13 +14,13 @@ export const GeoDataContainer = styled.div`
   line-height: 2;
   outline: none;
   color: #fff;
-  text-transform: uppercase;
   vertical-align: middle;
 `;
 export const PanelHeader = styled.h5`
   width: 100%;
   height: 40px;
   position: relative;
+  text-transform: uppercase;
   top: 0;
   padding: 10px;
   background: rgb(47, 128, 237);
@@ -51,7 +51,6 @@ export const CrowdSourcedContainer = styled.div`
   line-height: 2;
   color: #000;
   outline: none;
-  text-transform: uppercase;
   vertical-align: middle;
 `;
 export const NewsFeedContainer = styled.div`
@@ -66,7 +65,6 @@ export const NewsFeedContainer = styled.div`
   margin-right: 15px;
   color: #000;
   outline: none;
-  text-transform: uppercase;
   vertical-align: middle;
   overflow: hidden;
 `;

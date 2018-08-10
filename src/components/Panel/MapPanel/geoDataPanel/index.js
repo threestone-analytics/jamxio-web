@@ -31,7 +31,7 @@ const GeoPanel = props => {
 
   return (
     <GeoDataContainer>
-      <PanelHeader>Datos geo-espaciales</PanelHeader>
+      <PanelHeader>Datos geoespaciales</PanelHeader>
       {categories.map(category => (
         <ShowItem
           toggleLayer={props.toggleLayer}

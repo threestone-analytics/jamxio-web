@@ -10,7 +10,6 @@ export const GeoDataContainer = styled.div`
   line-height: 2;
   outline: none;
   color: #fff;
-  text-transform: uppercase;
   vertical-align: middle;
   z-index: 98;
   overflow: visible;
@@ -20,6 +19,7 @@ export const PanelHeader = styled.h5`
   width: 300px;
   height: 40px;
   position: relative;
+  text-transform: uppercase;
   top: 0;
   padding: 10px;
   background: rgb(47, 128, 237);

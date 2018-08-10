@@ -13,6 +13,5 @@ export const PanelContainer = styled.div`
   line-height: 2;
   outline: none;
   color: #fff;
-  text-transform: uppercase;
   vertical-align: middle;
 `;
