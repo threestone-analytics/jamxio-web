@@ -159,7 +159,10 @@ const UF = props => {
       </FormBox>
       <AlertBox>
         <a href="http://geojson.org/" target="_blank" without rel="noopener noreferrer">
-          <Alert blue>Descarga el esquema de datos</Alert>
+          <Alert blue>
+            Antes de contribuir datos por favor asegurate que el esquema de datos esta en la
+            estructura requerida por el sistema
+          </Alert>
         </a>
         <AlertText {...props} />
       </AlertBox>
