@@ -21,8 +21,10 @@ const ShowItem = props => {
         <Image src={data.image} />
       </PictureContainer>
       <FeedContent>
-        <FeedTitle>{data.author}</FeedTitle>
-        <TextContent>{data.title}</TextContent>
+        <a href={data.url} target="_blank" without rel="noopener noreferrer">
+          <FeedTitle>{data.author}</FeedTitle>
+          <TextContent>{data.title}</TextContent>
+        </a>
       </FeedContent>
     </FeedPanelItemContainer>
   );
