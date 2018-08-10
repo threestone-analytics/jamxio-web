@@ -44,7 +44,7 @@ const LoginModal = props => {
         <ModalOuter>
           <ModalBox>
             <ModalHeader>
-              <Title>Cambiar contrasena</Title>
+              <Title>Cambiar contraseña</Title>
             </ModalHeader>
             <ResetPasswordForm
               handleHide={props.handleHide}

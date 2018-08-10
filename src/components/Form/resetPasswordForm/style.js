@@ -96,11 +96,11 @@ export const ModalOuter = styled.div`
   justify-content: center;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   background-color: white;
   padding: auto;
   order: 0;
-  height: 15%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -116,6 +116,7 @@ export const Label = styled.h1`
   line-height: normal;
   font-size: 24px;
   color: #9d9a9a;
+  width: 100%;
 `;
 export const Alert = styled.h1`
   font-family: 'Roboto', sans-serif;

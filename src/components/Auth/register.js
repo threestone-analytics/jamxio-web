@@ -44,7 +44,7 @@ const LoginModal = props => {
         <ModalOuter>
           <ModalBox>
             <ModalHeader>
-              <Title>Registrate</Title>
+              <Title>Regístrate</Title>
             </ModalHeader>
             <RegisterForm handleHide={props.handleHide} handleSubmit={handleSubmit} {...props} />
           </ModalBox>

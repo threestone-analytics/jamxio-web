@@ -15,7 +15,7 @@ export const Button = styled.button`
 `;
 
 export const RegisterButton = styled.button`
-  width: 289px;
+  width: 100%;
   height: 24px;
   margin: auto;
   font-family: Roboto;
@@ -96,11 +96,11 @@ export const ModalOuter = styled.div`
   justify-content: center;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   background-color: white;
   padding: auto;
   order: 0;
-  height: 15%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;

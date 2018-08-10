@@ -28,22 +28,20 @@ Input.propTypes = {
 const RF = props => {
   const { handleSubmit } = props;
   return (
-    <Form>
-      <form onSubmit={handleSubmit}>
-        <FormBox>
-          <ItemBox>
-            <Label>e-mail:</Label>
-            <FieldBox>
-              <Field name="e-mail" component={Input} />
-            </FieldBox>
-          </ItemBox>
-        </FormBox>
-        <ModalButtonBox>
-          <NavLink id="register" to="/change_password">
-            <Button onClick={props.handleHide}>Enviar</Button>
-          </NavLink>
-        </ModalButtonBox>
-      </form>
+    <Form onSubmit={handleSubmit}>
+      <FormBox>
+        <ItemBox>
+          <Label>e-mail:</Label>
+          <FieldBox>
+            <Field name="e-mail" component={Input} />
+          </FieldBox>
+        </ItemBox>
+      </FormBox>
+      <ModalButtonBox>
+        <NavLink id="register" to="/change_password">
+          <Button onClick={props.handleHide}>Enviar</Button>
+        </NavLink>
+      </ModalButtonBox>
     </Form>
   );
 };

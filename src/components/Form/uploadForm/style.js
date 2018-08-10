@@ -76,6 +76,7 @@ export const Form = styled.form`
   order: 0;
   height: 100%;
   width: 100%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: left;

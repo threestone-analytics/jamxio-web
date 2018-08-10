@@ -96,11 +96,11 @@ export const ModalOuter = styled.div`
   justify-content: center;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   background-color: white;
   padding: auto;
   order: 0;
-  height: 15%;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;

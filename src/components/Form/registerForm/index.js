@@ -28,54 +28,52 @@ Input.propTypes = {
 const RF = props => {
   const { handleSubmit } = props;
   return (
-    <Form>
-      <form onSubmit={handleSubmit}>
-        <FormBox>
-          <ItemBox>
-            <Label>Nombre:</Label>
-            <FieldBox>
-              <Field name="name" component={Input} />
-            </FieldBox>
-          </ItemBox>
-          <ItemBox>
-            <Label>e-mail:</Label>
-            <FieldBox>
-              <Field name="e-mail" component={Input} />
-            </FieldBox>
-          </ItemBox>
-          <ItemBox>
-            <Label>Institucion:</Label>
-            <FieldBox>
-              <Field name="institution" component={Input} />
-            </FieldBox>
-          </ItemBox>
-          <ItemBox>
-            <Label>Tipo de Institucion:</Label>
-            <FieldBox>
-              <Field name="institution_type" component={Input} />
-            </FieldBox>
-          </ItemBox>
-        </FormBox>
-        <FormBox>
-          <ItemBox>
-            <Label>Usuario:</Label>
-            <FieldBox>
-              <Field name="username" component={Input} />
-            </FieldBox>
-          </ItemBox>
-          <ItemBox>
-            <Label>Contrasena:</Label>
-            <FieldBox>
-              <Field name="password" component={Input} />
-            </FieldBox>
-          </ItemBox>
-        </FormBox>
-        <ModalButtonBox>
-          <NavLink id="register" to="/">
-            <Button onClick={props.handleHide}>Registrar</Button>
-          </NavLink>
-        </ModalButtonBox>
-      </form>
+    <Form onSubmit={handleSubmit}>
+      <FormBox>
+        <ItemBox>
+          <Label>Nombre:</Label>
+          <FieldBox>
+            <Field name="name" component={Input} />
+          </FieldBox>
+        </ItemBox>
+        <ItemBox>
+          <Label>e-mail:</Label>
+          <FieldBox>
+            <Field name="e-mail" component={Input} />
+          </FieldBox>
+        </ItemBox>
+        <ItemBox>
+          <Label>Institución:</Label>
+          <FieldBox>
+            <Field name="institution" component={Input} />
+          </FieldBox>
+        </ItemBox>
+        <ItemBox>
+          <Label>Tipo de Institución:</Label>
+          <FieldBox>
+            <Field name="institution_type" component={Input} />
+          </FieldBox>
+        </ItemBox>
+      </FormBox>
+      <FormBox>
+        <ItemBox>
+          <Label>Usuario:</Label>
+          <FieldBox>
+            <Field name="username" component={Input} />
+          </FieldBox>
+        </ItemBox>
+        <ItemBox>
+          <Label>Contraseña:</Label>
+          <FieldBox>
+            <Field name="password" component={Input} />
+          </FieldBox>
+        </ItemBox>
+      </FormBox>
+      <ModalButtonBox>
+        <NavLink id="register" to="/">
+          <Button onClick={props.handleHide}>Registrar</Button>
+        </NavLink>
+      </ModalButtonBox>
     </Form>
   );
 };

@@ -38,34 +38,32 @@ Input.propTypes = {
 const LF = props => {
   const { handleSubmit } = props;
   return (
-    <Form>
-      <form onSubmit={handleSubmit}>
-        <FormBox>
-          <ItemBox>
-            <Label>Usuario:</Label>
-            <FieldBox>
-              <Field name="username" component={Input} />
-            </FieldBox>
-          </ItemBox>
-          <ItemBox>
-            <Label>Contrasena:</Label>
-            <FieldBox>
-              <Field name="password" component={Input} />
-            </FieldBox>
-          </ItemBox>
-        </FormBox>
-        <ModalButtonBox>
-          <Button onClick={props.handleHide}>ENTRAR</Button>
-        </ModalButtonBox>
-        <ModalButtonBox>
-          <NavLink id="register" to="/register">
-            <RegisterButton>¿No tienes cuenta? Registrate</RegisterButton>
-          </NavLink>
-          <NavLink id="register" to="/reset_password">
-            <RegisterButton>¿Olvidaste tu contrasena?</RegisterButton>
-          </NavLink>
-        </ModalButtonBox>
-      </form>
+    <Form onSubmit={handleSubmit}>
+      <FormBox>
+        <ItemBox>
+          <Label>Usuario:</Label>
+          <FieldBox>
+            <Field name="username" component={Input} />
+          </FieldBox>
+        </ItemBox>
+        <ItemBox>
+          <Label>Contraseña:</Label>
+          <FieldBox>
+            <Field name="password" component={Input} />
+          </FieldBox>
+        </ItemBox>
+      </FormBox>
+      <ModalButtonBox>
+        <Button onClick={props.handleHide}>ENTRAR</Button>
+      </ModalButtonBox>
+      <ModalButtonBox>
+        <NavLink id="register" to="/register">
+          <RegisterButton>¿No tienes cuenta? Regístrate</RegisterButton>
+        </NavLink>
+        <NavLink id="register" to="/reset_password">
+          <RegisterButton>¿Olvidaste tu contraseña?</RegisterButton>
+        </NavLink>
+      </ModalButtonBox>
     </Form>
   );
 };

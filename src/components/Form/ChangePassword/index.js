@@ -27,34 +27,32 @@ Input.propTypes = {
 const RF = props => {
   const { handleSubmit } = props;
   return (
-    <Form>
-      <form onSubmit={handleSubmit}>
-        <FormBox>
-          <ItemBox>
-            <Label>Codigo de verificacion:</Label>
-            <FieldBox>
-              <Field name="codigo" component={Input} />
-            </FieldBox>
-          </ItemBox>
-          <ItemBox>
-            <Label>Nueva contrasena:</Label>
-            <FieldBox>
-              <Field name="new_password" component={Input} />
-            </FieldBox>
-          </ItemBox>
-          <ItemBox>
-            <Label>Confirmar ontrasena:</Label>
-            <FieldBox>
-              <Field name="confirm_password" component={Input} />
-            </FieldBox>
-          </ItemBox>
-        </FormBox>
-        <ModalButtonBox>
-          <NavLink id="register" to="/">
-            <Button>Registrarse</Button>
-          </NavLink>
-        </ModalButtonBox>
-      </form>
+    <Form onSubmit={handleSubmit}>
+      <FormBox>
+        <ItemBox>
+          <Label>Código de verificacion:</Label>
+          <FieldBox>
+            <Field name="codigo" component={Input} />
+          </FieldBox>
+        </ItemBox>
+        <ItemBox>
+          <Label>Nueva contraseña:</Label>
+          <FieldBox>
+            <Field name="new_password" component={Input} />
+          </FieldBox>
+        </ItemBox>
+        <ItemBox>
+          <Label>Confirmar contraseña:</Label>
+          <FieldBox>
+            <Field name="confirm_password" component={Input} />
+          </FieldBox>
+        </ItemBox>
+      </FormBox>
+      <ModalButtonBox>
+        <NavLink id="register" to="/">
+          <Button>Reestablecer</Button>
+        </NavLink>
+      </ModalButtonBox>
     </Form>
   );
 };
