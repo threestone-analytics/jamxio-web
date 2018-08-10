@@ -14,7 +14,7 @@ import { PanelContainer } from './style';
 
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
-async function plotData(docs, m, a) {
+function plotData(docs, m, a) {
   // FIXME duplicate
   const groupedData = _.mapValues(_.groupBy(docs, 'documentType.category'));
   a.setState({ categories: _.groupBy(docs, currentObject => currentObject.documentType.category) });
