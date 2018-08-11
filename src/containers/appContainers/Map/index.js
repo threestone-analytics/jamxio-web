@@ -20,7 +20,6 @@ function plotData(docs, m, a) {
   a.setState({ categories: _.groupBy(docs, currentObject => currentObject.documentType.category) });
   Object.keys(groupedData).forEach((element, i) => {
     const records = groupedData[element];
-
     let n = 0;
     if (n >= records.lenght) {
       n = 0;

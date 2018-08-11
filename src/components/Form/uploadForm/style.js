@@ -104,6 +104,7 @@ export const Alert = styled.h1`
   font-size: 15px;
   color: ${props => (props.red ? '#EB5757' : '#2F80ED')};
   margin: 10px;
+  margin-left: 0px;
   text-decoration: ${props => (props.blue ? 'underline' : 'none')};
 `;
 

@@ -46,6 +46,14 @@ const Menu = props => (
         Datos
       </Button>
     </NavLink>
+    <a
+      href="https://docs.google.com/forms/d/1lGqly64HC-fvAQlqBOXNRK-VN3h5d64ySPdSev-OWd0/edit"
+      target="_blank"
+      without
+      rel="noopener noreferrer"
+    >
+      <Button>Reporta</Button>
+    </a>
   </ButtonGroup>
 );
 
