@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
-import { Button } from './style';
+import { Button, GreenButton } from './style';
 
 // Actions
 import * as menuActions from '../../../store/reducers/nav/navActions';
@@ -52,7 +52,7 @@ const Menu = props => (
       without
       rel="noopener noreferrer"
     >
-      <Button>Reporta</Button>
+      <GreenButton>Reporta</GreenButton>
     </a>
   </ButtonGroup>
 );
