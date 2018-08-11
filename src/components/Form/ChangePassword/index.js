@@ -1,7 +1,6 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form/immutable';
+import { reduxForm, Field, submit } from 'redux-form/immutable';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import { Form, FormBox, Label, FieldBox, Button, ModalButtonBox, ItemBox } from './style';
 import 'react-widgets/dist/css/react-widgets.css';
 // FIXME refactor this
@@ -25,12 +24,22 @@ Input.propTypes = {
   onChange: PropTypes.object.isRequired
 };
 const RF = props => {
-  const { handleSubmit } = props;
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.dispatch(submit('changePasswordForm'));
+    // props.handleHide();
+  };
   return (
     <Form onSubmit={handleSubmit}>
       <FormBox>
         <ItemBox>
-          <Label>Código de verificacion:</Label>
+          <Label>Nombre de usuario</Label>
+          <FieldBox>
+            <Field name="username" component={Input} />
+          </FieldBox>
+        </ItemBox>
+        <ItemBox>
+          <Label>Código</Label>
           <FieldBox>
             <Field name="codigo" component={Input} />
           </FieldBox>
@@ -38,31 +47,32 @@ const RF = props => {
         <ItemBox>
           <Label>Nueva contraseña:</Label>
           <FieldBox>
-            <Field name="new_password" component={Input} />
-          </FieldBox>
-        </ItemBox>
-        <ItemBox>
-          <Label>Confirmar contraseña:</Label>
-          <FieldBox>
-            <Field name="confirm_password" component={Input} />
+            <Field name="password" component={Input} />
           </FieldBox>
         </ItemBox>
       </FormBox>
       <ModalButtonBox>
-        <NavLink id="register" to="/">
-          <Button>Reestablecer</Button>
-        </NavLink>
+        <Button>Reestablecer</Button>
       </ModalButtonBox>
     </Form>
   );
 };
 
 RF.propTypes = {
-  handleSubmit: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired
 };
 
 const RegisterForm = reduxForm({
-  form: 'changePasswordForm' // a unique identifier for this form
+  form: 'changePasswordForm',
+  shouldAsyncValidate: true,
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true,
+  onSubmit: (values, _, { actions: { changePassword } }) =>
+    changePassword({
+      username: values.get('username'),
+      code: values.get('codigo'),
+      password: values.get('password')
+    })
 })(RF);
 
 export default RegisterForm;

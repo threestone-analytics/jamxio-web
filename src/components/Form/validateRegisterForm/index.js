@@ -33,9 +33,15 @@ const RF = props => {
     <Form onSubmit={handleSubmit}>
       <FormBox>
         <ItemBox>
-          <Label>Username:</Label>
+          <Label>Username</Label>
           <FieldBox>
             <Field name="username" component={Input} />
+          </FieldBox>
+        </ItemBox>
+        <ItemBox>
+          <Label>Código:</Label>
+          <FieldBox>
+            <Field name="code" component={Input} />
           </FieldBox>
         </ItemBox>
       </FormBox>
@@ -50,15 +56,16 @@ RF.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-const RegisterForm = reduxForm({
+const ValidateRegisterForm = reduxForm({
   form: 'validateRegisterForm',
   shouldAsyncValidate: true,
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,
-  onSubmit: (values, _, { actions: { resetPassword } }) =>
-    resetPassword({
+  onSubmit: (values, _, { actions: { confirmSignUp } }) =>
+    confirmSignUp({
+      code: values.get('code'),
       username: values.get('username')
     })
 })(RF);
 
-export default RegisterForm;
+export default ValidateRegisterForm;

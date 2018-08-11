@@ -8,17 +8,16 @@ import { injectGlobal, ThemeProvider } from 'styled-components';
 import Loadable from 'react-loadable';
 import client from '../apollo/ApolloClient';
 import { initLocale } from '../store/reducers/intl/intlActions';
+import { getAuthSession } from '../store/reducers/app/forms/auth/authActions';
 import createStore from '../store';
-
-import CatchError from './Error';
 
 /* GLobal Styles */
 import '../styles/styles.scss';
 import themes from '../styles/theme';
 // Global style
 injectGlobal([
-  `    
-    html, body{      
+  `
+    html, body{
       font-size: ${themes.light.fontSize.normal};
     }
     a { color: ${themes.light.link}; }
@@ -35,15 +34,14 @@ const InitApp = () => {
   const history = createHistory();
   const store = createStore(history);
   store.dispatch(initLocale());
+  store.dispatch(getAuthSession());
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
         <IntlProvider intlSelector={state => state.get('intl').toJS()}>
           <ConnectedRouter history={history}>
             <ThemeProvider theme={store.getState().getIn(['app', 'user', 'theme', 'selected'])}>
-              <CatchError>
-                <RootContainer />
-              </CatchError>
+              <RootContainer />
             </ThemeProvider>
           </ConnectedRouter>
         </IntlProvider>

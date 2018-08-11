@@ -1,5 +1,5 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form/immutable';
+import { reduxForm, Field, submit } from 'redux-form/immutable';
 import { NavLink } from 'react-router-dom';
 import 'react-widgets/dist/css/react-widgets.css';
 import PropTypes from 'prop-types';
@@ -36,7 +36,11 @@ Input.propTypes = {
 };
 
 const LF = props => {
-  const { handleSubmit } = props;
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.dispatch(submit('signInForm'));
+    // props.handleHide();
+  };
   return (
     <Form onSubmit={handleSubmit}>
       <FormBox>
@@ -54,7 +58,7 @@ const LF = props => {
         </ItemBox>
       </FormBox>
       <ModalButtonBox>
-        <Button onClick={props.handleHide}>ENTRAR</Button>
+        <Button onClick={handleSubmit}>ENTRAR</Button>
       </ModalButtonBox>
       <ModalButtonBox>
         <NavLink id="register" to="/register">
@@ -68,12 +72,16 @@ const LF = props => {
   );
 };
 LF.propTypes = {
-  handleHide: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired
 };
 
 const LoginForm = reduxForm({
-  form: 'loginForm' // a unique identifier for this form
+  form: 'signInForm',
+  shouldAsyncValidate: true,
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true,
+  onSubmit: (values, _, { actions: { signIn }, client: apolloClient }) =>
+    signIn({ username: values.get('username'), password: values.get('password'), apolloClient })
 })(LF);
 
 export default LoginForm;

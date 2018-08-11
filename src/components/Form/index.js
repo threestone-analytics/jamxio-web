@@ -3,6 +3,7 @@ import LoginForm from './loginForm';
 import RegisterForm from './registerForm';
 import ResetPasswordForm from './resetPasswordForm';
 import ChangePasswordForm from './ChangePassword';
+import ValidateRegisterForm from './validateRegisterForm';
 
 export {
   UploadDocument,
@@ -10,5 +11,6 @@ export {
   LoginForm,
   RegisterForm,
   ResetPasswordForm,
-  ChangePasswordForm
+  ChangePasswordForm,
+  ValidateRegisterForm
 };

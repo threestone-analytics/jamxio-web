@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { withApollo } from 'react-apollo';
 /* show, handleHide, message, title */
 import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
-import { ChangePasswordForm } from '../../../components/Form';
+import { RegisterForm } from '../../../components/Form';
 import { ModalOuter, ModalBox, ModalHeader, Title } from './style';
 // Actions
 import * as alertActions from '../../../store/reducers/alert/alertActions';
+import * as authActions from '../../../store/reducers/app/forms/auth/authActions';
 
 // Selectors
 import { getAlert } from '../../../utils/selectors/common';
 
-const actions = [alertActions];
+const actions = [alertActions, authActions];
 
 function mapStateToProps(state) {
   return {
@@ -35,22 +36,21 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const LoginModal = props => {
+const Register = props => {
   const handleSubmit = () => {};
-
   return (
     <ModalOuter>
       <ModalBox>
         <ModalHeader>
           <Title>Regístrate</Title>
         </ModalHeader>
-        <ChangePasswordForm handleHide={props.handleHide} handleSubmit={handleSubmit} {...props} />
+        <RegisterForm handleSubmit={handleSubmit} {...props} />
       </ModalBox>
     </ModalOuter>
   );
 };
 
-LoginModal.propTypes = {
+Register.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
@@ -61,7 +61,8 @@ const LM = compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )
-)(LoginModal);
+  ),
+  withApollo
+)(Register);
 
 export default LM;

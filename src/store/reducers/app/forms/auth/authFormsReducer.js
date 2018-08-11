@@ -29,13 +29,13 @@ export default function authFormsReducer(state = initialState, action) {
      * ### Requests end, good or bad
      * Set the fetching flag so the forms will be enabled
      */
-    case ActionTypes.DELETE_SESSIONTOKEN_SUCCESS:
-    case ActionTypes.DELETE_SESSIONTOKEN_FAILURE:
-    case ActionTypes.SIGNUP_SUCCESS:
-    case ActionTypes.SIGNIN_SUCCESS:
     case ActionTypes.LOGOUT_SUCCESS:
-    case ActionTypes.RESET_PASSWORD_SUCCESS:
-      return state.setIn(['isFetching'], false);
+      return state.setIn(['loggedInUser'], false).setIn(['isFetching'], false);
+
+    case ActionTypes.GETAUTHSESSION_SUCCESS:
+    case ActionTypes.CONFIRM_SIGNUP_SUCCESS:
+    case ActionTypes.SIGNIN_SUCCESS:
+      return state.setIn(['loggedInUser'], true).setIn(['isFetching'], false);
     /**
      * ### Access to Parse.com denied or failed
      * The fetching is done, but save the error

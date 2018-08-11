@@ -7,11 +7,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
-import { ResetPasswordForm } from 'Components/Form';
+import { ValidateRegisterForm } from 'Components/Form';
 import { ModalOuter, ModalBox, ModalHeader, Title } from './style';
 // Actions
 import * as alertActions from '../../store/reducers/alert/alertActions';
 import * as authActions from '../../store/reducers/app/forms/auth/authActions';
+
 // Selectors
 import { getAlert } from '../../utils/selectors/common';
 
@@ -35,22 +36,22 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const LoginModal = props => (
+const ValidateRegisterModal = props => (
   <div id="outer-container">
     <main id="page-wrap">
       <ModalOuter>
         <ModalBox>
           <ModalHeader>
-            <Title>Recuperar contraseña</Title>
+            <Title>Validar Correo</Title>
           </ModalHeader>
-          <ResetPasswordForm {...props} />
+          <ValidateRegisterForm {...props} />
         </ModalBox>
       </ModalOuter>
     </main>
   </div>
 );
 
-LoginModal.propTypes = {
+ValidateRegisterModal.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
@@ -62,6 +63,6 @@ const LM = compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(LoginModal);
+)(ValidateRegisterModal);
 
 export default LM;

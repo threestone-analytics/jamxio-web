@@ -85,6 +85,34 @@ export function signUpFailure(error) {
 }
 
 /**
+ * ## Signup actions
+ */
+
+export function confirmSignUp(payload) {
+  return {
+    type: ActionTypes.CONFIRM_SIGNUP,
+    payload
+  };
+}
+
+export function confirmSignUpRequest() {
+  return {
+    type: ActionTypes.CONFIRM_SIGNUP_REQUEST
+  };
+}
+export function confirmSignUpSuccess() {
+  return {
+    type: ActionTypes.CONFIRM_SIGNUP_SUCCESS
+  };
+}
+export function confirmSignUpFailure(error) {
+  return {
+    type: ActionTypes.CONFIRM_SIGNUP_FAILURE,
+    payload: error
+  };
+}
+
+/**
  * ## DeleteToken actions
  */
 
@@ -106,23 +134,21 @@ export function deleteSessionTokenFailure() {
 
 /**
  * ## signup
- * @param {string} username - name of user
- * @param {string} email - user's email
- * @param {string} password - user's password
- **
- * Otherwise, dispatch the error so the user can see
  */
 
-export function signUp(username, email, password, apolloClient) {
+export function signUp(payload) {
   return {
     type: ActionTypes.SIGNUP,
-    payload: { username, email, password, apolloClient }
+    payload
   };
 }
 
-/**
- * ## SIGNIN actions
- */
+export function signIn(payload) {
+  return {
+    type: ActionTypes.SIGNIN,
+    payload
+  };
+}
 
 export function signInRequest() {
   return {
@@ -143,11 +169,109 @@ export function signInFailure(error) {
   };
 }
 
-export function signIn(email, password, apolloClient) {
+/**
+ * ## Forgot Password actions
+ */
+
+export function forgotPassword(payload) {
   return {
-    type: ActionTypes.SIGNIN,
-    payload: { email, password, apolloClient }
+    type: ActionTypes.FORGOT_PASSWORD,
+    payload
   };
 }
 
-export function forgotPassword() {}
+export function forgotPasswordRequest() {
+  return {
+    type: ActionTypes.FORGOT_PASSWORD_REQUEST
+  };
+}
+
+export function forgotPasswordSuccess() {
+  return {
+    type: ActionTypes.FORGOT_PASSWORD_SUCCESS
+  };
+}
+
+export function forgotPasswordFailure(error) {
+  return {
+    type: ActionTypes.FORGOT_PASSWORD_FAILURE,
+    payload: error
+  };
+}
+
+export function resetPassword(payload) {
+  return {
+    type: ActionTypes.RESET_PASSWORD,
+    payload
+  };
+}
+
+export function resetPasswordRequest() {
+  return {
+    type: ActionTypes.RESET_PASSWORD_REQUEST
+  };
+}
+
+export function resetPasswordSuccess() {
+  return {
+    type: ActionTypes.RESET_PASSWORD_SUCCESS
+  };
+}
+
+export function resetPasswordFailure(error) {
+  return {
+    type: ActionTypes.RESET_PASSWORD_FAILURE,
+    payload: error
+  };
+}
+
+export function changePassword(payload) {
+  return {
+    type: ActionTypes.CHANGE_PASSWORD,
+    payload
+  };
+}
+
+export function changePasswordRequest() {
+  return {
+    type: ActionTypes.CHANGE_PASSWORD_REQUEST
+  };
+}
+
+export function changePasswordSuccess() {
+  return {
+    type: ActionTypes.CHANGE_PASSWORD_SUCCESS
+  };
+}
+
+export function changePasswordFailure(error) {
+  return {
+    type: ActionTypes.CHANGE_PASSWORD_FAILURE,
+    payload: error
+  };
+}
+
+export function getAuthSession() {
+  return {
+    type: ActionTypes.GETAUTHSESSION
+  };
+}
+
+export function getAuthSessionRequest() {
+  return {
+    type: ActionTypes.GETAUTHSESSION_REQUEST
+  };
+}
+
+export function getAuthSessionSuccess() {
+  return {
+    type: ActionTypes.GETAUTHSESSION_SUCCESS
+  };
+}
+
+export function getAuthSessionFailure(error) {
+  return {
+    type: ActionTypes.GETAUTHSESSION_FAILURE,
+    payload: error
+  };
+}

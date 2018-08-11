@@ -7,4 +7,5 @@ export const getHistoryItems = state => state.get('history');
 export const getDocumentState = state => state.get('document');
 export const getUploadFileForm = state => state.get('uploadFileForm');
 export const getAuthForm = state => state.getIn(['app', 'forms', 'auth']);
+export const getloggedInUser = state => state.getIn(['app', 'forms', 'auth', 'loggedInUser']);
 export const getValidateUploadFrom = state => state.get('validateUploadForm');

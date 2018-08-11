@@ -1,5 +1,5 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form/immutable';
+import { reduxForm, Field, submit } from 'redux-form/immutable';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { Form, FormBox, Label, FieldBox, Button, ModalButtonBox, ItemBox } from './style';
@@ -26,7 +26,10 @@ Input.propTypes = {
 };
 
 const RF = props => {
-  const { handleSubmit } = props;
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.dispatch(submit('registerForm'));
+  };
   return (
     <Form onSubmit={handleSubmit}>
       <FormBox>
@@ -39,7 +42,7 @@ const RF = props => {
         <ItemBox>
           <Label>e-mail:</Label>
           <FieldBox>
-            <Field name="e-mail" component={Input} />
+            <Field name="email" component={Input} />
           </FieldBox>
         </ItemBox>
         <ItemBox>
@@ -71,7 +74,7 @@ const RF = props => {
       </FormBox>
       <ModalButtonBox>
         <NavLink id="register" to="/">
-          <Button onClick={props.handleHide}>Registrar</Button>
+          <Button onClick={handleSubmit}>Registrar</Button>
         </NavLink>
       </ModalButtonBox>
     </Form>
@@ -79,12 +82,22 @@ const RF = props => {
 };
 
 RF.propTypes = {
-  handleHide: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired
 };
 
 const RegisterForm = reduxForm({
-  form: 'registerForm' // a unique identifier for this form
+  form: 'registerForm',
+  shouldAsyncValidate: true,
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true,
+  onSubmit: (values, _, { actions: { signUp } }) =>
+    signUp({
+      username: values.get('username'),
+      email: values.get('email'),
+      name: values.get('name'),
+      password: values.get('password'),
+      institution: values.get('institution'),
+      institution_type: values.get('institution_type')
+    })
 })(RF);
-
 export default RegisterForm;

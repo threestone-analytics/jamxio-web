@@ -11,11 +11,12 @@ import { ChangePasswordForm } from 'Components/Form';
 import { ModalOuter, ModalBox, ModalHeader, Title } from './style';
 // Actions
 import * as alertActions from '../../store/reducers/alert/alertActions';
+import * as authActions from '../../store/reducers/app/forms/auth/authActions';
 
 // Selectors
 import { getAlert } from '../../utils/selectors/common';
 
-const actions = [alertActions];
+const actions = [alertActions, authActions];
 
 function mapStateToProps(state) {
   return {
@@ -35,30 +36,22 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const LoginModal = props => {
-  const handleSubmit = () => {};
+const ChangePassword = props => (
+  <div id="outer-container">
+    <main id="page-wrap">
+      <ModalOuter>
+        <ModalBox>
+          <ModalHeader>
+            <Title>Reestablecer Contraseña</Title>
+          </ModalHeader>
+          <ChangePasswordForm {...props} />
+        </ModalBox>
+      </ModalOuter>
+    </main>
+  </div>
+);
 
-  return (
-    <div id="outer-container">
-      <main id="page-wrap">
-        <ModalOuter>
-          <ModalBox>
-            <ModalHeader>
-              <Title>Reestablecer</Title>
-            </ModalHeader>
-            <ChangePasswordForm
-              handleHide={props.handleHide}
-              handleSubmit={handleSubmit}
-              {...props}
-            />
-          </ModalBox>
-        </ModalOuter>
-      </main>
-    </div>
-  );
-};
-
-LoginModal.propTypes = {
+ChangePassword.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
@@ -70,6 +63,6 @@ const LM = compose(
     mapStateToProps,
     mapDispatchToProps
   )
-)(LoginModal);
+)(ChangePassword);
 
 export default LM;
