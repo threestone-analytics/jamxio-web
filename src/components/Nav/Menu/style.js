@@ -17,7 +17,7 @@ export const Button = styled.button`
 
 // Fixme GreenButton -> Button
 export const GreenButton = styled.button`
-  background: ${props => (props.active ? '#2f80ed' : '#fff')};
+  background: ${props => (props.active ? 'rgb(66, 230, 149)' : '#fff')};
   width: 30%;
   height: 57px;
   border: none;
