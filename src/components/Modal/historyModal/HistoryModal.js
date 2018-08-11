@@ -209,6 +209,7 @@ HistoryModal.propTypes = {
   show: PropTypes.bool.isRequired,
   handleHide: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired,
+  loggedInUser: PropTypes.bool.isRequired,
   record: PropTypes.object.isRequired
 };
 const HM = compose(
