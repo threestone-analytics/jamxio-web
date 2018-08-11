@@ -15,6 +15,22 @@ export const Button = styled.button`
   width: 150px;
   color: #fff;
 `;
+// Fixme double button
+export const ButtonDisabled = styled.button`
+  background: ${props => (props.disabled ? '#000' : '#00FF94')};
+  border: none;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+  font-size: 18px;
+  text-align: center;
+  height: 40px;
+  width: 150px;
+  color: #fff;
+`;
 
 export const Input = styled.input`
   order: 1;

@@ -29,6 +29,7 @@ const RootLayout = ({ loggedInUser, loading }) =>
   ) : (
     <Switch />
   );
+
 RootLayout.defaultProps = {
   loggedInUser: false
 };

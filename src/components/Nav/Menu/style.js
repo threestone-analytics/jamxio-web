@@ -5,7 +5,6 @@ export const Button = styled.button`
   width: 30%;
   height: 57px;
   border: none;
-
   box-shadow: ${props => (props.active ? 'none' : '0px 4px 6px rgba(0, 0, 0, 0.25)')};
   outline: none;
   color: ${props => (props.active ? '#fff' : '#2f80ed')};

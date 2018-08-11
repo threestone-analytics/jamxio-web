@@ -25,6 +25,7 @@ import {
   SpinnerBox,
   DataType,
   HistoryContainer,
+  ButtonDisabled,
   HistoryBox,
   HistoryItem,
   HistoryInfoTab,
@@ -36,7 +37,7 @@ import * as historyActions from '../../../store/reducers/history/historyActions'
 
 // Selectors
 
-import { getHistoryItems } from '../../../utils/selectors/common';
+import { getHistoryItems, getloggedInUser } from '../../../utils/selectors/common';
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(0, 0, 0, 0.75)';
 Modal.defaultStyles.overlay.zIndex = '999';
@@ -53,7 +54,8 @@ const actions = [historyActions];
 
 function mapStateToProps(state) {
   return {
-    history: getHistoryItems(state)
+    history: getHistoryItems(state),
+    loggedInUser: getloggedInUser(state)
   };
 }
 
@@ -152,6 +154,7 @@ const HistoryModal = props => {
   const handleclick = () => {
     props.actions.downloadHistory(props);
   };
+  console.log(props);
 
   return (
     <Modal
@@ -192,7 +195,9 @@ const HistoryModal = props => {
             <Button cancel="true" onClick={props.handleHide}>
               Salir
             </Button>
-            <Button onClick={handleclick}>Descargar</Button>
+            <ButtonDisabled disabled={!props.loggedInUser} onClick={handleclick}>
+              Descargar
+            </ButtonDisabled>
           </ModalButtonBox>
         </ModalBox>
       </ModalOuter>

@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DataCard from '../../components/Card/DataCard';
-import { CardContainer, TopBar, AddRecordButton } from './style';
+import { CardContainer, TopBar } from './style';
+
+/* <AddRecordButton onClick={() => handleOpen('uploadRecordModal')}>+</AddRecordButton> */
 
 const DashboardView = props => {
   props.actions.clickRight();
@@ -10,13 +12,18 @@ const DashboardView = props => {
   };
   if (props.data.getRecords) {
     const listCards = props.data.getRecords.map(record => (
-      <DataCard key={record._id} handleOpen={handleOpen} record={record} actions={props.actions} />
+      <DataCard
+        loggedInUser={props.loggedInUser}
+        key={record._id}
+        handleOpen={handleOpen}
+        record={record}
+        actions={props.actions}
+      />
     ));
     return (
       <div className="dashboard">
         <TopBar />
         <CardContainer>{listCards}</CardContainer>
-        <AddRecordButton onClick={() => handleOpen('uploadRecordModal')}>+</AddRecordButton>
       </div>
     );
   }
@@ -29,6 +36,7 @@ const DashboardView = props => {
 };
 DashboardView.propTypes = {
   actions: PropTypes.object.isRequired,
+  loggedInUser: PropTypes.bool.isRequired,
   data: PropTypes.object.isRequired
 };
 
