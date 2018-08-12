@@ -6,8 +6,8 @@ import { Map } from 'immutable';
 import SideMenu from 'Components/Nav/SideMenu';
 // Actions
 import { getAuthForm, getIntl } from 'Utils/selectors/common';
-import * as authActions from '../../../store/reducers/app/forms/auth/authActions';
-import * as intlActions from '../../../store/reducers/intl/intlActions';
+import * as authActions from 'Store/reducers/app/forms/auth/authActions';
+import * as intlActions from 'Store/reducers/intl/intlActions';
 // Selectors
 
 const actions = [authActions, intlActions];

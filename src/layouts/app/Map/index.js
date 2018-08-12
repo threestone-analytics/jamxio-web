@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
-import { LoginModal } from 'Components/Modal';
-import MapContainer from '../../../containers/appContainers/Map';
-import MainMenu from '../../../components/Nav/Menu';
-import Login from '../../../components/Nav/Login';
-import '../../../styles/app/map/mapbox-gl.css';
-import '../../../styles/app/dashboard/home-container.scss';
-import '../../../styles/app/nav/sidebar.scss';
-import '../../../styles/app/dashboard/index.scss';
+import { LoginModal, SignUpModal } from 'Components/Modal';
+import MapContainer from 'Containers/appContainers/Map';
+import MainMenu from 'Components/Nav/Menu';
+import Login from 'Components/Nav/Auth';
+import 'Styles/app/map/mapbox-gl.css';
+import 'Styles/app/dashboard/home-container.scss';
+import 'Styles/app/nav/sidebar.scss';
+import 'Styles/app/dashboard/index.scss';
 
 const MapLayout = ({ match, props }) => (
   <div>
@@ -18,6 +18,7 @@ const MapLayout = ({ match, props }) => (
     </div>
     <main className="page-wrap">
       <LoginModal />
+      <SignUpModal />
       <Switch>
         <Fragment>
           <Route path={`${match.path}`} component={MapContainer} />

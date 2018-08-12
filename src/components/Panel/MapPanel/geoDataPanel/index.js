@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown } from '../../../Dropdown';
+import { Dropdown } from 'Components/Dropdown';
 import { GeoDataContainer, PanelItemContainer, PanelHeader } from './style';
 
 const crowdSourced = ['Sms', 'Twitter', 'Direct Message', 'News'];
@@ -17,16 +17,7 @@ ShowItem.propTypes = {
   options: PropTypes.array.isRequired,
   _id: PropTypes.string.isRequired
 };
-// const array = [
-//   'Infraestructura energética',
-//   'Industria',
-//   'Suelos',
-//   'Contaminación',
-//   'Sociodemográficas',
-//   'Degradación ambiental',
-//   'Agua'
-// ];
-// const Fakegeo = () => array.map(category => <Label> {category}</Label>);
+
 const GeoPanel = props => {
   const groupedData = props.categories;
 

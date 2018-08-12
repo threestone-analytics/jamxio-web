@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DataCard from '../../components/Card/DataCard';
+import DataCard from 'Components/Card/DataCard';
 import { CardContainer, TopBar } from './style';
 
 /* <AddRecordButton onClick={() => handleOpen('uploadRecordModal')}>+</AddRecordButton> */

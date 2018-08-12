@@ -6,13 +6,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
-import { Button } from './style';
 
 // Actions
-import * as menuActions from '../../../store/reducers/nav/navActions';
+import * as menuActions from 'Store/reducers/nav/navActions';
 
 // Selectors
-import { getMenu } from '../../../utils/selectors/common';
+import { getMenu } from 'Utils/selectors/common';
+import { Button } from './style';
 
 const actions = [menuActions];
 

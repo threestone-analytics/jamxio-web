@@ -5,7 +5,10 @@
     "module": "es6",
     "paths": {
       "Components/*": ["src/components/*"],
+      "Styles/*": ["src/styles/*"],
+      "Store/*": ["src/store/*"],
       "Containers/*": ["src/containers/*"],
+      "Pages/*": ["src/pages/*"],
       "Utils/*": ["src/utils/*"]
     }
   },

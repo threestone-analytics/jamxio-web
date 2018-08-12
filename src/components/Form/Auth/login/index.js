@@ -3,7 +3,7 @@ import { reduxForm, Field, submit } from 'redux-form/immutable';
 import { NavLink } from 'react-router-dom';
 import 'react-widgets/dist/css/react-widgets.css';
 import PropTypes from 'prop-types';
-import formValidate from '../../../utils/validations';
+import formValidate from 'Utils/validations';
 import {
   Button,
   ModalButtonBox,
@@ -13,7 +13,7 @@ import {
   FormBox,
   Label,
   FieldBox
-} from './style';
+} from '../style';
 
 class LF extends React.Component {
   handleSubmit = e => {

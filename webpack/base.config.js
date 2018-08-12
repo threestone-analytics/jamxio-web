@@ -9,7 +9,10 @@ module.exports = {
     extensions: ['.js', '.json', '.css', '.scss', '.ico', '.sass', '.jsx', '.png', '.jpg'],
     alias: {
       Components: path.join(__dirname, '../src/components/'),
+      Styles: path.join(__dirname, '../src/styles/'),
+      Store: path.join(__dirname, '../src/store/'),
       Containers: path.join(__dirname, '../src/containers/'),
+      Pages: path.join(__dirname, '../src/pages/'),
       Utils: path.join(__dirname, '../src/utils')
     }
   }

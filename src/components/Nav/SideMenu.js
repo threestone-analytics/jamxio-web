@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { push as MenuContainer } from 'react-burger-menu';
 
-import '../../styles/app/nav/SideMenu.scss';
+import 'Styles/app/nav/SideMenu.scss';
 
 const AppSideMenu = ({ actions, client }) => (
   <MenuContainer pageWrapId="page-wrap" outerContainerId="outer-container">

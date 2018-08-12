@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown } from '../../Dropdown';
+import { Dropdown } from 'Components/Dropdown';
 import { CrowdSourcedContainer, PanelHeader, PanelItemContainer } from './style';
 
 const crowdSourced = ['Sms', 'Twitter', 'Direct Message', 'News'];

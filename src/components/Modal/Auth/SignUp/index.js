@@ -9,14 +9,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
-import { LoginForm } from '../../Form';
-import { ModalOuter, ExitButton, ModalBox, ModalHeader, Title } from './style';
+import { SignUpForm } from 'Components/Form/Auth';
+import * as alertActions from 'Store/reducers/alert/alertActions';
+import * as authActions from 'Store/reducers/app/forms/auth/authActions';
+import { getAlert, getAuthForm } from 'Utils/selectors/common';
+import { ModalOuter, ExitButton, ModalBox, ModalHeader, Title } from '../style';
 // Actions
-import * as alertActions from '../../../store/reducers/alert/alertActions';
-import * as authActions from '../../../store/reducers/app/forms/auth/authActions';
 
 // Selectors
-import { getAlert, getAuthForm } from '../../../utils/selectors/common';
 
 const actions = [authActions, alertActions];
 
@@ -50,15 +50,15 @@ Modal.defaultStyles.content = {
   padding: '20px'
 };
 
-const LoginModalForm = compose(
+const SignUpModalForm = compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
   ),
   withApollo
-)(LoginForm);
+)(SignUpForm);
 
-const LoginModal = props => (
+const SignUpModal = props => (
   <Modal
     isOpen={props.show}
     onRequestClose={props.handleHide}
@@ -68,16 +68,16 @@ const LoginModal = props => (
     <ModalOuter>
       <ModalBox>
         <ModalHeader>
-          <Title>LOG IN</Title>
+          <Title>Sign Up</Title>
           <ExitButton onClick={props.handleHide}>X</ExitButton>
         </ModalHeader>
-        <LoginModalForm handleHide={props.handleHide} {...props} />
+        <SignUpModalForm handleHide={props.handleHide} {...props} />
       </ModalBox>
     </ModalOuter>
   </Modal>
 );
 
-LoginModal.propTypes = {
+SignUpModal.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
@@ -86,6 +86,6 @@ LoginModal.propTypes = {
 };
 
 export default connectModal({
-  name: 'loginModal',
+  name: 'signupModal',
   getModalState: state => state.get('modal')
-})(LoginModal);
+})(SignUpModal);

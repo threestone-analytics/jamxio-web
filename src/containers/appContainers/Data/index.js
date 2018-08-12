@@ -5,13 +5,13 @@ import { compose } from 'recompose';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import DataPage from '../../../pages/Data';
 // Actions
-import * as modalActions from '../../../store/reducers/modal/modalActions';
-import * as menuActions from '../../../store/reducers/nav/navActions';
+import * as modalActions from 'Store/reducers/modal/modalActions';
+import * as menuActions from 'Store/reducers/nav/navActions';
+import { getIntl } from 'Utils/selectors/common';
+import DataPage from 'Pages/Data';
 
 // Selectors
-import { getIntl } from '../../../utils/selectors/common';
 
 const actions = [modalActions, menuActions];
 

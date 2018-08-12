@@ -10,6 +10,13 @@ import { SyncLoader } from 'react-spinners';
 import { bindActionCreators } from 'redux';
 import { compose } from 'recompose';
 /* show, handleHide, message, title */
+
+// Actions
+import * as historyActions from 'Store/reducers/history/historyActions';
+
+// Selectors
+
+import { getHistoryItems, getloggedInUser } from 'Utils/selectors/common';
 import {
   Button,
   ModalBox,
@@ -31,13 +38,6 @@ import {
   HistoryInfoTab,
   HistoryItemContainer
 } from './style';
-
-// Actions
-import * as historyActions from '../../../store/reducers/history/historyActions';
-
-// Selectors
-
-import { getHistoryItems, getloggedInUser } from '../../../utils/selectors/common';
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(0, 0, 0, 0.75)';
 Modal.defaultStyles.overlay.zIndex = '999';
@@ -154,8 +154,6 @@ const HistoryModal = props => {
   const handleclick = () => {
     props.actions.downloadHistory(props);
   };
-  console.log(props);
-
   return (
     <Modal
       closeTimeoutMS={0}

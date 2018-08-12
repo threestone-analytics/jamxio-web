@@ -10,16 +10,16 @@ import { bindActionCreators } from 'redux';
 import { compose, withHandlers } from 'recompose';
 
 /* show, handleHide, message, title */
-import { ModalOuter, ModalBox } from './style';
 
 // Actions
-import * as alertActions from '../../../store/reducers/alert/alertActions';
-import * as dropzoneActions from '../../../store/reducers/dropzone/dropzoneActions';
-import * as validateActions from '../../../store/reducers/form/validateFileForm/validateActions';
+import * as alertActions from 'Store/reducers/alert/alertActions';
+import * as dropzoneActions from 'Store/reducers/dropzone/dropzoneActions';
+import * as validateActions from 'Store/reducers/form/validateFileForm/validateActions';
+import { getUploadFileForm, getAlert } from 'Utils/selectors/common';
+import { UploadDocument } from 'Components/Form/uploadForm';
+import { ModalOuter, ModalBox } from './style';
 
 // Selectors
-import { UploadDocument } from '../../Form/uploadForm';
-import { getUploadFileForm, getAlert } from '../../../utils/selectors/common';
 
 const actions = [alertActions, dropzoneActions, validateActions];
 

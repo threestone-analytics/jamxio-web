@@ -9,11 +9,11 @@ import RegisterContainer from 'Containers/appContainers/NavigationContainers/Reg
 import { Toastr } from 'Components/Toastr';
 
 // Styles ; FIXME too many styles instead we sould use styled-components
-import '../../../styles/app/map/mapbox-gl.css';
-import '../../../styles/app/dashboard/home-container.scss';
-import '../../../styles/app/dashboard/dropdown.scss';
-import '../../../styles/app/nav/sidebar.scss';
-import '../../../styles/app/dashboard/index.scss';
+import 'Styles/app/map/mapbox-gl.css';
+import 'Styles/app/dashboard/home-container.scss';
+import 'Styles/app/dashboard/dropdown.scss';
+import 'Styles/app/nav/sidebar.scss';
+import 'Styles/app/dashboard/index.scss';
 
 const DataLayout = ({ location, props }) => (
   <div id="outer-container" location={location}>

@@ -5,11 +5,11 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 import _ from 'lodash';
-import { layerColor } from '../../../styles/app/map/layers';
 
-import GeoDataPanel from '../../../components/Panel/MapPanel/geoDataPanel';
-import CrowdSourcedDataPanel from '../../../components/Panel/MapPanel/crowdSourcedDataPanel';
-import NewsFeedPanel from '../../../components/Panel/MapPanel/newsFeedPanel';
+import GeoDataPanel from 'Components/Panel/MapPanel/geoDataPanel';
+import CrowdSourcedDataPanel from 'Components/Panel/MapPanel/crowdSourcedDataPanel';
+import NewsFeedPanel from 'Components/Panel/MapPanel/newsFeedPanel';
+import { layerColor } from 'Styles/app/map/layers';
 import { PanelContainer } from './style';
 
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;

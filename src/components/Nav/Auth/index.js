@@ -5,14 +5,13 @@ import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import { withApollo } from 'react-apollo';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import { Button } from './style';
 // Actions
-import * as modalActions from '../../../store/reducers/modal/modalActions';
-import * as authActions from '../../../store/reducers/app/forms/auth/authActions';
+import * as modalActions from 'Store/reducers/modal/modalActions';
+import * as authActions from 'Store/reducers/app/forms/auth/authActions';
 
 // Selectors
-import { getAuthForm, getIntl, getloggedInUser } from '../../../utils/selectors/common';
+import { getAuthForm, getIntl, getloggedInUser } from 'Utils/selectors/common';
+import { Button } from './style';
 
 const actions = [modalActions, authActions];
 
@@ -47,9 +46,7 @@ const Login = props => {
       ) : (
         <Fragment>
           <Button onClick={() => handleOpen('loginModal')}>Entrar</Button>
-          <NavLink id="register" to="/register">
-            <Button>Registrarse</Button>
-          </NavLink>
+          <Button onClick={() => handleOpen('signupModal')}>Registrarse</Button>
         </Fragment>
       )}
     </div>

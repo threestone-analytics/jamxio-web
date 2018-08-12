@@ -6,10 +6,10 @@ import { IntlProvider } from 'react-intl-redux';
 import createHistory from 'history/createBrowserHistory';
 import { injectGlobal, ThemeProvider } from 'styled-components';
 import Loadable from 'react-loadable';
+import { initLocale } from 'Store/reducers/intl/intlActions';
+import { getAuthSession } from 'Store/reducers/app/forms/auth/authActions';
+import createStore from 'Store';
 import client from '../apollo/ApolloClient';
-import { initLocale } from '../store/reducers/intl/intlActions';
-import { getAuthSession } from '../store/reducers/app/forms/auth/authActions';
-import createStore from '../store';
 
 /* GLobal Styles */
 import '../styles/styles.scss';

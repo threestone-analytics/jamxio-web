@@ -83,8 +83,7 @@ const forgotPasswordLogic = createLogic({
     Auth.forgotPassword({
       username
     })
-      .then(data => {
-        console.log(data);
+      .then(() => {
         dispatch(authActions.forgotPasswordSuccess());
         done();
       })
