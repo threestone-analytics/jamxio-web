@@ -1,4 +1,4 @@
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from 'Components/App';
@@ -9,4 +9,3 @@ global.fetch = require('node-fetch');
 Amplify.configure(awsExports);
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
