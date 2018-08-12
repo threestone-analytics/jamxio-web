@@ -1,5 +1,5 @@
 import { Record, fromJS } from 'immutable';
-import themes from '../../../../styles/theme';
+import themes from 'Styles/theme';
 
 const defaultTheme = 'light';
 

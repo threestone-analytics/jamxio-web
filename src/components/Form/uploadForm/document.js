@@ -8,6 +8,10 @@ import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 
+import * as alertActions from 'Store/reducers/alert/alertActions';
+import * as dropzoneActions from 'Store/reducers/dropzone/dropzoneActions';
+import * as validateActions from 'Store/reducers/form/validateFileForm/validateActions';
+import { getDropzone, getAlert } from 'Utils/selectors/common';
 import {
   Button,
   ModalButtonBox,
@@ -25,12 +29,8 @@ import AlertText from '../../Alert';
 import { validate, createDocument } from './validate';
 
 // Actions
-import * as alertActions from '../../../store/reducers/alert/alertActions';
-import * as dropzoneActions from '../../../store/reducers/dropzone/dropzoneActions';
-import * as validateActions from '../../../store/reducers/form/validateFileForm/validateActions';
 
 // Selectors
-import { getDropzone, getAlert } from '../../../utils/selectors/common';
 
 const reduxActions = [alertActions, dropzoneActions, validateActions];
 

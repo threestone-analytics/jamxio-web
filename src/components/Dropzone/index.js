@@ -3,7 +3,7 @@ import React from 'react';
 import GeoJSON from 'geojson-validation';
 import PropTypes from 'prop-types';
 
-import '../../styles/app/dropzone/dropzone.scss';
+import 'Styles/app/dropzone/dropzone.scss';
 
 const componentConfig = {
   iconFiletypes: ['.GeoJSON'],

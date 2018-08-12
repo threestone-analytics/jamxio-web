@@ -8,6 +8,17 @@ import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
 
+// Actions
+import * as alertActions from 'Store/reducers/alert/alertActions';
+import * as documentActions from 'Store/reducers/upload/uploadActions';
+import * as dropzoneActions from 'Store/reducers/dropzone/dropzoneActions';
+import * as validateActions from 'Store/reducers/form/validateFileForm/validateActions';
+
+// Selectors
+import { getDropzone, getAlert, getDocumentState } from 'Utils/selectors/common';
+import { validateRecord } from './validate';
+import AlertText from '../../Alert';
+import Dropzone from '../../Dropzone';
 import {
   Button,
   ModalButtonBox,
@@ -19,19 +30,6 @@ import {
   FieldBox,
   DropzoneBox
 } from './style';
-import Dropzone from '../../Dropzone';
-import AlertText from '../../Alert';
-
-import { validateRecord } from './validate';
-
-// Actions
-import * as alertActions from '../../../store/reducers/alert/alertActions';
-import * as documentActions from '../../../store/reducers/upload/uploadActions';
-import * as dropzoneActions from '../../../store/reducers/dropzone/dropzoneActions';
-import * as validateActions from '../../../store/reducers/form/validateFileForm/validateActions';
-
-// Selectors
-import { getDropzone, getAlert, getDocumentState } from '../../../utils/selectors/common';
 
 const reduxActions = [alertActions, dropzoneActions, validateActions, documentActions];
 

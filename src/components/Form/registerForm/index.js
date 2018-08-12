@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { reduxForm, Field, submit } from 'redux-form/immutable';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import formValidate from 'Utils/validations';
 import { Form, FormBox, Label, FieldBox, Button, ModalButtonBox, ItemBox } from './style';
 import 'react-widgets/dist/css/react-widgets.css';
-import formValidate from '../../../utils/validations';
 
 class RF extends React.Component {
   handleSubmit = e => {

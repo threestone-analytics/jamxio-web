@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
 import { getAuthForm, getIntl } from 'Utils/selectors/common';
-import DashboardPage from '../../pages/DashboardPage';
+import DashboardPage from 'Pages/DashboardPage';
 // Actions
-import * as modalActions from '../../store/reducers/modal/modalActions';
-import * as userActions from '../../store/reducers/app/user/userActions';
+import * as modalActions from 'Store/reducers/modal/modalActions';
+import * as userActions from 'Store/reducers/app/user/userActions';
 // Selectors
 
 const actions = [modalActions, userActions];

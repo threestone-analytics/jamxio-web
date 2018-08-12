@@ -1,8 +1,8 @@
+import themes from 'Styles/theme';
 import InitialState from './userInitialState';
 /**
  * ## Auth actions
  */
-import themes from '../../../../styles/theme';
 import ActionTypes from '../../../ActionsTypes';
 
 const initialState = new InitialState();

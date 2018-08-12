@@ -4,14 +4,14 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
-import { Alert } from './style';
 // Components
 
 // Actions
-import * as alertActions from '../../store/reducers/alert/alertActions';
+import * as alertActions from 'Store/reducers/alert/alertActions';
 
 // Selectors
-import { getAlert } from '../../utils/selectors/common';
+import { getAlert } from 'Utils/selectors/common';
+import { Alert } from './style';
 
 const AlertText = props => (
   <Alert isOpen={props.alertState.isShown} red>

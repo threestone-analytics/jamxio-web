@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
+import * as dropdownActions from 'Store/reducers/dropdown/dropdownActions';
+import { getDropdown } from 'Utils/selectors/common';
 import { renderSubcategories } from './handlers';
 
 // Actions
-import * as dropdownActions from '../../store/reducers/dropdown/dropdownActions';
 import { Label, Item, ItemContainer, Circle, SubItemContainer } from './style';
 
 // Selectors
-import { getDropdown } from '../../utils/selectors/common';
 
 function mapStateToProps(state) {
   return {

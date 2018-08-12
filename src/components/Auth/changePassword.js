@@ -8,13 +8,13 @@ import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
 import { ChangePasswordForm } from 'Components/Form';
-import { ModalOuter, ModalBox, ModalHeader, Title } from './style';
 // Actions
-import * as alertActions from '../../store/reducers/alert/alertActions';
-import * as authActions from '../../store/reducers/app/forms/auth/authActions';
+import * as alertActions from 'Store/reducers/alert/alertActions';
+import * as authActions from 'Store/reducers/app/forms/auth/authActions';
+import { getAlert, getAuthForm } from 'Utils/selectors/common';
+import { ModalOuter, ModalBox, ModalHeader, Title } from './style';
 
 // Selectors
-import { getAlert, getAuthForm } from '../../utils/selectors/common';
 
 const actions = [alertActions, authActions];
 
