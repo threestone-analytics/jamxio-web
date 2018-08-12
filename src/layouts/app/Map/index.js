@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
-import { LoginModal, SignUpModal } from 'Components/Modal';
+import { LoginModal, SignUpModal, ResetPasswordModal } from 'Components/Modal/Auth';
 import MapContainer from 'Containers/appContainers/Map';
 import MainMenu from 'Components/Nav/Menu';
 import Login from 'Components/Nav/Auth';
@@ -19,6 +19,7 @@ const MapLayout = ({ match, props }) => (
     <main className="page-wrap">
       <LoginModal />
       <SignUpModal />
+      <ResetPasswordModal />
       <Switch>
         <Fragment>
           <Route path={`${match.path}`} component={MapContainer} />

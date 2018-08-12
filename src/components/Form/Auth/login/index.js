@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { reduxForm, Field, submit } from 'redux-form/immutable';
-import { NavLink } from 'react-router-dom';
 import 'react-widgets/dist/css/react-widgets.css';
 import PropTypes from 'prop-types';
 import formValidate from 'Utils/validations';
@@ -58,10 +57,10 @@ class LF extends React.Component {
     this.props.actions.show('signupModal');
   };
 
-  // handleResetPassword = () => {
-  //   this.props.handleHide();
-  //   this.props.actions.show('reset_passwordModal');
-  // };
+  handleResetPassword = () => {
+    this.props.handleHide();
+    this.props.actions.show('reset_passwordModal');
+  };
 
   renderField = ({ input, label, meta: { touched, error, warning }, ...rest }) => (
     <Fragment>
@@ -130,8 +129,8 @@ class LF extends React.Component {
         </ModalButtonBox>
         <ModalButtonBox>
           <RegisterButton onClick={this.handleSignUp}>¿No tienes cuenta? Regístrate</RegisterButton>
-          <RegisterButton onClick="this.handleResetPassword">
-            ¿No tienes cuenta? Regístrate
+          <RegisterButton onClick={this.handleResetPassword}>
+            ¿Olvidaste tu contrasena?
           </RegisterButton>
         </ModalButtonBox>
       </Form>
@@ -141,7 +140,9 @@ class LF extends React.Component {
 
 LF.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired,
   formState: PropTypes.object.isRequired,
+  handleHide: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired
 };
 

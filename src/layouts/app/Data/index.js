@@ -10,7 +10,7 @@ import MainMenu from 'Components/Nav/Menu';
 import Login from 'Components/Nav/Auth';
 import { Toastr } from 'Components/Toastr';
 import { HistoryModal, UploadModal, UploadRecordModal } from 'Components/Modal';
-import { LoginModal, SignUpModal } from 'Components/Modal/Auth';
+import { LoginModal, SignUpModal, ResetPasswordModal } from 'Components/Modal/Auth';
 
 // Styles ; FIXME too many styles instead we sould use styled-components
 import 'Styles/app/map/mapbox-gl.css';
@@ -30,6 +30,7 @@ const DataLayout = ({ location, props, match }) => (
       <HistoryModal />
       <LoginModal />
       <SignUpModal />
+      <ResetPasswordModal />
       <UploadModal />
       <UploadRecordModal />
       <Switch>
