@@ -1,88 +1,173 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { reduxForm, Field, submit } from 'redux-form/immutable';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { Form, FormBox, Label, FieldBox, Button, ModalButtonBox, ItemBox } from './style';
 import 'react-widgets/dist/css/react-widgets.css';
-// FIXME refactor this
+import formValidate from '../../../utils/validations';
 
-const Input = ({ input, data, valueField, textField }) => (
-  <input
-    {...input}
-    onBlur={() => input.onBlur()}
-    value={input.value || []} // requires value to be an array
-    data={data}
-    valueField={valueField}
-    textField={textField}
-  />
-);
-
-Input.propTypes = {
-  input: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
-  valueField: PropTypes.object.isRequired,
-  textField: PropTypes.object.isRequired,
-  onChange: PropTypes.object.isRequired
-};
-
-const RF = props => {
-  const handleSubmit = e => {
+class RF extends React.Component {
+  handleSubmit = e => {
     e.preventDefault();
-    props.dispatch(submit('registerForm'));
+    this.props.dispatch(submit('registerForm'));
   };
-  return (
-    <Form onSubmit={handleSubmit}>
-      <FormBox>
-        <ItemBox>
-          <Label>Nombre:</Label>
-          <FieldBox>
-            <Field name="name" component={Input} />
-          </FieldBox>
-        </ItemBox>
-        <ItemBox>
-          <Label>e-mail:</Label>
-          <FieldBox>
-            <Field name="email" component={Input} />
-          </FieldBox>
-        </ItemBox>
-        <ItemBox>
-          <Label>Institución:</Label>
-          <FieldBox>
-            <Field name="institution" component={Input} />
-          </FieldBox>
-        </ItemBox>
-        <ItemBox>
-          <Label>Tipo de Institución:</Label>
-          <FieldBox>
-            <Field name="institution_type" component={Input} />
-          </FieldBox>
-        </ItemBox>
-      </FormBox>
-      <FormBox>
-        <ItemBox>
-          <Label>Usuario:</Label>
-          <FieldBox>
-            <Field name="username" component={Input} />
-          </FieldBox>
-        </ItemBox>
-        <ItemBox>
-          <Label>Contraseña:</Label>
-          <FieldBox>
-            <Field name="password" component={Input} />
-          </FieldBox>
-        </ItemBox>
-      </FormBox>
-      <ModalButtonBox>
-        <NavLink id="register" to="/">
-          <Button onClick={handleSubmit}>Registrar</Button>
-        </NavLink>
-      </ModalButtonBox>
-    </Form>
+
+  renderField = ({ input, label, meta: { touched, error, warning }, ...rest }) => (
+    <Fragment>
+      <label htmlFor={input.name}>
+        <input id={input.name} {...input} {...rest} />
+        <div style={{ height: '1rem' }}>
+          {(touched && (error && <div>Campo Requerido</div>)) ||
+            (warning && <div>{rest.warning}</div>)}
+        </div>
+      </label>
+    </Fragment>
   );
-};
+
+  render() {
+    const name = {
+      name: 'name',
+      type: 'text',
+      component: this.renderField,
+      label: 'name',
+      placeholder: 'name',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 20,
+      warning: 'Debe tener entre 6-12 caracteres'
+    };
+
+    const email = {
+      name: 'email',
+      type: 'text',
+      component: this.renderField,
+      label: 'email',
+      placeholder: 'email',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 40,
+      warning: 'Ingresa un correo valido'
+    };
+    const institution = {
+      name: 'institution',
+      type: 'text',
+      component: this.renderField,
+      label: 'institución',
+      placeholder: 'institución',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 20,
+      warning: 'Ingresa el nombre de tu institución'
+    };
+
+    const institutionType = {
+      name: 'institution_type',
+      type: 'text',
+      component: this.renderField,
+      label: 'Tipo de institución',
+      placeholder: 'Tipo de Institución',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 12,
+      warning: 'Ingresa el nombre del tipo de tu institución'
+    };
+
+    const username = {
+      name: 'username',
+      type: 'text',
+      component: this.renderField,
+      label: 'username',
+      placeholder: 'username',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 12,
+      warning: 'Ingresa un nombre de usuario'
+    };
+
+    const password = {
+      name: 'password',
+      type: 'password',
+      component: this.renderField,
+      label: 'contraseña',
+      placeholder: 'contraseña',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 12,
+      warning: 'Debe tener entre 8-12 caracteres con al menos 1 número y una letra en miniscula'
+    };
+    return (
+      <Form onSubmit={this.handleSubmit}>
+        <FormBox>
+          <ItemBox>
+            <Label>Nombre:</Label>
+            <FieldBox>
+              <Field
+                {...name}
+                validate={[formValidate.isRequired, formValidate.isUsername]}
+                warn={formValidate.isUsername}
+              />
+            </FieldBox>
+          </ItemBox>
+          <ItemBox>
+            <Label>e-mail:</Label>
+            <FieldBox>
+              <Field
+                {...email}
+                validate={[formValidate.isRequired, formValidate.isEmail]}
+                warn={formValidate.isEmail}
+              />
+            </FieldBox>
+          </ItemBox>
+          <ItemBox>
+            <Label>Institución:</Label>
+            <FieldBox>
+              <Field
+                {...institution}
+                validate={[formValidate.isRequired, formValidate.isUsername]}
+                warn={formValidate.isUsername}
+              />
+            </FieldBox>
+          </ItemBox>
+          <ItemBox>
+            <Label>Tipo de Institución:</Label>
+            <FieldBox>
+              <Field
+                {...institutionType}
+                validate={[formValidate.isRequired, formValidate.isUsername]}
+                warn={formValidate.isUsername}
+              />
+            </FieldBox>
+          </ItemBox>
+        </FormBox>
+        <FormBox>
+          <ItemBox>
+            <Label>Usuario:</Label>
+            <FieldBox>
+              <Field
+                {...username}
+                validate={[formValidate.isRequired, formValidate.isUsername]}
+                warn={formValidate.isUsername}
+              />
+            </FieldBox>
+          </ItemBox>
+          <ItemBox>
+            <Label>Contraseña:</Label>
+            <FieldBox>
+              <Field
+                {...password}
+                validate={[formValidate.isRequired, formValidate.isPassword]}
+                warn={formValidate.isPassword}
+              />
+            </FieldBox>
+          </ItemBox>
+        </FormBox>
+        <ModalButtonBox>
+          <NavLink id="register" to="/">
+            <Button onClick={this.handleSubmit}>Registrar</Button>
+          </NavLink>
+        </ModalButtonBox>
+      </Form>
+    );
+  }
+}
 
 RF.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  formState: PropTypes.object.isRequired
 };
 
 const RegisterForm = reduxForm({

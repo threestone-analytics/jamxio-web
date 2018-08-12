@@ -17,7 +17,6 @@ const DataCard = props => {
   const handleOpen = name => {
     props.actions.show(name, { record });
   };
-
   return (
     <Card>
       <ImageContainer>

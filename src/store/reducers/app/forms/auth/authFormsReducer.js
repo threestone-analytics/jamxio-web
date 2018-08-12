@@ -36,6 +36,10 @@ export default function authFormsReducer(state = initialState, action) {
     case ActionTypes.CONFIRM_SIGNUP_SUCCESS:
     case ActionTypes.SIGNIN_SUCCESS:
       return state.setIn(['loggedInUser'], true).setIn(['isFetching'], false);
+
+    case ActionTypes.SIGNUP_SUCCESS:
+    case ActionTypes.RESET_PASSWORD_SUCCESS:
+      return state.setIn(['isFetching'], false);
     /**
      * ### Access to Parse.com denied or failed
      * The fetching is done, but save the error
@@ -45,7 +49,7 @@ export default function authFormsReducer(state = initialState, action) {
     case ActionTypes.LOGOUT_FAILURE:
     case ActionTypes.SIGNIN_FAILURE:
     case ActionTypes.RESET_PASSWORD_FAILURE:
-      return state.setIn(['isFetching'], false).setIn(['error'], action.payload);
+      return state.setIn(['isFetching'], false).setIn(['error'], action.payload || null);
     /**
      * ### Auth form field change
      *

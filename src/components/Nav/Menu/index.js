@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import PropTypes from 'prop-types';
-import { Button, GreenButton } from './style';
+import { Button } from './style';
 
 // Actions
 import * as menuActions from '../../../store/reducers/nav/navActions';
@@ -37,12 +37,12 @@ function mapDispatchToProps(dispatch) {
 const Menu = props => (
   <ButtonGroup className="nav-buttons">
     <NavLink replace to="/">
-      <Button active={props.menuState.left} onClick={props.actions.clickLeft}>
+      <Button color="#2f80ed" active={props.menuState.left} onClick={props.actions.clickLeft}>
         Mapa
       </Button>
     </NavLink>
     <NavLink replace to="/data">
-      <Button active={props.menuState.right} onClick={props.actions.clickRight}>
+      <Button color="#2f80ed" active={props.menuState.right} onClick={props.actions.clickRight}>
         Datos
       </Button>
     </NavLink>
@@ -52,7 +52,7 @@ const Menu = props => (
       without
       rel="noopener noreferrer"
     >
-      <GreenButton>Reporta</GreenButton>
+      <Button color="#42e695">Reporta</Button>
     </a>
   </ButtonGroup>
 );

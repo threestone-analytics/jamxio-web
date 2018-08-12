@@ -15,6 +15,13 @@
     }
   },
   "rules": {
+    "jsx-a11y/label-has-for": [ 2, {
+      "components": [ "Label" ],
+      "required": {
+          "every": [ "nesting", "id" ]
+      },
+      "allowChildren": true
+    }],
     "react/no-children-prop": 0,
     "react/require-default-props": 0,
     "react/jsx-no-bind": [{"allowBind": 1}],

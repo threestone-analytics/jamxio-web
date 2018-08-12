@@ -10,7 +10,7 @@ const isEmail = value => {
   return validate({ from: value }, emailConstraints) ? 'auth.form.warning.email' : undefined;
 };
 const isPassword = value => {
-  const passwordPattern = /^(?=.*[0-9])[a-zA-Z0-9]{6,12}$/;
+  const passwordPattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
   const passwordConstraints = {
     password: {
       format: {

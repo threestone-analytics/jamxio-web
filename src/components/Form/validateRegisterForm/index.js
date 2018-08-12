@@ -1,59 +1,82 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { reduxForm, Field, submit } from 'redux-form/immutable';
 import PropTypes from 'prop-types';
 import { Form, FormBox, Label, FieldBox, Button, ModalButtonBox, ItemBox } from './style';
 import 'react-widgets/dist/css/react-widgets.css';
-// FIXME refactor this
+import formValidate from '../../../utils/validations';
 
-const Input = ({ input, data, valueField, textField }) => (
-  <input
-    {...input}
-    onBlur={() => input.onBlur()}
-    value={input.value || []} // requires value to be an array
-    data={data}
-    valueField={valueField}
-    textField={textField}
-  />
-);
-
-Input.propTypes = {
-  input: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
-  valueField: PropTypes.object.isRequired,
-  textField: PropTypes.object.isRequired,
-  onChange: PropTypes.object.isRequired
-};
-
-const RF = props => {
-  const handleSubmit = e => {
+class RF extends React.Component {
+  handleSubmit = e => {
     e.preventDefault();
-    props.dispatch(submit('validateRegisterForm'));
+    this.props.dispatch(submit('validateRegisterForm'));
   };
-  return (
-    <Form onSubmit={handleSubmit}>
-      <FormBox>
-        <ItemBox>
-          <Label>Username</Label>
-          <FieldBox>
-            <Field name="username" component={Input} />
-          </FieldBox>
-        </ItemBox>
-        <ItemBox>
-          <Label>Código:</Label>
-          <FieldBox>
-            <Field name="code" component={Input} />
-          </FieldBox>
-        </ItemBox>
-      </FormBox>
-      <ModalButtonBox>
-        <Button onClick={handleSubmit}>Enviar</Button>
-      </ModalButtonBox>
-    </Form>
+
+  renderField = ({ input, label, meta: { touched, error, warning }, ...rest }) => (
+    <Fragment>
+      <label htmlFor={input.name}>
+        <input id={input.name} {...input} {...rest} />
+        <div style={{ height: '1rem' }}>
+          {(touched && (error && <div>Campo Requerido</div>)) ||
+            (warning && <div>{rest.warning}</div>)}
+        </div>
+      </label>
+    </Fragment>
   );
-};
+
+  render() {
+    const { submitting, formState } = this.props;
+
+    const username = {
+      name: 'username',
+      type: 'text',
+      component: this.renderField,
+      label: 'username',
+      placeholder: 'username',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 20,
+      warning: 'Debe tener entre 6-12 caracteres'
+    };
+
+    const code = {
+      name: 'code',
+      type: 'text',
+      component: this.renderField,
+      label: 'código',
+      placeholder: 'código',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 12,
+      warning: ''
+    };
+    return (
+      <Form onSubmit={this.handleSubmit}>
+        <FormBox>
+          <ItemBox>
+            <Label>Username</Label>
+            <FieldBox>
+              <Field {...username} validate={[formValidate.isRequired]} />
+            </FieldBox>
+          </ItemBox>
+          <ItemBox>
+            <Label>Código:</Label>
+            <FieldBox>
+              <Field {...code} validate={[formValidate.isRequired]} />
+            </FieldBox>
+          </ItemBox>
+        </FormBox>
+        <ModalButtonBox>
+          <Button disabled={submitting || formState.isFetching} onClick={this.handleSubmit}>
+            Enviar
+          </Button>
+        </ModalButtonBox>
+      </Form>
+    );
+  }
+}
 
 RF.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  formState: PropTypes.object.isRequired,
+  submitting: PropTypes.bool.isRequired
 };
 
 const ValidateRegisterForm = reduxForm({

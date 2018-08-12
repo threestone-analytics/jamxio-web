@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { reduxForm, Field, submit } from 'redux-form/immutable';
 import { NavLink } from 'react-router-dom';
 import 'react-widgets/dist/css/react-widgets.css';
 import PropTypes from 'prop-types';
+import formValidate from '../../../utils/validations';
 import {
   Button,
   ModalButtonBox,
@@ -14,65 +15,95 @@ import {
   FieldBox
 } from './style';
 
-// FIXME refactor this
-
-const Input = ({ input, data, valueField, textField }) => (
-  <input
-    {...input}
-    onBlur={() => input.onBlur()}
-    value={input.value || []} // requires value to be an array
-    data={data}
-    valueField={valueField}
-    textField={textField}
-  />
-);
-
-Input.propTypes = {
-  input: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
-  valueField: PropTypes.object.isRequired,
-  textField: PropTypes.object.isRequired,
-  onChange: PropTypes.object.isRequired
-};
-
-const LF = props => {
-  const handleSubmit = e => {
+class LF extends React.Component {
+  handleSubmit = e => {
     e.preventDefault();
-    props.dispatch(submit('signInForm'));
+    this.props.dispatch(submit('signInForm'));
     // props.handleHide();
   };
-  return (
-    <Form onSubmit={handleSubmit}>
-      <FormBox>
-        <ItemBox>
-          <Label>Usuario:</Label>
-          <FieldBox>
-            <Field name="username" component={Input} />
-          </FieldBox>
-        </ItemBox>
-        <ItemBox>
-          <Label>Contraseña:</Label>
-          <FieldBox>
-            <Field name="password" component={Input} />
-          </FieldBox>
-        </ItemBox>
-      </FormBox>
-      <ModalButtonBox>
-        <Button onClick={handleSubmit}>ENTRAR</Button>
-      </ModalButtonBox>
-      <ModalButtonBox>
-        <NavLink id="register" to="/register">
-          <RegisterButton>¿No tienes cuenta? Regístrate</RegisterButton>
-        </NavLink>
-        <NavLink id="register" to="/reset_password">
-          <RegisterButton>¿Olvidaste tu contraseña?</RegisterButton>
-        </NavLink>
-      </ModalButtonBox>
-    </Form>
+
+  renderField = ({ input, label, meta: { touched, error, warning }, ...rest }) => (
+    <Fragment>
+      <label htmlFor={input.name}>
+        <input id={input.name} {...input} {...rest} />
+        <div style={{ height: '1rem' }}>
+          {(touched && (error && <div>Campo Requerido</div>)) ||
+            (warning && <div>{rest.warning}</div>)}
+        </div>
+      </label>
+    </Fragment>
   );
-};
+
+  render() {
+    const { submitting, formState } = this.props;
+
+    const username = {
+      name: 'username',
+      type: 'text',
+      component: this.renderField,
+      label: 'username',
+      placeholder: 'username',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 20,
+      warning: 'Debe tener entre 6-12 caracteres'
+    };
+
+    const password = {
+      name: 'password',
+      type: 'password',
+      component: this.renderField,
+      label: 'contraseña',
+      placeholder: 'contraseña',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 12,
+      warning: 'Debe tener entre 8-12 caracteres con al menos 1 número y una letra en miniscula'
+    };
+    return (
+      <Form onSubmit={this.handleSubmit}>
+        <FormBox>
+          <ItemBox>
+            <Label>Usuario:</Label>
+            <FieldBox>
+              <Field
+                {...username}
+                validate={[formValidate.isRequired, formValidate.isUsername]}
+                warn={formValidate.isUsername}
+              />
+            </FieldBox>
+          </ItemBox>
+          <ItemBox>
+            <Label>Contraseña:</Label>
+            <FieldBox>
+              <Field
+                {...password}
+                validate={[formValidate.isRequired, formValidate.isPassword]}
+                warn={formValidate.isPassword}
+              />
+            </FieldBox>
+          </ItemBox>
+        </FormBox>
+        <ModalButtonBox>
+          <Button disabled={submitting || formState.isFetching} onClick={this.handleSubmit}>
+            ENTRAR
+          </Button>
+        </ModalButtonBox>
+        <ModalButtonBox>
+          <NavLink id="register" to="/register">
+            <RegisterButton>¿No tienes cuenta? Regístrate</RegisterButton>
+          </NavLink>
+          <NavLink id="register" to="/reset_password">
+            <RegisterButton>¿Olvidaste tu contraseña?</RegisterButton>
+          </NavLink>
+        </ModalButtonBox>
+      </Form>
+    );
+  }
+}
+
 LF.propTypes = {
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  formState: PropTypes.object.isRequired,
+  submitting: PropTypes.bool.isRequired
 };
 
 const LoginForm = reduxForm({

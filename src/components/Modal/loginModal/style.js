@@ -39,7 +39,7 @@ export const ModalBox = styled.div`
 
 export const ModalHeader = styled.div`
   width: 100%;
-  height: 150px;
+  height: 119px;
   top: 0;
   background: #2f80ed;
   display: flex;

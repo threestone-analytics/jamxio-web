@@ -16,13 +16,14 @@ import * as alertActions from '../../../store/reducers/alert/alertActions';
 import * as authActions from '../../../store/reducers/app/forms/auth/authActions';
 
 // Selectors
-import { getAlert } from '../../../utils/selectors/common';
+import { getAlert, getAuthForm } from '../../../utils/selectors/common';
 
 const actions = [authActions, alertActions];
 
 function mapStateToProps(state) {
   return {
-    alertState: getAlert(state)
+    alertState: getAlert(state),
+    formState: getAuthForm(state)
   };
 }
 
