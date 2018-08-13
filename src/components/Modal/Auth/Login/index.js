@@ -12,13 +12,14 @@ import { Map } from 'immutable';
 import { LoginForm } from 'Components/Form';
 import * as alertActions from 'Store/reducers/alert/alertActions';
 import * as authActions from 'Store/reducers/app/forms/auth/authActions';
+import * as modalActions from 'Store/reducers/modal/modalActions';
 import { getAlert, getAuthForm } from 'Utils/selectors/common';
 import { ModalOuter, ExitButton, ModalBox, ModalHeader, Title } from '../style';
 // Actions
 
 // Selectors
 
-const actions = [authActions, alertActions];
+const actions = [authActions, alertActions, modalActions];
 
 function mapStateToProps(state) {
   return {

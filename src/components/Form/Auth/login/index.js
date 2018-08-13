@@ -3,15 +3,7 @@ import { reduxForm, Field, submit } from 'redux-form/immutable';
 import 'react-widgets/dist/css/react-widgets.css';
 import PropTypes from 'prop-types';
 import formValidate from 'Utils/validations';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { Map } from 'immutable';
-import { compose } from 'recompose';
 
-// Actions
-import * as modalActions from 'Store/reducers/modal/modalActions';
-
-import { getIntl } from 'Utils/selectors/common';
 import {
   Button,
   ModalButtonBox,
@@ -25,31 +17,10 @@ import {
 
 // Selectors
 
-const actions = [modalActions];
-
-function mapStateToProps(state) {
-  return {
-    intlState: getIntl(state)
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  const creators = Map()
-    .merge(...actions)
-    .filter(value => typeof value === 'function')
-    .toObject();
-
-  return {
-    actions: bindActionCreators(creators, dispatch),
-    dispatch
-  };
-}
-
 class LF extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.dispatch(submit('signInForm'));
-    // props.handleHide();
   };
 
   handleSignUp = () => {
@@ -146,7 +117,7 @@ LF.propTypes = {
   submitting: PropTypes.bool.isRequired
 };
 
-const Login = reduxForm({
+const LoginForm = reduxForm({
   form: 'signInForm',
   shouldAsyncValidate: true,
   enableReinitialize: true,
@@ -154,12 +125,5 @@ const Login = reduxForm({
   onSubmit: (values, _, { actions: { signIn }, client: apolloClient }) =>
     signIn({ username: values.get('username'), password: values.get('password'), apolloClient })
 })(LF);
-
-const LoginForm = compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-)(Login);
 
 export default LoginForm;
