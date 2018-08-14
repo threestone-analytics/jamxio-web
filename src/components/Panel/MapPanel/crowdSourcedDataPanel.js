@@ -31,7 +31,7 @@ const CrowdSourcedPanel = props => {
 
   return (
     <CrowdSourcedContainer>
-      <PanelHeader>Datos geoespaciales</PanelHeader>
+      <PanelHeader>Reportes en linea</PanelHeader>
       {categories.map(category => (
         <ShowItem
           toggleLayer={props.toggleLayer}
