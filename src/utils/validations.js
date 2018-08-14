@@ -57,4 +57,19 @@ const isSamePassword = (value, allValues) => {
     : undefined;
 };
 
-export default { isRequired, isPassword, isEmail, isUsername, isSamePassword };
+const isCompanyName = value => {
+  const companyNamePattern = /^[a-zA-Z., -]+$/;
+  const companyNameConstraints = {
+    companyName: {
+      format: {
+        pattern: companyNamePattern,
+        flags: 'i'
+      }
+    }
+  };
+  return validate({ companyName: value }, companyNameConstraints)
+    ? 'auth.form.warning.companyName'
+    : undefined;
+};
+
+export default { isRequired, isPassword, isEmail, isUsername, isSamePassword, isCompanyName };

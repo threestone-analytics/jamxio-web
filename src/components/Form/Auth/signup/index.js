@@ -118,8 +118,8 @@ class RF extends React.Component {
             <FieldBox>
               <Field
                 {...institution}
-                validate={[formValidate.isRequired, formValidate.isUsername]}
-                warn={formValidate.isUsername}
+                validate={[formValidate.isRequired, formValidate.isCompanyName]}
+                warn={formValidate.isCompanyName}
               />
             </FieldBox>
           </ItemBox>
@@ -128,8 +128,8 @@ class RF extends React.Component {
             <FieldBox>
               <Field
                 {...institutionType}
-                validate={[formValidate.isRequired, formValidate.isUsername]}
-                warn={formValidate.isUsername}
+                validate={[formValidate.isRequired, formValidate.isCompanyName]}
+                warn={formValidate.isCompanyName}
               />
             </FieldBox>
           </ItemBox>
