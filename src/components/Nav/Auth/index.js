@@ -42,7 +42,9 @@ const Login = props => {
   return (
     <div className="nav-buttons-right">
       {props.loggedInUser ? (
-        <Button onClick={() => props.actions.logOut(props.apolloClient)}>Salir</Button>
+        <Button right onClick={() => props.actions.logOut(props.apolloClient)}>
+          Salir
+        </Button>
       ) : (
         <Fragment>
           <Button onClick={() => handleOpen('loginModal')}>Entrar</Button>

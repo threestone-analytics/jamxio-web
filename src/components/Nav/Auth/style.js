@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
   background: none;
-  width: 40%;
+  width: ${props => (props.right ? '85%' : '40%')};
   height: 57px;
   border: none;
   box-shadow: none;
@@ -12,5 +12,5 @@ export const Button = styled.button`
   font-weight: bold;
   line-height: normal;
   font-size: 24px;
-  text-align: center;
+  text-align: ${props => (props.right ? 'right' : 'center')};
 `;
