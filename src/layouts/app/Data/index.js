@@ -14,7 +14,8 @@ import {
   LoginModal,
   SignUpModal,
   ResetPasswordModal,
-  SetNewPasswordModal
+  SetNewPasswordModal,
+  EmailValidationModal
 } from 'Components/Modal/Auth';
 
 // Styles ; FIXME too many styles instead we sould use styled-components
@@ -35,6 +36,7 @@ const DataLayout = ({ location, props, match }) => (
       <HistoryModal />
       <LoginModal />
       <SetNewPasswordModal />
+      <EmailValidationModal />
       <SignUpModal />
       <ResetPasswordModal />
       <UploadModal />

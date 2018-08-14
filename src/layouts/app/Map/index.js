@@ -5,7 +5,8 @@ import {
   LoginModal,
   SignUpModal,
   ResetPasswordModal,
-  SetNewPasswordModal
+  SetNewPasswordModal,
+  EmailValidationModal
 } from 'Components/Modal/Auth';
 import MapContainer from 'Containers/appContainers/Map';
 import MainMenu from 'Components/Nav/Menu';
@@ -24,6 +25,7 @@ const MapLayout = ({ match, props }) => (
     <main className="page-wrap">
       <LoginModal />
       <SetNewPasswordModal />
+      <EmailValidationModal />
       <SignUpModal />
       <ResetPasswordModal />
       <Switch>

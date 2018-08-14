@@ -25,7 +25,8 @@ const signUpLogic = createLogic({
     })
       .then(() => {
         dispatch(authActions.signUpSuccess());
-        dispatch(replace('/validate_register'));
+        dispatch(hide('signupModal'));
+        dispatch(show('emailValidationModal'));
         done();
       })
       .catch(err => {

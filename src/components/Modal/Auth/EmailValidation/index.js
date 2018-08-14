@@ -13,7 +13,7 @@ import * as alertActions from 'Store/reducers/alert/alertActions';
 import * as authActions from 'Store/reducers/app/forms/auth/authActions';
 import * as modalActions from 'Store/reducers/modal/modalActions';
 import { getAlert, getAuthForm } from 'Utils/selectors/common';
-import { LoginForm } from 'Components/Form';
+import { EmailValidation } from 'Components/Form/Auth';
 import { ModalOuter, ExitButton, ModalBox, ModalHeader, Title } from '../style';
 
 const actions = [authActions, alertActions, modalActions];
@@ -48,15 +48,15 @@ Modal.defaultStyles.content = {
   padding: '20px'
 };
 
-const LoginModalForm = compose(
+const EmailValidationForm = compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
   ),
   withApollo
-)(LoginForm);
+)(EmailValidation);
 
-const LoginModal = props => (
+const EmailValidationModal = props => (
   <Modal
     isOpen={props.show}
     onRequestClose={props.handleHide}
@@ -69,13 +69,13 @@ const LoginModal = props => (
           <Title>Validar correo</Title>
           <ExitButton onClick={props.handleHide}>X</ExitButton>
         </ModalHeader>
-        <LoginModalForm handleHide={props.handleHide} {...props} />
+        <EmailValidationForm handleHide={props.handleHide} {...props} />
       </ModalBox>
     </ModalOuter>
   </Modal>
 );
 
-LoginModal.propTypes = {
+EmailValidationModal.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
@@ -86,4 +86,4 @@ LoginModal.propTypes = {
 export default connectModal({
   name: 'emailValidationModal',
   getModalState: state => state.get('modal')
-})(LoginModal);
+})(EmailValidationModal);
