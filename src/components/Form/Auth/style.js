@@ -53,12 +53,12 @@ export const ModalBox = styled.div`
 export const FormBox = styled.div`
   background-color: white;
   order: 0;
-  height: ${props => (props.small ? '15%' : '30%')};
+  height: ${props => (props.size ? props.size : '30%')};
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 60px;
+  margin-bottom: ${props => (props.bottom ? props.bottom : '60px')};
   margin-top: 30px;
 `;
 
@@ -81,7 +81,8 @@ export const ModalButtonBox = styled.div`
   margin: auto;
   align-items: center;
   justify-content: space-around;
-  margin-top: 15px;
+  margin-top: 0;
+  margin-bottom: 10px;
 `;
 
 export const ModalOuter = styled.div`
@@ -114,7 +115,7 @@ export const Label = styled.h1`
   font-style: normal;
   font-weight: bold;
   line-height: normal;
-  font-size: 24px;
+  font-size: ${props => (props.size ? props.size : '24px')};
   color: #9d9a9a;
 `;
 export const Alert = styled.h1`

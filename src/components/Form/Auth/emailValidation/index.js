@@ -5,10 +5,10 @@ import formValidate from 'Utils/validations';
 import { Form, FormBox, Label, FieldBox, Button, ModalButtonBox, ItemBox } from '../style';
 import 'react-widgets/dist/css/react-widgets.css';
 
-class RF extends React.Component {
+class EVF extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
-    this.props.dispatch(submit('resetPasswordForm'));
+    this.props.dispatch(submit('validateRegisterForm'));
   };
 
   renderField = ({ input, label, meta: { touched, error, warning }, ...rest }) => (
@@ -25,6 +25,7 @@ class RF extends React.Component {
 
   render() {
     const { submitting, formState } = this.props;
+
     const username = {
       name: 'username',
       type: 'text',
@@ -35,17 +36,30 @@ class RF extends React.Component {
       maxLength: 20,
       warning: 'Debe tener entre 6-12 caracteres'
     };
+
+    const code = {
+      name: 'code',
+      type: 'text',
+      component: this.renderField,
+      label: 'código',
+      placeholder: 'código',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 12,
+      warning: ''
+    };
     return (
       <Form onSubmit={this.handleSubmit}>
-        <FormBox bottom="10px">
+        <FormBox>
           <ItemBox>
-            <Label>Usuario:</Label>
+            <Label>Username</Label>
             <FieldBox>
-              <Field
-                {...username}
-                validate={[formValidate.isRequired, formValidate.isUsername]}
-                warn={formValidate.isUsername}
-              />
+              <Field {...username} validate={[formValidate.isRequired]} />
+            </FieldBox>
+          </ItemBox>
+          <ItemBox>
+            <Label>Código:</Label>
+            <FieldBox>
+              <Field {...code} validate={[formValidate.isRequired]} />
             </FieldBox>
           </ItemBox>
         </FormBox>
@@ -59,21 +73,22 @@ class RF extends React.Component {
   }
 }
 
-RF.propTypes = {
+EVF.propTypes = {
   dispatch: PropTypes.func.isRequired,
   formState: PropTypes.object.isRequired,
   submitting: PropTypes.bool.isRequired
 };
 
-const RegisterForm = reduxForm({
-  form: 'resetPasswordForm',
+const EmailValidationForm = reduxForm({
+  form: 'emailValidationForm',
   shouldAsyncValidate: true,
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,
-  onSubmit: (values, _, { actions: { resetPassword } }) =>
-    resetPassword({
+  onSubmit: (values, _, { actions: { confirmSignUp } }) =>
+    confirmSignUp({
+      code: values.get('code'),
       username: values.get('username')
     })
-})(RF);
+})(EVF);
 
-export default RegisterForm;
+export default EmailValidationForm;

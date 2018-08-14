@@ -94,7 +94,7 @@ class RF extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         <FormBox>
           <ItemBox>
-            <Label>Nombre:</Label>
+            <Label size="20px">Nombre:</Label>
             <FieldBox>
               <Field
                 {...name}
@@ -104,7 +104,7 @@ class RF extends React.Component {
             </FieldBox>
           </ItemBox>
           <ItemBox>
-            <Label>e-mail:</Label>
+            <Label size="20px">e-mail:</Label>
             <FieldBox>
               <Field
                 {...email}
@@ -114,7 +114,7 @@ class RF extends React.Component {
             </FieldBox>
           </ItemBox>
           <ItemBox>
-            <Label>Institución:</Label>
+            <Label size="20px">Institución:</Label>
             <FieldBox>
               <Field
                 {...institution}
@@ -124,7 +124,7 @@ class RF extends React.Component {
             </FieldBox>
           </ItemBox>
           <ItemBox>
-            <Label>Tipo de Institución:</Label>
+            <Label size="20px">Tipo de Institución:</Label>
             <FieldBox>
               <Field
                 {...institutionType}
@@ -134,9 +134,9 @@ class RF extends React.Component {
             </FieldBox>
           </ItemBox>
         </FormBox>
-        <FormBox small>
+        <FormBox size="15%">
           <ItemBox>
-            <Label>Usuario:</Label>
+            <Label size="20px">Usuario:</Label>
             <FieldBox>
               <Field
                 {...username}
@@ -146,7 +146,7 @@ class RF extends React.Component {
             </FieldBox>
           </ItemBox>
           <ItemBox>
-            <Label>Contraseña:</Label>
+            <Label size="20px">Contraseña:</Label>
             <FieldBox>
               <Field
                 {...password}

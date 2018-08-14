@@ -63,6 +63,7 @@ export const ModalButtonBox = styled.div`
   width: 60%;
   display: flex;
   margin: auto;
+  margin-top: 0px;
   align-items: center;
   justify-content: space-around;
 `;
@@ -108,7 +109,7 @@ export const Title = styled.h1`
   font-style: normal;
   font-weight: 900;
   height: 100%;
-  font-size: 64px;
+  font-size: ${props => (props.size ? props.size : '64px')};
   width: 60%;
   color: #ffffff;
   margin: 0;

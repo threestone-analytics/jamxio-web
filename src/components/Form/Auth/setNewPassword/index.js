@@ -58,21 +58,21 @@ class RF extends React.Component {
     };
     return (
       <Form onSubmit={this.handleSubmit}>
-        <FormBox>
+        <FormBox size="40%">
           <ItemBox>
-            <Label>Nombre de usuario</Label>
+            <Label size="20px">Nombre de usuario</Label>
             <FieldBox>
               <Field {...username} validate={[formValidate.isRequired]} />
             </FieldBox>
           </ItemBox>
           <ItemBox>
-            <Label>Código</Label>
+            <Label size="20px">Código</Label>
             <FieldBox>
               <Field {...code} validate={[formValidate.isRequired]} />
             </FieldBox>
           </ItemBox>
           <ItemBox>
-            <Label>Nueva contraseña:</Label>
+            <Label size="20px">Nueva contraseña:</Label>
             <FieldBox>
               <Field
                 {...password}

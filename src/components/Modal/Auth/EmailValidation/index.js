@@ -1,24 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Modal from 'react-modal';
-import { connectModal } from 'redux-modal';
 import { bindActionCreators } from 'redux';
+import { connectModal } from 'redux-modal';
 import { withApollo } from 'react-apollo';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
-// Actions
-import { SetNewPassword } from 'Components/Form/Auth';
-import { getAlert, getAuthForm } from 'Utils/selectors/common';
+import Modal from 'react-modal';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-// Actions
 import * as alertActions from 'Store/reducers/alert/alertActions';
 import * as authActions from 'Store/reducers/app/forms/auth/authActions';
-import { ModalOuter, ExitButton, Title, ModalHeader } from '../style';
-import { ModalBox } from './style';
+import * as modalActions from 'Store/reducers/modal/modalActions';
+import { getAlert, getAuthForm } from 'Utils/selectors/common';
+import { LoginForm } from 'Components/Form';
+import { ModalOuter, ExitButton, ModalBox, ModalHeader, Title } from '../style';
 
-const actions = [authActions, alertActions];
+const actions = [authActions, alertActions, modalActions];
 
 function mapStateToProps(state) {
   return {
@@ -50,15 +48,15 @@ Modal.defaultStyles.content = {
   padding: '20px'
 };
 
-const SetNewPasswordForm = compose(
+const LoginModalForm = compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
   ),
   withApollo
-)(SetNewPassword);
+)(LoginForm);
 
-const SetNewPasswordModal = props => (
+const LoginModal = props => (
   <Modal
     isOpen={props.show}
     onRequestClose={props.handleHide}
@@ -68,16 +66,16 @@ const SetNewPasswordModal = props => (
     <ModalOuter>
       <ModalBox>
         <ModalHeader>
-          <Title size="50px">Nueva contraseña</Title>
+          <Title>Validar correo</Title>
           <ExitButton onClick={props.handleHide}>X</ExitButton>
         </ModalHeader>
-        <SetNewPasswordForm handleHide={props.handleHide} {...props} />
+        <LoginModalForm handleHide={props.handleHide} {...props} />
       </ModalBox>
     </ModalOuter>
   </Modal>
 );
 
-SetNewPasswordModal.propTypes = {
+LoginModal.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
@@ -86,6 +84,6 @@ SetNewPasswordModal.propTypes = {
 };
 
 export default connectModal({
-  name: 'setNewPasswordModal',
+  name: 'emailValidationModal',
   getModalState: state => state.get('modal')
-})(SetNewPasswordModal);
+})(LoginModal);

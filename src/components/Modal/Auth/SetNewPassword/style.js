@@ -9,12 +9,3 @@ export const ModalBox = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-export const ModalHeader = styled.div`
-  width: 100%;
-  height: 300px;
-  top: 0;
-  background: #2f80ed;
-  display: flex;
-  flex-direction: row;
-`;

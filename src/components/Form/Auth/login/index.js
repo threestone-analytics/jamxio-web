@@ -98,7 +98,7 @@ class LF extends React.Component {
             ENTRAR
           </Button>
         </ModalButtonBox>
-        <ModalButtonBox>
+        <ModalButtonBox small>
           <RegisterButton onClick={this.handleSignUp}>¿No tienes cuenta? Regístrate</RegisterButton>
           <RegisterButton onClick={this.handleResetPassword}>
             ¿Olvidaste tu contrasena?

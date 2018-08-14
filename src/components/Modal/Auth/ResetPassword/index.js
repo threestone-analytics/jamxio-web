@@ -65,7 +65,7 @@ const ResetPasswordModal = props => (
     <ModalOuter>
       <ModalBox>
         <ModalHeader>
-          <Title>Restablecer</Title>
+          <Title size="40px">Restablecer contraseña</Title>
           <ExitButton onClick={props.handleHide}>X</ExitButton>
         </ModalHeader>
         <ResetPasswordModalForm handleHide={props.handleHide} {...props} />
