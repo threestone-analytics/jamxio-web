@@ -1,6 +1,6 @@
 import { Auth } from 'aws-amplify';
 import { createLogic } from 'redux-logic';
-import { hide } from 'redux-modal';
+import { hide, show } from 'redux-modal';
 import { replace } from 'connected-react-router';
 import ActionTypes from '../ActionsTypes';
 import * as authActions from '../reducers/app/forms/auth/authActions';
@@ -103,7 +103,8 @@ const resetPasswordLogic = createLogic({
     Auth.forgotPassword(username)
       .then(() => {
         dispatch(authActions.resetPasswordSuccess());
-        dispatch(replace('/change_password'));
+        dispatch(hide('resetPasswordModal'));
+        dispatch(show('setNewPasswordModal'));
         done();
       })
       .catch(err => {

@@ -158,7 +158,7 @@ class RF extends React.Component {
         </FormBox>
         <ModalButtonBox>
           <NavLink id="register" to="/">
-            <Button onClick={this.handleSubmit}>Registrar</Button>
+            <Button onClick={this.handleSubmit}>Enviar</Button>
           </NavLink>
         </ModalButtonBox>
       </Form>

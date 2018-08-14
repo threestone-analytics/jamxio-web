@@ -2,13 +2,13 @@ import React, { Fragment } from 'react';
 import { reduxForm, Field, submit } from 'redux-form/immutable';
 import PropTypes from 'prop-types';
 import formValidate from 'Utils/validations';
-import { Form, FormBox, Label, FieldBox, Button, ModalButtonBox, ItemBox } from './style';
+import { Form, FormBox, Label, FieldBox, Button, ModalButtonBox, ItemBox } from '../style';
 import 'react-widgets/dist/css/react-widgets.css';
 
 class RF extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
-    this.props.dispatch(submit('resetPasswordForm'));
+    this.props.dispatch(submit('changePasswordForm'));
   };
 
   renderField = ({ input, label, meta: { touched, error, warning }, ...rest }) => (
@@ -35,23 +35,56 @@ class RF extends React.Component {
       maxLength: 20,
       warning: 'Debe tener entre 6-12 caracteres'
     };
+
+    const code = {
+      name: 'code',
+      type: 'text',
+      component: this.renderField,
+      label: 'código',
+      placeholder: 'código',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 12,
+      warning: ''
+    };
+    const password = {
+      name: 'password',
+      type: 'password',
+      component: this.renderField,
+      label: 'contraseña',
+      placeholder: 'contraseña',
+      disabled: this.props.formState.get('isFetching'),
+      maxLength: 12,
+      warning: 'Debe tener entre 8-12 caracteres con al menos 1 número y una letra en miniscula'
+    };
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormBox>
           <ItemBox>
-            <Label>Username:</Label>
+            <Label>Nombre de usuario</Label>
+            <FieldBox>
+              <Field {...username} validate={[formValidate.isRequired]} />
+            </FieldBox>
+          </ItemBox>
+          <ItemBox>
+            <Label>Código</Label>
+            <FieldBox>
+              <Field {...code} validate={[formValidate.isRequired]} />
+            </FieldBox>
+          </ItemBox>
+          <ItemBox>
+            <Label>Nueva contraseña:</Label>
             <FieldBox>
               <Field
-                {...username}
-                validate={[formValidate.isRequired, formValidate.isUsername]}
-                warn={formValidate.isUsername}
+                {...password}
+                validate={[formValidate.isRequired, formValidate.isPassword]}
+                warn={formValidate.isPassword}
               />
             </FieldBox>
           </ItemBox>
         </FormBox>
         <ModalButtonBox>
           <Button disabled={submitting || formState.isFetching} onClick={this.handleSubmit}>
-            Enviar
+            Restablecer
           </Button>
         </ModalButtonBox>
       </Form>
@@ -66,13 +99,15 @@ RF.propTypes = {
 };
 
 const RegisterForm = reduxForm({
-  form: 'resetPasswordForm',
+  form: 'changePasswordForm',
   shouldAsyncValidate: true,
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,
-  onSubmit: (values, _, { actions: { resetPassword } }) =>
-    resetPassword({
-      username: values.get('username')
+  onSubmit: (values, _, { actions: { changePassword } }) =>
+    changePassword({
+      username: values.get('username'),
+      code: values.get('code'),
+      password: values.get('password')
     })
 })(RF);
 

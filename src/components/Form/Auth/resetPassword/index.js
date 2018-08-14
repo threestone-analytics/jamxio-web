@@ -8,7 +8,7 @@ import 'react-widgets/dist/css/react-widgets.css';
 class RF extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
-    this.props.dispatch(submit('validateRegisterForm'));
+    this.props.dispatch(submit('resetPasswordForm'));
   };
 
   renderField = ({ input, label, meta: { touched, error, warning }, ...rest }) => (
@@ -66,7 +66,7 @@ RF.propTypes = {
 };
 
 const RegisterForm = reduxForm({
-  form: 'validateRegisterForm',
+  form: 'resetPasswordForm',
   shouldAsyncValidate: true,
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,

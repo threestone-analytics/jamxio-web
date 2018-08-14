@@ -68,7 +68,7 @@ const SignUpModal = props => (
     <ModalOuter>
       <ModalBox>
         <ModalHeader>
-          <Title>Sign Up</Title>
+          <Title>Registrar</Title>
           <ExitButton onClick={props.handleHide}>X</ExitButton>
         </ModalHeader>
         <SignUpModalForm handleHide={props.handleHide} {...props} />

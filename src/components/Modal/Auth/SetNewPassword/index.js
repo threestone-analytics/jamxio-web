@@ -1,30 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Modal from 'react-modal';
 import { connectModal } from 'redux-modal';
-import { withApollo } from 'react-apollo';
 import { bindActionCreators } from 'redux';
+import { withApollo } from 'react-apollo';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
-import Modal from 'react-modal';
-
-import { ResetPasswordForm } from 'Components/Form/Auth';
-
-import * as alertActions from 'Store/reducers/alert/alertActions';
-import * as authActions from 'Store/reducers/app/forms/auth/authActions';
-
-import { getAuthForm } from 'Utils/selectors/common';
-import { ModalBox } from './style';
-import { ModalOuter, ExitButton, ModalHeader, Title } from '../style';
+// Actions
+import { SetNewPassword } from 'Components/Form/Auth';
+import { getAlert, getAuthForm } from 'Utils/selectors/common';
 
 // Actions
+import * as alertActions from 'Store/reducers/alert/alertActions';
+import * as authActions from 'Store/reducers/app/forms/auth/authActions';
+import { ModalOuter, ExitButton, Title } from '../style';
+import { ModalBox, ModalHeader } from './style';
 
 const actions = [authActions, alertActions];
 
-// Selectors
 function mapStateToProps(state) {
   return {
+    alertState: getAlert(state),
     formState: getAuthForm(state)
   };
 }
@@ -52,29 +50,34 @@ Modal.defaultStyles.content = {
   padding: '20px'
 };
 
-const ResetPasswordModalForm = compose(
+const SetNewPasswordForm = compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
   ),
   withApollo
-)(ResetPasswordForm);
+)(SetNewPassword);
 
-const ResetPasswordModal = props => (
-  <Modal isOpen={props.show} contentLabel="Modal" ariaHideApp={false}>
+const SetNewPasswordModal = props => (
+  <Modal
+    isOpen={props.show}
+    onRequestClose={props.handleHide}
+    contentLabel="Modal"
+    ariaHideApp={false}
+  >
     <ModalOuter>
       <ModalBox>
         <ModalHeader>
-          <Title>Restablecer</Title>
+          <Title>Nueva Contrasena</Title>
           <ExitButton onClick={props.handleHide}>X</ExitButton>
         </ModalHeader>
-        <ResetPasswordModalForm handleHide={props.handleHide} {...props} />
+        <SetNewPasswordForm handleHide={props.handleHide} {...props} />
       </ModalBox>
     </ModalOuter>
   </Modal>
 );
 
-ResetPasswordModal.propTypes = {
+SetNewPasswordModal.propTypes = {
   show: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
@@ -83,6 +86,6 @@ ResetPasswordModal.propTypes = {
 };
 
 export default connectModal({
-  name: 'resetPasswordModal',
+  name: 'setNewPasswordModal',
   getModalState: state => state.get('modal')
-})(ResetPasswordModal);
+})(SetNewPasswordModal);

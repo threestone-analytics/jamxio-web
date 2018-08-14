@@ -30,7 +30,7 @@ class LF extends React.Component {
 
   handleResetPassword = () => {
     this.props.handleHide();
-    this.props.actions.show('reset_passwordModal');
+    this.props.actions.show('resetPasswordModal');
   };
 
   renderField = ({ input, label, meta: { touched, error, warning }, ...rest }) => (
