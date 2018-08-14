@@ -29,7 +29,7 @@ export const Input = styled.input`
 
 export const ModalBox = styled.div`
   width: 722px;
-  height: 581px;
+  height: 580px;
   left: 261px;
   top: 263px;
   background-color: #fff;
@@ -107,13 +107,16 @@ export const Title = styled.h1`
   font-family: Roboto;
   font-style: normal;
   font-weight: 900;
-  line-height: normal;
+  height: 100%;
   font-size: 64px;
   width: 60%;
-  margin-left: 20%;
-  text-align: center;
   color: #ffffff;
-  padding: 20px 0;
+  margin: 0;
+  margin-left: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 `;
 export const Alert = styled.h1`
   font-family: 'Roboto', sans-serif;

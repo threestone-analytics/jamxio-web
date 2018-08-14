@@ -84,7 +84,7 @@ class RF extends React.Component {
         </FormBox>
         <ModalButtonBox>
           <Button disabled={submitting || formState.isFetching} onClick={this.handleSubmit}>
-            Reestablecer
+            Restablecer
           </Button>
         </ModalButtonBox>
       </Form>

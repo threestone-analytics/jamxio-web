@@ -1,23 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 import { connectModal } from 'redux-modal';
 import { withApollo } from 'react-apollo';
-import Modal from 'react-modal';
-/* show, handleHide, message, title */
 import { compose } from 'recompose';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Map } from 'immutable';
 
-import { LoginForm } from 'Components/Form';
+import Modal from 'react-modal';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import * as alertActions from 'Store/reducers/alert/alertActions';
 import * as authActions from 'Store/reducers/app/forms/auth/authActions';
 import * as modalActions from 'Store/reducers/modal/modalActions';
 import { getAlert, getAuthForm } from 'Utils/selectors/common';
+import { LoginForm } from 'Components/Form';
 import { ModalOuter, ExitButton, ModalBox, ModalHeader, Title } from '../style';
-// Actions
-
-// Selectors
 
 const actions = [authActions, alertActions, modalActions];
 

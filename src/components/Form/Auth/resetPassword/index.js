@@ -39,7 +39,7 @@ class RF extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         <FormBox>
           <ItemBox>
-            <Label>Username:</Label>
+            <Label>Usuario:</Label>
             <FieldBox>
               <Field
                 {...username}

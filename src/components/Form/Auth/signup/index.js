@@ -134,7 +134,7 @@ class RF extends React.Component {
             </FieldBox>
           </ItemBox>
         </FormBox>
-        <FormBox>
+        <FormBox small>
           <ItemBox>
             <Label>Usuario:</Label>
             <FieldBox>

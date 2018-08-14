@@ -15,7 +15,8 @@ import * as alertActions from 'Store/reducers/alert/alertActions';
 import * as authActions from 'Store/reducers/app/forms/auth/authActions';
 
 import { getAuthForm } from 'Utils/selectors/common';
-import { ModalOuter, ExitButton, ModalBox, ModalHeader, Title } from '../style';
+import { ModalBox } from './style';
+import { ModalOuter, ExitButton, ModalHeader, Title } from '../style';
 
 // Actions
 
@@ -69,7 +70,7 @@ const ResetPasswordModal = props => (
     <ModalOuter>
       <ModalBox>
         <ModalHeader>
-          <Title>Reestablecer</Title>
+          <Title>Restablecer</Title>
           <ExitButton onClick={props.handleHide}>X</ExitButton>
         </ModalHeader>
         <ResetPasswordModalForm handleHide={props.handleHide} {...props} />

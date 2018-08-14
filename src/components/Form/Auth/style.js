@@ -53,7 +53,7 @@ export const ModalBox = styled.div`
 export const FormBox = styled.div`
   background-color: white;
   order: 0;
-  height: 30%;
+  height: ${props => (props.small ? '15%' : '30%')};
   width: 100%;
   display: flex;
   flex-direction: column;

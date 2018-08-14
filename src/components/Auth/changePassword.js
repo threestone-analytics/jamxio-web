@@ -43,7 +43,7 @@ const ChangePassword = props => (
       <ModalOuter>
         <ModalBox>
           <ModalHeader>
-            <Title>Reestablecer Contraseña</Title>
+            <Title>Restablecer Contraseña</Title>
           </ModalHeader>
           <ChangePasswordForm {...props} />
         </ModalBox>
