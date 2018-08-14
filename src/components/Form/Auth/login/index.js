@@ -38,7 +38,8 @@ class LF extends React.Component {
       <label htmlFor={input.name}>
         <input id={input.name} {...input} {...rest} />
         <div style={{ height: '1rem' }}>
-          {(touched && (error && <div>Campo Requerido</div>)) ||
+          {(touched &&
+            (error && <div style={{ color: 'red', fontSize: '14px' }}>Campo Requerido</div>)) ||
             (warning && <div>{rest.warning}</div>)}
         </div>
       </label>
