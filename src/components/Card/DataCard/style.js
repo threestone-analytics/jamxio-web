@@ -28,7 +28,7 @@ export const ImageContainer = styled.div`
 export const Image = styled.img`
   background-color: rgb(202, 210, 211);
   width: 100%;
-  height: 300px
+  height: 300px;
   max-width: none;
   min-width: 300px;
 `;

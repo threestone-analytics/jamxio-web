@@ -13,6 +13,7 @@ import { compose } from 'recompose';
 
 // Actions
 import * as historyActions from 'Store/reducers/history/historyActions';
+import * as modalActions from 'Store/reducers/modal/modalActions';
 
 // Selectors
 
@@ -22,7 +23,7 @@ import {
   ModalBox,
   ModalInfo,
   ModalOuter,
-  ModalButtonBox,
+  ButtonBox,
   ModalLabelBox,
   Title,
   CheckBox,
@@ -32,10 +33,12 @@ import {
   SpinnerBox,
   DataType,
   HistoryContainer,
-  ButtonDisabled,
+  Alert,
+  AlertBox,
   HistoryBox,
   HistoryItem,
   HistoryInfoTab,
+  BottomContainer,
   HistoryItemContainer
 } from './style';
 
@@ -50,7 +53,7 @@ Modal.defaultStyles.content = {
   padding: '20px'
 };
 
-const actions = [historyActions];
+const actions = [historyActions, modalActions];
 
 function mapStateToProps(state) {
   return {
@@ -154,6 +157,10 @@ const HistoryModal = props => {
   const handleclick = () => {
     props.actions.downloadHistory(props);
   };
+
+  const handleOpen = name => {
+    props.actions.show(name, {});
+  };
   return (
     <Modal
       closeTimeoutMS={0}
@@ -189,14 +196,22 @@ const HistoryModal = props => {
               </HistoryItemContainer>
             </HistoryBox>
           </HistoryContainer>
-          <ModalButtonBox>
-            <Button cancel="true" onClick={props.handleHide}>
-              Salir
-            </Button>
-            <ButtonDisabled disabled={!props.loggedInUser} onClick={handleclick}>
-              Descargar
-            </ButtonDisabled>
-          </ModalButtonBox>
+          <BottomContainer>
+            <ButtonBox>
+              <Button cancel onClick={props.handleHide}>
+                Salir
+              </Button>
+              <Button disabled={!props.loggedInUser} onClick={handleclick}>
+                Descargar
+              </Button>
+            </ButtonBox>
+            <AlertBox disabled={props.loggedInUser}>
+              <Title right>
+                ¡Ups!, Necesitas <Alert onClick={() => handleOpen('loginModal')}>registrarte</Alert>{' '}
+                para poder descargar.
+              </Title>
+            </AlertBox>
+          </BottomContainer>
         </ModalBox>
       </ModalOuter>
     </Modal>

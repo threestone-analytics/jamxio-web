@@ -1,23 +1,7 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  background: ${props => (props.cancel ? '#FF5A5F' : '#00FF94')};
-  border: none;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  line-height: normal;
-  font-size: 18px;
-  text-align: center;
-  height: 40px;
-  width: 150px;
-  color: #fff;
-`;
-// Fixme double button
-export const ButtonDisabled = styled.button`
-  background: ${props => (props.disabled ? '#000' : '#00FF94')};
+  background: ${props => (props.disabled ? '#000' : props.cancel ? '#FF5A5F' : '#00FF94')};
   border: none;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -71,16 +55,36 @@ export const ModalLabelBox = styled.div`
   flex-direction: ${props => (props.vertical ? 'column' : 'row')};
 `;
 
-export const ModalButtonBox = styled.div`
-  background-color: white;
-  order: 2;
-  height: 57px;
+export const ButtonBox = styled.div`
+  margin-top: 5%;
+  order: 1;
+  height: 50px;
   width: 40%;
   display: flex;
   margin-left: 47%;
-  margin-top: 5%;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+`;
+
+export const BottomContainer = styled.div`
+  order: 4;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+export const AlertBox = styled.div`
+  order: 2;
+  height: 30px;
+  width: 40%;
+  margin-left: 47%;
+  align-items: right;
+  justify-content: flex-end;
+  display: none;
+  ${BottomContainer}:hover & {
+    display: ${props => (props.disabled ? 'none' : 'flex')};
+  }
 `;
 
 export const ModalOuter = styled.div`
@@ -108,27 +112,18 @@ export const ModalInfo = styled.div`
   margin-top: 30px;
 `;
 
-export const AlertBox = styled.div`
-  background-color: white;
-  order: 2;
-  margin-left: 15%;
-  height: 10%;
-  width: 60%;
-  display: flex;
-  flex-direction: ${props => (props.vertical ? 'column' : 'row')};
-  justify-content: space-between;
-`;
-
 export const Title = styled.h1`
   order: 0;
   font-family: 'Roboto', sans-serif;
+  text-align: ${props => (props.right ? 'right' : 'left')};
+  color: ${props => (props.color ? props.color : '#000')};
   font-style: normal;
   font-weight: ${props => (props.thin ? 'normal' : 'bold')};
   line-height: normal;
   font-size: ${props => (props.big ? '16px' : '15px')};
-  color: #000000;
   margin: 5px;
   margin-right: ${props => (props.margin_right ? props.margin_right : '0px')};
+  text-decoration: ${props => (props.underline ? 'underline' : 'none')};
 `;
 
 export const Label = styled.h1`
@@ -143,14 +138,16 @@ export const Label = styled.h1`
   margin-right: 10px;
 `;
 
-export const Alert = styled.h1`
+export const Alert = styled.a`
   font-family: 'Roboto', sans-serif;
   font-style: normal;
-  font-weight: 'bold';
+  font-weight: bold;
+  cursor: pointer;
   font-size: 15px;
-  color: ${props => (props.red ? '#ff0000' : '#0000ff')};
-  margin: 10px;
-  text-decoration: ${props => (props.blue ? 'underline' : 'none')};
+  text-decoration: underline;
+  &:hover {
+    color: #2f80ed;
+  }
 `;
 
 export const HistoryContainer = styled.div`
