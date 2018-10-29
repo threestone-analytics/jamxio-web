@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { toastr } from 'react-redux-toastr';
 
-
 const DashboardView = props => {
   const handleOpen = name => {
     props.actions.show(name, { message: `This is a ${name}`, title: 'Title' });

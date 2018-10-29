@@ -31,7 +31,7 @@ export const renderSubcategories = function(props) {
     return;
   }
 
-  const groupedData = _.mapValues(_.groupBy(props.options, 'documentType.subcategory'));// eslint-disable-line
+  const groupedData = _.mapValues(_.groupBy(props.options, 'documentType.subcategory')); // eslint-disable-line
   const subcategories = [];
 
   Object.keys(groupedData).forEach(element => {
@@ -54,5 +54,5 @@ export const renderSubcategories = function(props) {
     );
   });
 
-    return data;  // eslint-disable-line
+  return data; // eslint-disable-line
 };

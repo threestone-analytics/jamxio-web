@@ -1,18 +1,23 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 const categories = ['00-water'];
 
 const crowdSourced = ['sms', 'twitter', 'Direct Message', 'reportes en linea'];
 
-const defaultContainer = ({ children }) => (
-<div className="control-panel">
-    {children}
-  </div>
-);
-
+const DefaultContainer = ({ children }) => <div className="control-panel">{children}</div>;
+DefaultContainer.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired
+};
 export default class StyleControls extends PureComponent {
+  static propTypes = {
+    containerComponent: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])
+      .isRequired,
+    toggleLayer: PropTypes.func.isRequired
+  };
+
   render() {
-    const Container = this.props.containerComponent || defaultContainer;
+    const Container = this.props.containerComponent || DefaultContainer;
 
     return (
       <Container>
@@ -20,8 +25,8 @@ export default class StyleControls extends PureComponent {
           <h5>Geo Data</h5>
         </div>
         <hr />
-        {categories.map((category, index) => (
-<label key={index}>
+        {categories.map(category => (
+          <label key={`{category}`}>
             <input
               type="checkbox"
               onClick={e => {
@@ -30,13 +35,13 @@ export default class StyleControls extends PureComponent {
             />
             {category}
           </label>
-)))}
+        ))}
         <div className="control-panel-title">
           <h5>Crowd Surced Data</h5>
         </div>
         <hr />
-        {crowdSourced.map((cs, index) => (
-<label key={index}>
+        {crowdSourced.map(cs => (
+          <label key={cs}>
             <input
               type="checkbox"
               onClick={e => {
@@ -45,7 +50,7 @@ export default class StyleControls extends PureComponent {
             />
             {cs}
           </label>
-)))}
+        ))}
       </Container>
     );
   }

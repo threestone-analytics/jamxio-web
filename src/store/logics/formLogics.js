@@ -47,8 +47,7 @@ const uploadDocument = createLogic({
           if (err) {
             action.payload.change(['uploaded'], false);
 
-            return console.log('Hubo un problema al intentar registrar los datos1: ', err);// eslint-disable-line
-          
+            return console.log('Hubo un problema al intentar registrar los datos1: ', err); // eslint-disable-line
           }
           const url = bucketUrl.concat(fileKey);
           action.payload.change(['uploaded'], true);

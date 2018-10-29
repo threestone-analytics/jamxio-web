@@ -10,8 +10,7 @@ const signUpLogic = createLogic({
   latest: true,
   process({ action }, dispatch, done) {
     dispatch(authActions.signUpRequest());
-    const { username, email, name,password, institution, institution_type } = action.payload; // eslint-disable-line
-
+    const { username, email, name, password, institution, institution_type } = action.payload; // eslint-disable-line
 
     Auth.signUp({
       username,
@@ -45,6 +44,7 @@ const confirmSignUpLogic = createLogic({
     Auth.confirmSignUp(username, code)
       .then(() => {
         dispatch(authActions.confirmSignUpSuccess());
+        dispatch(hide('emailValidationModal'));
         dispatch(replace('/'));
         done();
       })
@@ -146,7 +146,7 @@ const logOutLogic = createLogic({
     dispatch,
     done
   ) {
-    dispatch(authActions.logOutRequest());// eslint-disable-line
+    dispatch(authActions.logOutRequest()); // eslint-disable-line
     Auth.signOut()
       .then(() => {
         dispatch(authActions.logOutSuccess());

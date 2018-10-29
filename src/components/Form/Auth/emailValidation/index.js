@@ -8,7 +8,7 @@ import 'react-widgets/dist/css/react-widgets.css';
 class EVF extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
-    this.props.dispatch(submit('validateRegisterForm'));
+    this.props.dispatch(submit('emailValidationForm'));
   };
 
   renderField = ({ input, label, meta: { touched, error, warning }, ...rest }) => (
@@ -85,11 +85,12 @@ const EmailValidationForm = reduxForm({
   shouldAsyncValidate: true,
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,
-  onSubmit: (values, _, { actions: { confirmSignUp } }) =>
+  onSubmit: (values, _, { actions: { confirmSignUp } }) => {
     confirmSignUp({
       code: values.get('code'),
       username: values.get('username')
-    })
+    });
+  }
 })(EVF);
 
 export default EmailValidationForm;

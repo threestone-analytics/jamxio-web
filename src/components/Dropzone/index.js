@@ -67,7 +67,7 @@ const Dropzone = props => {
             }
           } catch (ex) {
             handleShow('alertText');
-            console.log(`ex when trying to parse json = ${ex}`);// eslint-disable-line
+            console.log(`ex when trying to parse json = ${ex}`); // eslint-disable-line
           }
         };
       })(file);

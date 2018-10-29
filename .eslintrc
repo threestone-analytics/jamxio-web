@@ -15,6 +15,13 @@
     }
   },
   "rules": {
+    "prettier/prettier": ["error", {
+      "printWidth": 100,
+      "tabWidth": 2,
+      "singleQuote": true,
+      "trailingComma": "none"
+    }],
+    "comma-dangle": ["error", "never"],
     "jsx-a11y/label-has-for": [ 2, {
       "components": [ "Label" ],
       "required": {

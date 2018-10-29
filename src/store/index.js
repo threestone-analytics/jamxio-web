@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware, connectRouter } from 'connected-react-router/immutable';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import devToolsEnhancer from 'remote-redux-devtools';
 import { createLogicMiddleware } from 'redux-logic';
 import getInitialState from './initialState';
 import rootReducer from './reducers';
@@ -22,20 +22,18 @@ export default history => {
 
   const middlewares = [logicMiddleware, routerMiddleware(history)];
 
-  const enhancers = [applyMiddleware(...middlewares)];
+  const enhancers = [applyMiddleware(...middlewares), devToolsEnhancer()];
 
   // create store
   const store = createStore(
     connectRouter(history)(rootReducer),
     fromJS(getInitialState()),
-    process.env.NODE_ENV === 'development'
-      ? composeWithDevTools(...enhancers)
-      : compose(...enhancers)
+    process.env.NODE_ENV === 'development' ? compose(...enhancers) : compose(...enhancers)
   );
 
   if (module.hot) {
     module.hot.accept('./reducers', () => {
-        const nextReducer = require('./reducers').default; // eslint-disable-line      
+      const nextReducer = require('./reducers').default; // eslint-disable-line
       store.replaceReducer(nextReducer);
     });
   }

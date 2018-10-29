@@ -11,7 +11,7 @@ const baseConfig = require('./base.config.js');
 const developmentEnv = {
   NODE_ENV: JSON.stringify('development'),
   PLATFORM_ENV: JSON.stringify('web'),
-  GRAPHQL_SERVER_URL: JSON.stringify('http://localhost:4000/graphql'),
+  GRAPHQL_SERVER_URL: JSON.stringify('https://data.jamx.io/graphql'),
   SERVER_URL: JSON.stringify('https://server.com/api')
 };
 
