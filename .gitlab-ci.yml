@@ -49,6 +49,7 @@ before_script:
 image: node:latest
 
 stages:
+  - lint
   - build
   - deploy
   
@@ -61,6 +62,15 @@ cache:
   key: "$CI_COMMIT_REF_NAME"
   paths:
     - node_modules
+
+lint:
+  stage: lint
+  tags: 
+    - aws-spot-nodejs
+  script:
+    - ssh -v git@gitlab.com
+    - yarn 
+    - yarn lint
   
 build_prod:
   stage: build
@@ -75,7 +85,7 @@ build_prod:
       - dist/  # This is what we want to publish
     
     
-deploys3:
+deploy_to_s3:
   image: "python:latest"
   stage: deploy
   dependencies:
@@ -88,6 +98,8 @@ deploys3:
     - aws s3 rm s3://${BUCKET_NAME}/ --recursive
     - aws s3 cp dist s3://${BUCKET_NAME}/ --recursive
     - aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/*"
+  only:
+    - master
   environment:
     name: production
 
