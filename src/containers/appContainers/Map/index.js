@@ -14,12 +14,26 @@ import { PanelContainer } from './style';
 
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
+const layersShown = [
+  'Centrales electricas mayores a 100MW',
+  'Cruces fronterizos de electricidad',
+  'Fabricas de sustancias toxicas y/o peligrosas para la salud',
+  'Fracking',
+  'Segmento manufacturero. Por municipio',
+  'ANP estatal',
+  'ANP federal',
+  'Degradación ambiental ',
+  'Infraestructura energetica'
+];
+
 function plotData(docs, m, a) {
   // FIXME duplicate
   const groupedData = _.mapValues(_.groupBy(docs, 'documentType.category'));
   a.setState({ categories: _.groupBy(docs, currentObject => currentObject.documentType.category) });
+
   Object.keys(groupedData).forEach((element, i) => {
     const records = groupedData[element];
+
     let n = 0;
     if (n >= records.lenght) {
       n = 0;
@@ -42,7 +56,7 @@ function plotData(docs, m, a) {
             'circle-radius': 5
           },
           layout: {
-            visibility: 'none'
+            visibility: layersShown.includes(newDoc.title) ? 'visible' : 'none'
           },
           id: doc.recordId, // Sets id as current child's key
           source: doc.recordId // The source layer defined above
@@ -56,7 +70,7 @@ function plotData(docs, m, a) {
             'fill-opacity': 1
           },
           layout: {
-            visibility: 'none'
+            visibility: layersShown.includes(newDoc.title) ? 'visible' : 'none'
           },
           id: doc.recordId, // Sets id as current child's key
           source: doc.recordId // The source layer defined above
@@ -73,9 +87,9 @@ class MapContainer extends React.Component {
 
     this.state = {
       categories: [],
-      lat: 23.3704762,
-      lng: -91.7996812,
-      zoom: 4.5
+      lat: 24.3704762,
+      lng: -96.7996812,
+      zoom: 4.9
     };
   }
 
@@ -100,7 +114,7 @@ class MapContainer extends React.Component {
   }
 
   toggleLayer(key, event) {
-    if (!event.target.checked) {
+    if (event && !event.target.checked) {
       this.map.setLayoutProperty(key, 'visibility', 'none');
       // this.className = '';
     } else {
