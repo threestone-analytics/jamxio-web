@@ -124,6 +124,8 @@ const changePasswordLogic = createLogic({
     Auth.forgotPasswordSubmit(username, code, password)
       .then(() => {
         dispatch(authActions.changePasswordSuccess());
+        dispatch(hide('setNewPasswordModal'));
+        dispatch(show('loginModal'));
         dispatch(replace('/'));
         done();
       })
