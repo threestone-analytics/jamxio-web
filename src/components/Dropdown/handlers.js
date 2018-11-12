@@ -1,19 +1,34 @@
 import React from 'react';
 import { CheckBox, SubItem, SubSubItem, SubItemLabel, SubSubItemLabel, Mark } from './style';
 
+const layersShown = [
+  'Centrales electricas mayores a 100MW',
+  'Cruces fronterizos de electricidad',
+  'Fabricas de sustancias toxicas y/o peligrosas para la salud',
+  'Fracking',
+  'Segmento manufacturero. Por municipio',
+  'ANP estatal',
+  'ANP federal',
+  'Degradación ambiental ',
+  'Infraestructura energetica'
+];
+
 export const renderRecords = function(records, props) {
   if (!records) {
     return;
   }
-  const data = records.map(record => {
-    const _id = record.recordId;
+
+  const data = records.map(layer => {
+    const _id = layer.recordId;
+    const checked = layersShown.includes(layer.title) ? true : false; // eslint-disable-line
     return (
       <SubSubItem>
-        <Mark color={record.color} />
-        <SubSubItemLabel>{record.title}</SubSubItemLabel>
+        <Mark color={layer.color} />
+        <SubSubItemLabel>{layer.title}</SubSubItemLabel>
         <CheckBox>
           <input
             type="checkbox"
+            defaultChecked={checked}
             onClick={e => {
               props.toggleLayer(_id, e);
             }}
