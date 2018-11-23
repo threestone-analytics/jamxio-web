@@ -45,6 +45,12 @@ const DD = props => {
   return (
     <ItemContainer>
       <Item active={active}>
+        <Circle
+          color={color}
+          onClick={() => {
+            props.actions.toggleItems(props.title);
+          }}
+        />
         <Label
           onClick={() => {
             props.actions.toggleItems(props.title);
@@ -52,12 +58,6 @@ const DD = props => {
         >
           {props.title}
         </Label>
-        <Circle
-          color={color}
-          onClick={() => {
-            props.actions.toggleItems(props.title);
-          }}
-        />
       </Item>
       <ul
         id="subcategory-list"
@@ -76,7 +76,7 @@ export const Dropdown = connect(
 
 DD.propTypes = {
   title: PropTypes.string.isRequired,
-  options: PropTypes.string.isRequired,
   actions: PropTypes.object.isRequired,
+  options: PropTypes.array.isRequired,
   dropdownState: PropTypes.object.isRequired
 };

@@ -33,7 +33,7 @@ ShowItem.propTypes = {
   data: PropTypes.object.isRequired
 };
 
-const NewsPanel = props => {
+const NewsFeedPanel = props => {
   const { data } = props;
   return (
     <NewsFeedContainer>
@@ -42,7 +42,9 @@ const NewsPanel = props => {
     </NewsFeedContainer>
   );
 };
-NewsPanel.propTypes = {
+
+export default NewsFeedPanel;
+
+NewsFeedPanel.propTypes = {
   data: PropTypes.object.isRequired
 };
-export default NewsPanel;

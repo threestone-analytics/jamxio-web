@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const GeoDataContainer = styled.div`
+export const Space = styled.div`
+  height: 57px;
+  width: 100%;
+`;
+export const PanelContainer = styled.div`
   position: relative;
   top: 0;
   right: 0;
@@ -11,7 +15,7 @@ export const GeoDataContainer = styled.div`
   outline: none;
   color: #fff;
   vertical-align: middle;
-  z-index: 98;
+  z-index: ${props => (props.first ? '98' : props.second ? '97' : '96')};
   overflow: visible;
 `;
 export const Label = styled.div`
