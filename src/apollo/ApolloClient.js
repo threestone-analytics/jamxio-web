@@ -41,9 +41,6 @@ const client = new ApolloClient({
   link: concat(middlewareLink, httpLink),
   cache: cache.restore(window.__APOLLO_CLIENT__),
   connectToDevTools: true,
-  fetchOptions: {
-    mode: 'no-cors'
-  },
   queryDeduplication: true
 });
 
