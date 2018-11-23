@@ -73,11 +73,13 @@ export const Label = styled.div`
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
-  line-height: normal;
+  --line-height: 1;
+  line-height: 19px;
   font-size: 14px;
   color: #000000;
   text-align: left;
   padding: ${props => (props.sub ? '0px' : '10px')};
+  padding-left: 0;
 `;
 
 export const SubSubItemLabel = styled.div`
@@ -104,9 +106,9 @@ export const Mark = styled.div`
 `;
 
 export const Circle = styled.div`
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 15%;
   margin: auto;
   background-color: ${props => (props.color ? props.color : '#fff')};
 `;

@@ -6,10 +6,8 @@ import { graphql } from 'react-apollo';
 import { compose } from 'recompose';
 import _ from 'lodash';
 
-import GeoDataPanel from 'Components/Panel/MapPanel/geoDataPanel';
-import CrowdSourcedDataPanel from 'Components/Panel/MapPanel/crowdSourcedDataPanel';
-import NewsFeedPanel from 'Components/Panel/MapPanel/newsFeedPanel';
-import { layerColor } from 'Styles/app/map/layers';
+import { Panel } from 'Components/Panel';
+import NewsFeedPanel from 'Components/Panel/NewsFeedPanel';
 import { PanelContainer } from './style';
 
 mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
@@ -26,12 +24,11 @@ const layersShown = [
   'Infraestructura energetica'
 ];
 
-function plotData(docs, m, a) {
+function plotData(docs, m) {
   // FIXME duplicate
   const groupedData = _.mapValues(_.groupBy(docs, 'documentType.category'));
-  a.setState({ categories: _.groupBy(docs, currentObject => currentObject.documentType.category) });
 
-  Object.keys(groupedData).forEach((element, i) => {
+  Object.keys(groupedData).forEach(element => {
     const records = groupedData[element];
 
     let n = 0;
@@ -39,11 +36,8 @@ function plotData(docs, m, a) {
       n = 0;
     }
     records.map(async doc => {
-      const newDoc = doc;
+      const { url, color } = doc;
 
-      const color = layerColor.category[i][n];
-      const { url } = doc;
-      newDoc.color = color;
       m.addSource(doc.recordId, {
         type: 'geojson',
         data: url
@@ -56,7 +50,7 @@ function plotData(docs, m, a) {
             'circle-radius': 5
           },
           layout: {
-            visibility: layersShown.includes(newDoc.title) ? 'visible' : 'none'
+            visibility: layersShown.includes(doc.title) ? 'visible' : 'none'
           },
           id: doc.recordId, // Sets id as current child's key
           source: doc.recordId // The source layer defined above
@@ -70,7 +64,7 @@ function plotData(docs, m, a) {
             'fill-opacity': 1
           },
           layout: {
-            visibility: layersShown.includes(newDoc.title) ? 'visible' : 'none'
+            visibility: layersShown.includes(doc.title) ? 'visible' : 'none'
           },
           id: doc.recordId, // Sets id as current child's key
           source: doc.recordId // The source layer defined above
@@ -86,7 +80,6 @@ class MapContainer extends React.Component {
     super();
 
     this.state = {
-      categories: [],
       lat: 24.3704762,
       lng: -96.7996812,
       zoom: 4.9
@@ -128,19 +121,7 @@ class MapContainer extends React.Component {
       <div style={{ height: `${100}%`, width: `${100}%` }}>
         <div id="map" style={{ height: `100vh`, width: `100vw` }} />
         <PanelContainer>
-          {this.props.data.getLatestDocuments ? (
-            <GeoDataPanel
-              categories={this.state.categories}
-              toggleLayer={this.toggleLayer.bind(this)}
-            />
-          ) : (
-            ''
-          )}
-
-          <CrowdSourcedDataPanel
-            categories={this.state.categories}
-            toggleLayer={this.toggleLayer.bind(this)}
-          />
+          <Panel toggleLayer={this.toggleLayer.bind(this)} />
           {this.props.data.getPosts ? (
             <NewsFeedPanel
               data={this.props.data.getPosts}
@@ -170,16 +151,12 @@ const GET_DATA = gql`
     }
 
     getLatestDocuments {
-      documentType {
-        _id
-        category
-        subcategory
-      }
       geojsonType
       title
       source
       recordId
       url
+      color
     }
   }
 `;
